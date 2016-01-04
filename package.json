@@ -1,0 +1,20 @@
+{
+  "name": "todos-manager",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Simple todos manager",
+  "main": "backend/server.js",
+  "scripts": {
+    "start": "node backend/server.js"
+  },
+  "dependencies": {
+    "express": "~4.13.3",
+    "underscore": "~1.8.3",
+    "body-parser": "~1.14.2",
+    "morgan": "~1.6.1",
+    "mongodb": "~2.1.2"
+  },
+  "engines": {
+    "node": ">=0.8.x"
+  }
+}
