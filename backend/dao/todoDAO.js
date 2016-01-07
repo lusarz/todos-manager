@@ -1,21 +1,37 @@
 (function () {
   'use strict';
-  var mongoose = require('mongoose'),
-    Todo = mongoose.model('Todo');
+
+
+  var Todo = require('../models/todo.model');
 
   module.exports = {
-    search: search,
+    findList: findList,
     findById: findById,
+    create: create,
+    update: update,
+    remove: remove,
     createNewOrUpdate: createNewOrUpdate
   };
 
 
-  function search(query) {
-
+  function findList(query, callback) {
+    Todo.find(function (err, todos) {
+      callback(todos);
+    });
   }
 
-  function findById(todoId) {
-
+  function findById(todoId, callback) {
+    Todo.findById(todoId).exec(function (err, article) {
+      if (err) {
+        return next(err);
+      } else if (!article) {
+        return res.status(404).send({
+          message: 'No article with that identifier has been found'
+        });
+      }
+      req.article = article;
+      next();
+    });
   }
 
   function createNewOrUpdate(todo, id) {
@@ -29,7 +45,7 @@
       });
     } else {
       var newTodo = new Todo(todo);
-      newTodo.save()
+      newTodo.save();
     }
   }
 
