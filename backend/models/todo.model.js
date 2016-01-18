@@ -25,11 +25,12 @@
       type: String,
       default: '',
       trim: true
-    }/*,
-     user: {
-     type: Schema.ObjectId,
-     ref: 'User'
-     }*/
+    },
+    user: {
+      type: Schema.ObjectId,
+      ref: 'User',
+      required: 'User is required'
+    }
   });
 
   module.exports = mongoose.model('Todo', TodoSchema);

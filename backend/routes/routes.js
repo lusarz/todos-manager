@@ -8,6 +8,7 @@
 
   module.exports = function (router) {
     //router.use(authenticate);
+    require('./authentication.routes')(router);
     require('./todo.routes')(router);
   };
 })();

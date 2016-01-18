@@ -2,12 +2,13 @@
   'use strict';
 
 
-  var Todo = require('../models/todo.model'),
+  var User = require('../models/user.model'),
     q = require('q');
 
   module.exports = {
     findList: findList,
     findById: findById,
+    findByUserName: findByUserName,
     create: create,
     update: update,
     remove: remove
@@ -16,19 +17,19 @@
 
   function findList(query) {
     var defer = q.defer();
-    Todo.find(function (err, todos) {
+    User.find(function (err, users) {
       if (err) {
         defer.reject(err);
       } else {
-        defer.resolve(todos);
+        defer.resolve(users);
       }
     });
     return defer.promise;
   }
 
-  function findById(todoId) {
+  function findById(userId) {
     var defer = q.defer();
-    Todo.findById(todoId).exec(function (err, article) {
+    User.findById(userId).exec(function (err, article) {
       if (err) {
         defer.reject(err);
       } else if (!article) {
@@ -41,27 +42,42 @@
     return defer.promise;
   }
 
-  function create(todo, callback) {
+  function findByUserName(userName) {
     var defer = q.defer();
-    var newTodo = new Todo(todo);
-    newTodo.save(function (err, newTodo) {
+    User.findOne({userName: userName}).exec(function (err, article) {
+      if (err) {
+        defer.reject(err);
+      } else if (!article) {
+        defer.reject({errCode: 'NOT_FOUND'});
+      } else {
+        defer.resolve(article);
+      }
+    });
+
+    return defer.promise;
+  }
+
+  function create(user, callback) {
+    var defer = q.defer();
+    var newUser = new User(user);
+    newUser.save(function (err, newUser) {
       if (err) {
         defer.reject(err);
       } else {
-        defer.resolve(newTodo);
+        defer.resolve(newUser);
       }
     });
     return defer.promise;
   }
 
-  function update(todo, id) {
+  function update(user, id) {
     var defer = q.defer();
-    delete todo._id;
-    Todo.findOneAndUpdate({_id: id}, todo, {upsert: true}, function (err, updatedTodo) {
+    delete user._id;
+    User.findOneAndUpdate({_id: id}, user, {upsert: true}, function (err, updatedUser) {
       if (err) {
         defer.reject(err);
       } else {
-        defer.resolve(updatedTodo);
+        defer.resolve(updatedUser);
       }
     });
     return defer.promise;
@@ -70,7 +86,7 @@
   function remove(id) {
     var defer = q.defer();
 
-    Todo.findByIdAndRemove(id, {}, function (err) {
+    User.findByIdAndRemove(id, {}, function (err) {
       if (err) {
         defer.reject(err);
       } else {

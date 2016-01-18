@@ -4,8 +4,11 @@
   var todoDAO = require('../dao/todoDAO');
 
   module.exports = {
-    getTodos: todoDAO.findList,
-    createNewOrUpdate: todoDAO.createNewOrUpdate
+    findList: todoDAO.findList,
+    findById: todoDAO.findById,
+    create: todoDAO.create,
+    update: todoDAO.update,
+    remove: todoDAO.remove
   }
 
 })();
