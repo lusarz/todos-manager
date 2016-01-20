@@ -67,6 +67,9 @@
     salt: {
       type: String
     },
+    token: {
+      type: String
+    },
     profileImageURL: {
       type: String
     },

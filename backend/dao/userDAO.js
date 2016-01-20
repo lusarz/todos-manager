@@ -8,7 +8,9 @@
   module.exports = {
     findList: findList,
     findById: findById,
+    findByEmail: findByEmail,
     findByUserName: findByUserName,
+    findByToken: findByToken,
     create: create,
     update: update,
     remove: remove
@@ -42,15 +44,47 @@
     return defer.promise;
   }
 
-  function findByUserName(userName) {
+
+  function findByEmail(email) {
     var defer = q.defer();
-    User.findOne({userName: userName}).exec(function (err, article) {
+    console.log(email);
+    User.findOne({email: email}).exec(function (err, user) {
       if (err) {
         defer.reject(err);
-      } else if (!article) {
+      } else if (!user) {
         defer.reject({errCode: 'NOT_FOUND'});
       } else {
-        defer.resolve(article);
+        defer.resolve(user);
+      }
+    });
+
+    return defer.promise;
+  }
+
+  function findByUserName(userName) {
+    var defer = q.defer();
+    User.findOne({userName: userName}).exec(function (err, user) {
+      if (err) {
+        defer.reject(err);
+      } else if (!user) {
+        defer.reject({errCode: 'NOT_FOUND'});
+      } else {
+        defer.resolve(user);
+      }
+    });
+
+    return defer.promise;
+  }
+
+  function findByToken(token) {
+    var defer = q.defer();
+    User.findOne({token: token}).exec(function (err, user) {
+      if (err) {
+        defer.reject(err);
+      } else if (!user) {
+        defer.reject({errCode: 'NOT_FOUND'});
+      } else {
+        defer.resolve(user);
       }
     });
 

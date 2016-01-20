@@ -4,7 +4,8 @@
   var userService = require('../services/user.service');
 
   module.exports = {
-    signup: signup
+    signup: signup,
+    signin: signin
   };
 
   /**
@@ -31,6 +32,25 @@
        }
        });
        */
+    }, function (err) {
+      res.status(400).send(err);
+    });
+  };
+
+  function signin(req, res) {
+    console.log(req.body);
+    var email = req.body.email;
+    var password = req.body.password;
+
+
+    userService.findByEmail(email).then(function (user) {
+      if (user.authenticate(password)) {
+        userService.generateToken(user._id).then(function (token) {
+          res.json({token: token});
+        }, function (err) {
+          res.status(400).send(err);
+        });
+      }
     }, function (err) {
       res.status(400).send(err);
     });

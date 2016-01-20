@@ -8,5 +8,8 @@
     router.route('/auth/signup')
       .post(authenticationController.signup);
 
+    router.route('/auth/signin')
+      .post(authenticationController.signin);
+
   };
 })();

@@ -4,18 +4,16 @@
  * Module dependencies.
  */
 var passport = require('passport'),
-  LocalStrategy = require('passport-local').Strategy,
+//LocalStrategy = require('passport-local').Strategy,
+  BearerStrategy = require('passport-http-bearer').Strategy,
   userService = require('../../services/user.service');
 
 module.exports = function () {
-  // Use local strategy
-  passport.use(new LocalStrategy({
-      usernameField: 'userName',
-      passwordField: 'password'
-    },
-    function (username, password, done) {
-      userService.findByUserName(username).then(function (user) {
-        if (!user || !user.authenticate(password)) {
+
+  passport.use(new BearerStrategy(
+    function (token, done) {
+      userService.findByToken(token).then(function (user) {
+        if (!user) {
           return done(null, false, {
             message: 'Invalid username or password'
           });
@@ -25,7 +23,6 @@ module.exports = function () {
       }, function (err) {
         done(err);
       });
-
-
-    }));
+    }
+  ));
 };

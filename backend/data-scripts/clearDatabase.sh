@@ -1,0 +1,1 @@
+mongo todosManager --eval "db.dropDatabase();"
