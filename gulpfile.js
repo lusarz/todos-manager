@@ -13,11 +13,19 @@
     var sass = require('gulp-sass');
     var connect = require('gulp-connect');
     var wiredep = require('wiredep').stream;
+    var clean = require('gulp-clean');
 
     var plugins = gulpLoadPlugins({
         rename: {
             'gulp-angular-templatecache': 'templateCache'
         }
+    });
+
+
+    // Clean
+    gulp.task('clean', function () {
+        return gulp.src('frontend/app/.tmp/**/*', {read: false, force: true})
+            .pipe(clean());
     });
 
 
@@ -55,7 +63,7 @@
     //Web server task
     gulp.task('webserver', function () {
         connect.server({
-            root: 'frontend/app',
+            root: ['frontend/app'],
             port: 9000,
             livereload: true,
             middleware: function (connect, opt) {
@@ -67,6 +75,7 @@
     });
 
 
-    gulp.task('default', ['webserver', 'sass', 'bower']);
+    gulp.task('default', ['clean', 'sass', 'bower', 'webserver']);
 
-})();
+})
+();
