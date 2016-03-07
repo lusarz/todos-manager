@@ -12,6 +12,7 @@
 
     var sass = require('gulp-sass');
     var connect = require('gulp-connect');
+    var wiredep = require('wiredep').stream;
 
     var plugins = gulpLoadPlugins({
         rename: {
@@ -41,16 +42,31 @@
             .pipe(gulp.dest('frontend/app/.tmp/styles'));
     });
 
+    // Bower task
+    gulp.task('bower', function () {
+        gulp.src('frontend/app/index.html')
+            .pipe(wiredep({
+                src: ['frontend/app/index.html'],
+            }))
+            .pipe(gulp.dest('frontend/app'));
+    });
+
+
     //Web server task
     gulp.task('webserver', function () {
         connect.server({
             root: 'frontend/app',
             port: 9000,
-            livereload: true
+            livereload: true,
+            middleware: function (connect, opt) {
+                return [
+                    connect.static('frontend/app/.tmp')
+                ]
+            }
         });
     });
 
 
-    gulp.task('default', ['webserver']);
+    gulp.task('default', ['webserver', 'sass', 'bower']);
 
 })();

@@ -23,7 +23,8 @@
     "passport-http-bearer": "^1.0.1",
     "q": "^1.4.1",
     "underscore": "~1.8.3",
-    "validator": "^4.5.0"
+    "validator": "^4.5.0",
+    "wiredep": "3.0.0"
   },
   "engines": {
     "node": ">=0.8.x"
