@@ -8,4 +8,7 @@
  *
  * Main module of the application.
  */
-angular.module('app', []);
+angular.module('app', [
+    'ui.router',
+    'ngResource'
+]);
