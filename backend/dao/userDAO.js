@@ -5,19 +5,8 @@
   var User = require('../models/user.model'),
     q = require('q');
 
-  module.exports = {
-    findList: findList,
-    findById: findById,
-    findByEmail: findByEmail,
-    findByUserName: findByUserName,
-    findByToken: findByToken,
-    create: create,
-    update: update,
-    remove: remove
-  };
 
-
-  function findList(query) {
+  function findList(/*query*/) {
     var defer = q.defer();
     User.find(function (err, users) {
       if (err) {
@@ -91,7 +80,7 @@
     return defer.promise;
   }
 
-  function create(user, callback) {
+  function create(user) {
     var defer = q.defer();
     var newUser = new User(user);
     newUser.save(function (err, newUser) {
@@ -130,6 +119,17 @@
 
     return defer.promise;
   }
+
+  module.exports = {
+    findList: findList,
+    findById: findById,
+    findByEmail: findByEmail,
+    findByUserName: findByUserName,
+    findByToken: findByToken,
+    create: create,
+    update: update,
+    remove: remove
+  };
 
 })
 ();

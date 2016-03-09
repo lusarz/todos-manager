@@ -5,16 +5,8 @@
   var Todo = require('../models/todo.model'),
     q = require('q');
 
-  module.exports = {
-    findList: findList,
-    findById: findById,
-    create: create,
-    update: update,
-    remove: remove
-  };
 
-
-  function findList(query) {
+  function findList(/*query*/) {
     var defer = q.defer();
     Todo.find(function (err, todos) {
       if (err) {
@@ -41,7 +33,7 @@
     return defer.promise;
   }
 
-  function create(todo, callback) {
+  function create(todo) {
     var defer = q.defer();
     var newTodo = new Todo(todo);
     newTodo.save(function (err, newTodo) {
@@ -80,6 +72,14 @@
 
     return defer.promise;
   }
+
+  module.exports = {
+    findList: findList,
+    findById: findById,
+    create: create,
+    update: update,
+    remove: remove
+  };
 
 })
 ();

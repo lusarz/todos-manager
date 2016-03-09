@@ -1,24 +1,29 @@
 (function () {
-    'use strict';
+  'use strict';
 
-    module.exports = {
-        frontend: {
-            js: [
-                'frontend/scripts/**/*.js'
-            ]
-        },
-        backend: {
-            js: [
-                'backend/server.js',
-                'backend/dao/*.js',
-                'backend/models/*.js'
-            ]
-        },
-        config: {
-            js: [
-                'config/**/*.js'
-            ]
-        }
-    };
+  module.exports = {
+    frontend: {
+      js: [
+        'frontend/scripts/**/*.js'
+      ]
+    },
+    backend: {
+      js: [
+        'backend/server.js',
+        'backend/dao/*.js',
+        'backend/models/*.js'
+      ]
+    },
+    config: {
+      js: [
+        'config/**/*.js'
+      ]
+    },
+    frontendTest: {
+      js: [
+        'frontend/test/**/*.js'
+      ]
+    }
+  };
 
 })();

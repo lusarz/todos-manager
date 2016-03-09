@@ -5,7 +5,10 @@
    * Config for the router
    */
 
-  function routingConfiguration($stateProvider) {
+  function routingConfiguration($stateProvider, $urlRouterProvider) {
+
+    $urlRouterProvider.otherwise("/register");
+
     $stateProvider
       .state('login', {
         url: '/login',
@@ -36,7 +39,7 @@
   angular.module('app')
     .config(routingConfiguration);
 
-  routingConfiguration.$inject = ['$stateProvider'];
+  routingConfiguration.$inject = ['$stateProvider', '$urlRouterProvider'];
 
 
 })();
