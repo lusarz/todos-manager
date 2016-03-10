@@ -1,25 +1,17 @@
 (function () {
   'use strict';
 
-  angular.module('app')
-    .controller('RegisterCtrl', RegisterCtrl);
-
-  RegisterCtrl.$inject = ['UserDAO'];
-
-
   /**
    * @ngdoc function
-   * @name app.controller:RegistrationCtrl
+   * @name app.controller:RegisterCtrl
    * @description
-   * # RegistrationCtrl
+   * # RegisterCtrl
    * Controller of the app
    */
   function RegisterCtrl(UserDAO) {
     var vm = this;
     vm.registrationData = {};
-
     vm.register = register;
-
 
     function register() {
       UserDAO.register(vm.registrationData).then(function (response) {
@@ -27,4 +19,9 @@
       });
     }
   }
+
+  angular.module('app')
+    .controller('RegisterCtrl', RegisterCtrl);
+
+  RegisterCtrl.$inject = ['UserDAO'];
 })();

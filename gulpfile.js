@@ -12,6 +12,7 @@
 
   var sass = require('gulp-sass');
   var connect = require('gulp-connect');
+  var nodemon = require('gulp-nodemon');
   var wiredep = require('wiredep').stream;
   var clean = require('gulp-clean');
   var KarmaServer = require('karma').Server;
@@ -101,24 +102,18 @@
         throw e
       })
   });
+  
 
-  //Web server task
-  gulp.task('webserver', function () {
-    connect.server({
-      root: ['frontend/app'],
-      port: 9000,
-      livereload: true,
-      middleware: function (connect, opt) {
-        return [
-          connect.static('frontend/app/.tmp'),
-          connect.static('frontend/bower_components')
-        ]
-      }
-    });
+  gulp.task('start', function () {
+    nodemon({
+      script: 'server.js'
+      , ext: 'js html scss'
+      , env: {'NODE_ENV': 'development'}
+    })
   });
 
 
-  gulp.task('default', ['clean', 'sass', 'bower:index', 'webserver']);
+  gulp.task('default', ['clean', 'sass', 'bower:index', 'start']);
   gulp.task('test:unit', ['bower:index', 'bower:karma', 'karmaTest']);
 
   gulp.task('test:e2e', ['default', 'e2eTest']);

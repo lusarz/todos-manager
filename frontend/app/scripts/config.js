@@ -3,7 +3,8 @@
   'use strict';
 
   angular.module('app')
-    .config(function () {
+    .config(function ($httpProvider) {
+      //$httpProvider.interceptors.push('AuthInterceptor');
       console.log('CONFIG');
     })
     .run(function () {

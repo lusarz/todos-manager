@@ -1,12 +1,6 @@
 (function () {
   'use strict';
 
-  angular.module('app')
-    .controller('LoginCtrl', LoginCtrl);
-
-  LoginCtrl.$inject = ['UserDAO'];
-
-
   /**
    * @ngdoc function
    * @name app.controller:RegistrationCtrl
@@ -16,15 +10,24 @@
    */
   function LoginCtrl(UserDAO) {
     var vm = this;
-    vm.registrationData = {};
+    vm.credentials = {};
 
     vm.login = login;
 
 
     function login() {
-      UserDAO.login(vm.registrationData).then(function (response) {
+      UserDAO.login(vm.credentials).then(function (response) {
         console.log(response);
+        vm.token = response.token;
+      }, function (error) {
+        console.error(error);
       });
     }
   }
+
+  angular.module('app')
+    .controller('LoginCtrl', LoginCtrl);
+
+  LoginCtrl.$inject = ['UserDAO'];
+
 })();
