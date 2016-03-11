@@ -2,13 +2,19 @@
 
   'use strict';
 
+
+  function config() {
+    console.log('CONFIG');
+  }
+
+  function run(SecurityFactory) {
+    console.log('RUN');
+  }
+
   angular.module('app')
-    .config(function ($httpProvider) {
-      //$httpProvider.interceptors.push('AuthInterceptor');
-      console.log('CONFIG');
-    })
-    .run(function () {
-      console.log('RUN');
-    });
+    .config(config)
+    .run(run);
+
+  run.$inject = ['SecurityFactory'];
 
 })();

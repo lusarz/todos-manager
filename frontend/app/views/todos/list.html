@@ -1,3 +1,11 @@
 <div>
-    There will be list of todos
+    <h1>TODOS</h1>
+
+    <div>
+        <div class="panel panel-default" ng-repeat="todo in vm.todos">
+            <div class="panel-body">
+                {{todo.name}}
+            </div>
+        </div>
+    </div>
 </div>

@@ -25,8 +25,7 @@
       .state('app', {
         abstract: true,
         url: '',
-        templateUrl: 'views/app/app.html',
-        controller: 'MainCtrl'
+        templateUrl: 'views/app/app.html'
       })
       .state('app.todos', {
         url: '/todos',

@@ -3,17 +3,23 @@
 
   describe('LoginCtrl', function () {
 
-    var ctrl, scope, httpBackend;
+    var ctrl, scope, httpBackend, SecurityFactory;
 
-    beforeEach(module('app'));
+    //module('views');
 
-    beforeEach(inject(function ($controller, $rootScope, _$httpBackend_) {
-      scope = $rootScope.$new();
-      ctrl = $controller('LoginCtrl', {
-        $scope: scope
+    beforeEach(function () {
+      module('app');
+      angular.mock.module('views');
+
+      inject(function ($controller, $rootScope, _$httpBackend_, _SecurityFactory_) {
+        scope = $rootScope.$new();
+        ctrl = $controller('LoginCtrl', {
+          $scope: scope
+        });
+        httpBackend = _$httpBackend_;
+        SecurityFactory = _SecurityFactory_;
       });
-      httpBackend = _$httpBackend_;
-    }));
+    });
 
     afterEach(function () {
       httpBackend.verifyNoOutstandingExpectation();
@@ -21,16 +27,12 @@
     });
 
     describe('On initialization', function () {
-      it('Registration data should be empty', function () {
+      it('Credentials should be empty', function () {
         expect(ctrl.credentials).toEqual({});
       });
 
-      it('Register function should be defined', function () {
+      it('Login function should be defined', function () {
         expect(typeof ctrl.login).toEqual('function');
-      });
-
-      it('Token should not be defined', function () {
-        expect(ctrl.token).not.toBeDefined();
       });
     });
 
@@ -42,7 +44,7 @@
 
       ctrl.login();
       httpBackend.flush();
-      expect(ctrl.token).toEqual('1234');
+      expect(SecurityFactory.isLogged()).toBeTruthy();
     });
 
   });
