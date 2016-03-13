@@ -10,5 +10,6 @@
  */
 angular.module('app', [
     'ui.router',
-    'ngResource'
+    'ngResource',
+    'ngMessages'
 ]);
