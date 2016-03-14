@@ -6,7 +6,12 @@
 
   position: fixed;
   bottom: 0px;
-  width: 100%;
+  width: calc(100% - 230px);
   right: 0px;
   left: 230px;
+}
+
+aside.collapsed + .content footer {
+  width: calc(100% - 75px);
+  left: 75px;
 }
