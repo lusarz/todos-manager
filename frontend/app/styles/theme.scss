@@ -1,5 +1,17 @@
+$icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
+$fa-font-path: "../bower_components/components-font-awesome/fonts";
+
 // bower:scss
 @import "../bower_components/bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
+@import "../bower_components/components-font-awesome/scss/font-awesome.scss";
 // endbower
 /* Page partials */
 @import "bootstrap/bootstrap-overrides";
+@import "partials/variables";
+@import "partials/common";
+/*Blocks*/
+@import "partials/blocks/aside";
+@import "partials/blocks/navigation";
+@import "partials/blocks/header";
+@import "partials/blocks/content";
+@import "partials/blocks/footer";

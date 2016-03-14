@@ -1,0 +1,30 @@
+.content {
+  margin-left: 230px;
+
+  & > .container-fluid {
+    padding-left: 25px;
+    padding-right: 25px;
+  }
+}
+
+/*** Page Header / Page Title ***/
+
+.page-header {
+  border-bottom: none;
+  margin: 20px 0px 0px 0px;
+
+  h1 {
+    font-weight: 300;
+    font-size: 32px;
+    margin-bottom: 0px;
+  }
+
+  * {
+    font-weight: 300;
+  }
+
+  small {
+    font-size: 14px;
+    color: #9D9EA5;
+  }
+}

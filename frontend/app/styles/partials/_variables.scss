@@ -1,0 +1,14 @@
+$primaryColor: #4dc61b;
+$defaultTextColor: #85868d;
+$navigationBackground: #232323;
+$navigationItemColor: #FFFFFF;
+
+/* Menu */
+$menuSelectedColor: $primaryColor;
+//#FF404B;
+$menuBackgroundColor: #2B2F3E;
+$menuSubmenuColor: #5E6271;
+$menuSubmenuActiveColor: lighten($menuSubmenuColor, 50);
+
+/* Widths */
+$sidebarWidth: 260px;

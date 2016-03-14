@@ -1,0 +1,29 @@
+body {
+  background-color: #f9f9f9;
+  color: $defaultTextColor;
+  font-family: 'Open Sans', sans-serif;
+  position: relative;
+}
+
+body, html {
+  overflow-x: hidden;
+}
+
+strong, b {
+  font-weight: 700;
+}
+
+.transit {
+  transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -webkit-transition: all 0.5s;
+  -o-transition: all 0.5s;
+}
+
+a:focus {
+  outline: none;
+}
+
+a:hover {
+  text-decoration: none;
+}

@@ -1,4 +1,13 @@
-<div>
-    There will be app template
-    <div ui-view></div>
-</div>
+<aside ng-include="'views/app/blocks/aside.html'"></aside>
+
+<section class="content">
+    <div ng-include=" 'views/app/blocks/header.html' "></div>
+
+
+    <div class="wrapper container-fluid">
+        <div ui-view></div>
+    </div>
+
+    <footer ng-include=" 'views/app/blocks/footer.html' " class="container-fluid footer"></footer>
+
+</section>

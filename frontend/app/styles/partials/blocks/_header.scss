@@ -1,0 +1,16 @@
+header {
+  background-color: #f2f2f4;
+  border-bottom: 1px solid #ececee;
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.navbar-toggle {
+  margin: 8px 20px 8px 0px;
+  background-color: $primaryColor;
+  display: block;
+
+  .icon-bar {
+    background-color: $navigationItemColor;
+  }
+}

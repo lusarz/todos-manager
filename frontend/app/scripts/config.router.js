@@ -27,6 +27,10 @@
         url: '',
         templateUrl: 'views/app/app.html'
       })
+      .state('app.dashboard', {
+        url: '/dashboard',
+        templateUrl: 'views/dashboard.html'
+      })
       .state('app.todos', {
         url: '/todos',
         templateUrl: 'views/todos/list.html',
