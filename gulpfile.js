@@ -103,6 +103,10 @@
       })
   });
 
+  gulp.task('watch', function () {
+    gulp.watch('frontend/app/styles/**/*.scss', ['sass']);
+  });
+
 
   gulp.task('start', function () {
     nodemon({
@@ -113,7 +117,7 @@
   });
 
 
-  gulp.task('default', ['clean', 'sass', 'bower:index', 'start']);
+  gulp.task('default', ['clean', 'sass', 'bower:index', 'watch', 'start']);
   gulp.task('test:unit', ['bower:index', 'bower:karma', 'karmaTest']);
 
   gulp.task('test:e2e', ['default', 'e2eTest']);
