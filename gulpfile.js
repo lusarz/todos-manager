@@ -102,13 +102,13 @@
         throw e
       })
   });
-  
+
 
   gulp.task('start', function () {
     nodemon({
-      script: 'server.js'
-      , ext: 'js html scss'
-      , env: {'NODE_ENV': 'development'}
+      script: 'server.js',
+      ext: 'js html scss',
+      env: {'NODE_ENV': 'development'}
     })
   });
 
