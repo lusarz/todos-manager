@@ -5,8 +5,6 @@
 
     var ctrl, scope, httpBackend, SecurityFactory;
 
-    //module('views');
-
     beforeEach(function () {
       module('app');
       angular.mock.module('views');

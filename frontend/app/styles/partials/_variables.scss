@@ -1,14 +1,19 @@
 $primaryColor: #4dc61b;
 $defaultTextColor: #85868d;
-$navigationBackground: #232323;
+$navigationBackground: #2B2F3E;
 $navigationItemColor: #FFFFFF;
 
 /* Menu */
 $menuSelectedColor: $primaryColor;
 //#FF404B;
-$menuBackgroundColor: #2B2F3E;
+$menuBackgroundColor: $navigationBackground;
 $menuSubmenuColor: #5E6271;
 $menuSubmenuActiveColor: lighten($menuSubmenuColor, 50);
 
 /* Widths */
 $sidebarWidth: 260px;
+
+/* Login and registration panel */
+$panel-access-text: $navigationItemColor !default;
+$panel-access-border: $primaryColor !default;
+$panel-access-heading-bg: $primaryColor !default;

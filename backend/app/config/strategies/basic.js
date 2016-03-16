@@ -5,7 +5,7 @@
  */
 var passport = require('passport'),
   BasicStrategy = require('passport-http').Strategy,
-  userService = require('../../services/user.service');
+  userService = require('.././user.service');
 
 module.exports = function () {
 

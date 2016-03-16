@@ -11,7 +11,10 @@
   var endOfLine = require('os').EOL;
 
   var sass = require('gulp-sass');
+  var sourcemaps = require('gulp-sourcemaps');
   var connect = require('gulp-connect');
+  var env = require('gulp-env');
+  var mocha = require('gulp-mocha');
   var nodemon = require('gulp-nodemon');
   var wiredep = require('wiredep').stream;
   var clean = require('gulp-clean');
@@ -51,7 +54,9 @@
   // Sass task
   gulp.task('sass', function () {
     return gulp.src('frontend/app/styles/**/*.scss')
+      .pipe(sourcemaps.init())
       .pipe(sass().on('error', sass.logError))
+      .pipe(sourcemaps.write())
       .pipe(gulp.dest('frontend/app/.tmp/styles'));
   });
 
@@ -103,6 +108,23 @@
       })
   });
 
+  // Backend unit test
+  gulp.task('mocha', function () {
+    env({
+      vars: {
+        NODE_ENV: 'test'
+      }
+    });
+    return gulp.src('backend/test/**/*.spec.js')
+      .pipe(mocha({
+        bail: false,
+        reporter: "nyan"
+      }).on('error', function () {
+      })
+      //do nothing
+    );
+  });
+
   gulp.task('watch', function () {
     gulp.watch('frontend/app/styles/**/*.scss', ['sass']);
   });
@@ -122,5 +144,4 @@
 
   gulp.task('test:e2e', ['default', 'e2eTest']);
 
-})
-();
+})();

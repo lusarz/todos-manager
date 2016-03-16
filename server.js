@@ -6,19 +6,20 @@
     bodyParser = require('body-parser'),
     morgan = require('morgan'),
     passport = require('passport'),
-    config = require('./config/env/default'),
+    config = require('./config/config'),
     mongoose = require('mongoose');
 
-  mongoose.connect(config.db);
+  var dbConnection = mongoose.connect(config.db);
 
 
+  app.disable('etag');
   app.use(morgan('dev'));
   app.use(bodyParser.json());
 
-  require('./backend/config/strategies/bearer')(app);
+  require('./backend/app/config/strategies/bearer')(app);
   app.use(passport.initialize());
 
-  require('./backend/routes/routes.js')(app);
+  require('./backend/app/routes/routes.js')(app);
 
   //Serve frontend
   app.use(express.static(__dirname + '/frontend/app'));
@@ -28,5 +29,9 @@
     console.log('listening for requests on localhost:%s', config.port);
   });
 
+  module.exports = {
+    app: app,
+    dbConnection: dbConnection
+  };
 
 })();

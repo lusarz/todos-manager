@@ -1,0 +1,13 @@
+.panel-access {
+  @include panel-variant($panel-access-border, $panel-access-text, $panel-access-heading-bg, $panel-access-border);
+
+  .panel-heading {
+    a {
+      color: $navigationItemColor;
+      &:HOVER {
+        color: $navigationItemColor;
+        text-decoration: underline;
+      }
+    }
+  }
+}

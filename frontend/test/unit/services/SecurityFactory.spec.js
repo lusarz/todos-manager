@@ -43,6 +43,7 @@ describe('Factory: SecurityFactory', function () {
     it('User should be logged in', function () {
       expect(SecurityFactory.isLogged()).toBeTruthy();
     });
+    
   });
 
 
