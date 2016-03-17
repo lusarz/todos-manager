@@ -13,7 +13,7 @@
 
 
   function findList(req, res) {
-    todoService.findList(null).then(function (todos) {
+    todoService.findList(null, req.user).then(function (todos) {
       res.send(todos);
     }, function (err) {
 
@@ -29,7 +29,8 @@
   }
 
   function create(req, res) {
-    todoService.create(req.body).then(function (todo) {
+    var todo = req.body;
+    todoService.create(todo, req.user).then(function (todo) {
       res.send(todo);
     }, function (err) {
       res.status(400).send(err);

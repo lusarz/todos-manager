@@ -27,7 +27,7 @@
         storage.bearerToken = bearerToken;
         setupBearerHeader();
       }, function (error) {
-        console.log(error);
+        throw error;
       });
     }
 

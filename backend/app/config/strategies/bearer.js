@@ -25,4 +25,13 @@ module.exports = function () {
       });
     }
   ));
+
+  /*passport.serializeUser(function () {
+
+   });
+
+   passport.deserializeUser(function () {
+
+   });*/
+
 };

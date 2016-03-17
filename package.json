@@ -12,7 +12,7 @@
     "bluebird": "^3.1.1",
     "body-parser": "~1.14.2",
     "crypto": "0.0.3",
-    "express": "~4.13.3",
+    "express": "4.13.4",
     "generate-password": "^1.1.1",
     "lodash": "^3.10.1",
     "mongodb": "~2.1.2",
@@ -31,6 +31,7 @@
     "node": ">=0.8.x"
   },
   "devDependencies": {
+    "chai": "3.5.0",
     "gulp": "3.9.1",
     "gulp-angular-templatecache": "^1.8.0",
     "gulp-clean": "0.3.2",

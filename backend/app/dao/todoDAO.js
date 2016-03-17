@@ -6,9 +6,11 @@
     q = require('q');
 
 
-  function findList(/*query*/) {
+  function findList(filters, user) {
+    filters = filters || {};
+    filters.user = user;
     var defer = q.defer();
-    Todo.find(function (err, todos) {
+    Todo.find(filters, function (err, todos) {
       if (err) {
         defer.reject(err);
       } else {

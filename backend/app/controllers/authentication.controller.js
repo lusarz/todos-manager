@@ -21,17 +21,9 @@
     user.displayName = user.firstName + ' ' + user.lastName;
 
     userService.create(user).then(function (createdUser) {
-      res.send(createdUser);
-
-      /* //Login in future implementation
-       req.login(user, function (err) {
-       if (err) {
-       res.status(400).send(err);
-       } else {
-       res.json(user);
-       }
-       });
-       */
+      userService.generateToken(createdUser._id).then(function (token) {
+        res.json({token: token});
+      });
     }, function (err) {
       res.status(400).send(err);
     });
