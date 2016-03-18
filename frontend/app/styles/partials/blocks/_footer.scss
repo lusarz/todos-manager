@@ -6,12 +6,23 @@
 
   position: fixed;
   bottom: 0px;
-  width: calc(100% - 230px);
   right: 0px;
-  left: 230px;
+  width: 100%;
+  left: 0px;
+
+  @media (min-width: 768px) {
+    left: 230px;
+    width: calc(100% - 230px);
+  }
 }
 
 aside.collapsed + .content footer {
-  width: calc(100% - 75px);
-  left: 75px;
+  @media (min-width: 768px) {
+    width: calc(100% - 75px);
+    left: 75px;
+  }
+
+  @media (max-width: 768px) {
+    margin-left: 250px;
+  }
 }

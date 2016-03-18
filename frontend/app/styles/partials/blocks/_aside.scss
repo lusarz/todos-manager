@@ -23,12 +23,7 @@ aside {
     & + .content {
 
       @media (max-width: 768px) {
-        margin-left: 0px;
-        transform: translate3d(250px, 0px, 0px);
-        -ms-transform: translate3d(250px, 0px, 0px);
-        -webkit-transform: translate3d(250px, 0px, 0px);
-        -moz-transition: translate3d(250px, 0px, 0px);
-        -o-transition: translate3d(250px, 0px, 0px);
+        margin-left: 250px;
       }
 
       @media (min-width: 768px) {

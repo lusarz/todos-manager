@@ -9,7 +9,9 @@
  * Main module of the application.
  */
 angular.module('app', [
-    'ui.router',
-    'ngResource',
-    'ngMessages'
+  'ui.router',
+  'ngResource',
+  'ngMessages',
+  'ui-notification',
+  'ui.bootstrap'
 ]);

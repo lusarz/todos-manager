@@ -57,24 +57,54 @@
           });
       });
 
-      it('should return error when user is actually registered', function (done) {
-        request.post('/api/user/register').send(dataProvider.validRegistrationData)
-          .expect(400)
-          .end(function (err, res) {
-            console.log(res.body);
-            if (err) {
-              done(err);
-            } else {
-              done();
-            }
-          });
-      });
+      describe('when is registered', function () {
+        before(function (done) {
+          User.collection.drop();
+          request.post('/api/user/register').send(dataProvider.validRegistrationData)
+            .expect(200)
+            .end(function (err, res) {
+              if (err) {
+                done(err);
+              } else {
+                done();
+              }
+            });
+        });
 
-      it('should login after registration', function (done) {
-        request.post('/api/user/login').send(dataProvider.validCredentials)
+        it('should login', function (done) {
+          request.post('/api/user/login').send(dataProvider.validCredentials)
+            .expect(200)
+            .end(function (err, res) {
+              expect(res.body).to.have.property('token');
+              if (err) {
+                done(err);
+              } else {
+                done();
+              }
+            });
+        });
+
+        it('should return info that user already exists', function (done) {
+          request.post('/api/user/register').send(dataProvider.validRegistrationData)
+            .expect(400)
+            .end(function (err, res) {
+              if (err) {
+                done(err);
+              } else {
+                done();
+              }
+            });
+        });
+      });
+    });
+
+    describe('Is available', function () {
+      before(function (done) {
+        User.collection.drop();
+
+        request.post('/api/user/register').send(dataProvider.validRegistrationData)
           .expect(200)
           .end(function (err, res) {
-            expect(res.body).to.have.property('token');
             if (err)
               done(err);
             else
@@ -82,6 +112,33 @@
           });
       });
 
+      it('Should return false if user exist', function (done) {
+        var data = {email: dataProvider.validRegistrationData.email};
+        request.post('/api/user/available').send(data)
+          .expect(200)
+          .end(function (err, res) {
+            expect(res.body).to.have.property('available');
+            expect(res.body.available).to.equal(false);
+            if (err)
+              done(err);
+            else
+              done();
+          });
+      });
+
+      it('Should return true if user does not exists', function (done) {
+        var data = {email: dataProvider.validRegistrationData2.email};
+        request.post('/api/user/available').send(data)
+          .expect(200)
+          .end(function (err, res) {
+            expect(res.body).to.have.property('available');
+            expect(res.body.available).to.equal(true);
+            if (err)
+              done(err);
+            else
+              done();
+          });
+      });
     });
   });
 

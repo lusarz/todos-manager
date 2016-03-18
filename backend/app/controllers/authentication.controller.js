@@ -20,12 +20,16 @@
     // Add missing user fields
     user.displayName = user.firstName + ' ' + user.lastName;
 
-    userService.create(user).then(function (createdUser) {
-      userService.generateToken(createdUser._id).then(function (token) {
-        res.json({token: token});
-      });
+    userService.findByEmail(user.email).then(function (user) {
+      res.status(400).send(user);
     }, function (err) {
-      res.status(400).send(err);
+      userService.create(user).then(function (createdUser) {
+        userService.generateToken(createdUser._id).then(function (token) {
+          res.json({token: token, user: createdUser});
+        });
+      }, function (err) {
+        res.status(400).send(err);
+      });
     });
   };
 

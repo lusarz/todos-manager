@@ -47,6 +47,12 @@
         controller: 'TodosCtrl',
         controllerAs: 'vm'
       })
+      .state('app.todosCreate', {
+        url: '/todos/create',
+        templateUrl: 'views/todos/new.html',
+        controller: 'TodosCreateCtrl',
+        controllerAs: 'vm'
+      })
   };
 
   angular.module('app')

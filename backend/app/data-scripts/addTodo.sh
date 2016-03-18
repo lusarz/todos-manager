@@ -1,1 +1,0 @@
-curl -X POST -H "Content-type: application/json" -H "Authorization: Bearer kpU7zFDWC3EhrMP2bmkqbhNrhcZWRYZDkrDKrMDG" -d @$1 http://localhost:9000/api/todos

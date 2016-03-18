@@ -8,7 +8,7 @@
    * # RegistrationCtrl
    * Controller of the app
    */
-  function LoginCtrl(SecurityFactory, $state) {
+  function LoginCtrl($state, SecurityFactory, Notification) {
     var vm = this;
     vm.credentials = {};
     vm.rememberMe = false;
@@ -24,6 +24,7 @@
     }
 
     function displayError(error) {
+      Notification.error('Problem with login');
       console.log(error);
     }
   }
@@ -31,6 +32,6 @@
   angular.module('app')
     .controller('LoginCtrl', LoginCtrl);
 
-  LoginCtrl.$inject = ['SecurityFactory', '$state'];
+  LoginCtrl.$inject = ['$state', 'SecurityFactory', 'Notification'];
 
 })();
