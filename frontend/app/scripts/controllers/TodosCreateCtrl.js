@@ -11,8 +11,13 @@
   function TodosCreateCtrl($state, TodosDAO) {
     var vm = this;
     vm.todo = {};
-
     vm.save = save;
+
+    init();
+
+    function init() {
+      vm.action = 'CREATE';
+    }
 
     function save() {
       TodosDAO.create(vm.todo).then(function () {

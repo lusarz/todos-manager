@@ -8,14 +8,27 @@
    * # TodosEditCtrl
    * Controller of the app
    */
-  function TodosEditCtrl($state, TodosDAO) {
+  function TodosEditCtrl($state, $stateParams, TodosDAO) {
     var vm = this;
-    vm.todo = {};
-
+    var todoId = $stateParams.id;
     vm.save = save;
 
+    init();
+
+    function init() {
+      vm.action = 'EDIT';
+      vm.initialized = false;
+
+      TodosDAO.findById(todoId).then(function (todo) {
+        vm.todo = todo;
+        vm.initialized = true;
+      }, function (err) {
+        displayError(err);
+      });
+    }
+
     function save() {
-      TodosDAO.create(vm.todo).then(function () {
+      TodosDAO.update(vm.todo).then(function () {
         $state.go('app.todos');
       }, function (error) {
         displayError(error);
@@ -30,6 +43,6 @@
   angular.module('app')
     .controller('TodosEditCtrl', TodosEditCtrl);
 
-  TodosEditCtrl.$inject = ['$state', 'TodosDAO'];
+  TodosEditCtrl.$inject = ['$state', '$stateParams', 'TodosDAO'];
 
 })();

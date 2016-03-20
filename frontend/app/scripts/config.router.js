@@ -49,8 +49,14 @@
       })
       .state('app.todosCreate', {
         url: '/todos/create',
-        templateUrl: 'views/todos/new.html',
+        templateUrl: '../views/todos/form.html',
         controller: 'TodosCreateCtrl',
+        controllerAs: 'vm'
+      })
+      .state('app.todosEdit', {
+        url: '/todos/:id',
+        templateUrl: '../views/todos/form.html',
+        controller: 'TodosEditCtrl',
         controllerAs: 'vm'
       })
   };
