@@ -3,7 +3,7 @@
 
   describe('TodosEditCtrl', function () {
 
-    var TodosDAOMock, createController;
+    var TodosDAOMock, stateMock, createController;
 
     var stateParams = {id: '1234'};
 
@@ -17,12 +17,16 @@
       angular.mock.module('views');
 
       inject(function ($controller) {
-        TodosDAOMock = jasmine.createSpyObj('TodosDAO', ['findById']);
+        TodosDAOMock = jasmine.createSpyObj('TodosDAO', ['findById', 'update']);
         TodosDAOMock.findById.and.returnValue(promisesHelper.getPromise(todo));
+        TodosDAOMock.update.and.returnValue(promisesHelper.getPromise());
+
+        stateMock = jasmine.createSpyObj('$state', ['go']);
 
 
         createController = function (withDAO) {
           var params = {
+            $state: stateMock,
             $stateParams: stateParams
           };
           if (withDAO) {
@@ -68,6 +72,19 @@
 
       it('todo should downloaded', function () {
         expect(ctrl.todo).toEqual(todo);
+      });
+    });
+
+    describe('After save', function () {
+      var ctrl;
+      beforeEach(function () {
+        ctrl = createController(true);
+      });
+
+      it('Should redirect to list', function () {
+        ctrl.save().then(function () {
+          expect(stateMock.go).toHaveBeenCalledWith('app.todos');
+        });
       });
     });
 

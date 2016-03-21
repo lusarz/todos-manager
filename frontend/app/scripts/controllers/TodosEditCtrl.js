@@ -31,7 +31,7 @@
     }
 
     function save() {
-      TodosDAO.update(vm.todo).then(function () {
+      return TodosDAO.update(vm.todo).then(function () {
         $state.go('app.todos');
       }, function (error) {
         displayError(error);

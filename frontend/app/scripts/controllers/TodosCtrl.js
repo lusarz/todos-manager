@@ -14,7 +14,6 @@
 
     getTodos();
 
-
     function getTodos() {
       TodosDAO.getList().then(function (response) {
         vm.todos = response;
