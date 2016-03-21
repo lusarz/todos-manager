@@ -11,9 +11,8 @@
 
             <div style="padding-top:30px" class="panel-body">
 
-                <div class="alert alert-danger" ng-show="false">
-                    <p>Error:</p>
-                    <span>There will be alert</span>
+                <div class="alert alert-danger" ng-show="vm.globalError">
+                    {{vm.globalError}}
                 </div>
 
                 <form class="form-horizontal" role="form" name="loginForm" ng-submit="vm.login();" novalidate>

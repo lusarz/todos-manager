@@ -12,7 +12,6 @@
 
   var sass = require('gulp-sass');
   var sourcemaps = require('gulp-sourcemaps');
-  var connect = require('gulp-connect');
   var env = require('gulp-env');
   var mocha = require('gulp-mocha');
   var nodemon = require('gulp-nodemon');
@@ -141,7 +140,9 @@
 
   gulp.task('default', ['clean', 'sass', 'bower:index', 'watch', 'start']);
   gulp.task('test:unit', ['bower:index', 'bower:karma', 'karmaTest']);
-
   gulp.task('test:e2e', ['default', 'e2eTest']);
+  gulp.task('test:backend', ['mocha']);
+
+  gulp.task('test', ['test:unit', 'test:e2e', 'test:backend']);
 
 })();

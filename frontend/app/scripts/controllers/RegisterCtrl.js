@@ -19,9 +19,18 @@
         //What to do after registration
         console.log(response);
       }, function (error) {
-        Notification.error('Error with registration');
-        console.log(error);
+        displayError(error);
       });
+    }
+
+    function displayError(error) {
+      if (error.status === 400) {
+        vm.globalError = 'Invalid data';
+      } else if (error.status === 409) {
+        vm.globalError = 'User with this email already exists';
+      } else {
+        vm.globalError = 'Internal server error';
+      }
     }
   }
 

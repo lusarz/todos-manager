@@ -1,43 +1,54 @@
 (function () {
   'use strict';
 
+
   describe('TodosCtrl', function () {
 
-    var ctrl, scope, httpBackend, SecurityFactory;
+    var ctrl, TodosDAOMock;
+
+
+    var todos = [
+      {
+        _id: '1',
+        name: 'First todo'
+      }, {
+        _id: '2',
+        name: 'Second todo'
+      }, {
+        _id: '3',
+        name: 'Third todo'
+      }
+    ];
 
     beforeEach(function () {
       module('app');
-      angular.mock.module('views');
+      //angular.mock.module('views');
 
-      inject(function ($controller, $rootScope, _$httpBackend_, _SecurityFactory_) {
-        scope = $rootScope.$new();
+
+      inject(function ($controller) {
+        TodosDAOMock = jasmine.createSpyObj('TodosDAO', ['getList']);
+        TodosDAOMock.getList.and.returnValue(promisesHelper.getPromise(todos));
+
+
         ctrl = $controller('TodosCtrl', {
-          $scope: scope
+          TodosDAO: TodosDAOMock
         });
-        httpBackend = _$httpBackend_;
-        SecurityFactory = _SecurityFactory_;
       });
     });
 
+
     afterEach(function () {
-      httpBackend.verifyNoOutstandingExpectation();
-      httpBackend.verifyNoOutstandingRequest();
+      //httpBackend.verifyNoOutstandingExpectation();
+      //httpBackend.verifyNoOutstandingRequest();
     });
 
     describe('On initialization', function () {
-      it('Todos should be empty array', function () {
-        expect(ctrl.todos).toEqual([]);
+      it('Todos should be called', function () {
+        expect(TodosDAOMock.getList).toHaveBeenCalled();
       });
 
-      it('Get todos function should be defined', function () {
-        expect(typeof ctrl.getTodos).toEqual('function');
-      });
-    });
-
-
-    it('After download data', function () {
-      httpBackend.whenPOST('/api/user/login').respond({
-        token: '1234'
+      it('Todos should equals', function () {
+        expect(ctrl.todos).toEqual(todos);
       });
     });
 

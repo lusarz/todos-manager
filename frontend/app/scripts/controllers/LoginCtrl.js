@@ -24,8 +24,13 @@
     }
 
     function displayError(error) {
-      Notification.error('Problem with login');
-      console.log(error);
+      if (error.status === 400) {
+        vm.globalError = 'User doesn\'t exists';
+      } else if (error.status === 401) {
+        vm.globalError = 'Invalid password';
+      } else {
+        vm.globalError = 'Internal server error';
+      }
     }
   }
 

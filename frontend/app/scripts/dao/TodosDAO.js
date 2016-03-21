@@ -5,7 +5,8 @@
     var api = $resource('/api/todos/:a/:b/:c', null, {
       getList: {isArray: true},
       getById: {isArray: false, method: 'GET'},
-      create: {method: 'POST'}
+      create: {method: 'POST'},
+      update: {method: 'PUT'}
     });
 
     return {
@@ -14,6 +15,9 @@
       },
       create: function (todo) {
         return api.create(todo).$promise;
+      },
+      update: function (todo) {
+        return api.update({a: todo._id}, todo).$promise;
       },
       findById: function (todoId) {
         return api.getById({a: todoId}).$promise;

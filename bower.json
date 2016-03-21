@@ -2,13 +2,13 @@
   "name": "todos-manager",
   "version": "0.0.0",
   "dependencies": {
-    "angular": "1.5.0",
-    "angular-animate": "1.5.0",
-    "angular-cookies": "1.5.0",
-    "angular-messages": "1.5.0",
-    "angular-sanitize": "1.5.0",
-    "angular-touch": "1.5.0",
-    "angular-resource": "1.5.0",
+    "angular": "1.5.2",
+    "angular-animate": "1.5.2",
+    "angular-cookies": "1.5.2",
+    "angular-messages": "1.5.2",
+    "angular-sanitize": "1.5.2",
+    "angular-touch": "1.5.2",
+    "angular-resource": "1.5.2",
     "angular-ui-router": "0.2.18",
     "bootstrap-sass-official": "3.3.6",
     "components-font-awesome": "4.5.0",
@@ -16,7 +16,7 @@
     "angular-bootstrap": "^1.2.4"
   },
   "devDependencies": {
-    "angular-mocks": "1.5.0",
+    "angular-mocks": "1.5.2",
     "bootswatch": "latest"
   },
   "appPath": "frontend/app",

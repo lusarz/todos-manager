@@ -39,5 +39,17 @@
     }
   });
 
+  TodoSchema.set('toJSON', {
+    transform: function (doc, ret, options) {
+      var retJson = {
+        _id: ret._id,
+        name: ret.name,
+        description: ret.description,
+        dueDate: ret.dueDate
+      };
+      return retJson;
+    }
+  });
+
   module.exports = mongoose.model('Todo', TodoSchema);
 })();

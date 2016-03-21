@@ -21,11 +21,13 @@
     user.displayName = user.firstName + ' ' + user.lastName;
 
     userService.findByEmail(user.email).then(function (user) {
-      res.status(400).send(user);
+      res.status(409).send(user);
     }, function (err) {
       userService.create(user).then(function (createdUser) {
         userService.generateToken(createdUser._id).then(function (token) {
           res.json({token: token, user: createdUser});
+        }, function (err) {
+          res.status(500).send(err);
         });
       }, function (err) {
         res.status(400).send(err);
@@ -46,10 +48,10 @@
         userService.generateToken(user._id).then(function (token) {
           res.json({token: token});
         }, function (err) {
-          res.status(400).send(err);
+          res.status(500).send(err);
         });
       } else {
-        res.status(400).send({err: 'cannot authenticate'});
+        res.status(401).send({err: 'cannot authenticate'});
       }
     }, function (err) {
       res.status(400).send(err);

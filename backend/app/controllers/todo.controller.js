@@ -16,7 +16,7 @@
     todoService.findList(null, req.user).then(function (todos) {
       res.send(todos);
     }, function (err) {
-
+      res.status(400).send(err);
     });
   }
 
@@ -41,7 +41,7 @@
     todoService.update(req.body, req.params.id).then(function (todo) {
       res.send(todo);
     }, function (err) {
-
+      res.status(400).send(err);
     });
   }
 

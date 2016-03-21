@@ -21,6 +21,9 @@
 
       TodosDAO.findById(todoId).then(function (todo) {
         vm.todo = todo;
+        if (todo.dueDate) {
+          vm.todo.dueDate = new Date(todo.dueDate);
+        }
         vm.initialized = true;
       }, function (err) {
         displayError(err);

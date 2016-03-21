@@ -6,7 +6,8 @@
   "main": "backend/server.js",
   "scripts": {
     "start": "node server.js",
-    "postinstall": "./node_modules/gulp-protractor/node_modules/protractor/bin/webdriver-manager update --standalone"
+    "postinstall": "./node_modules/gulp-protractor/node_modules/protractor/bin/webdriver-manager update --standalone",
+    "test": "gulp test:unit"
   },
   "dependencies": {
     "bluebird": "^3.1.1",
@@ -45,7 +46,7 @@
     "jasmine": "2.4.1",
     "jshint": "^2.9.1-rc2",
     "karma": "0.13.22",
-    "karma-jasmine": "0.3.7",
+    "karma-jasmine": "0.3.8",
     "karma-phantomjs-launcher": "1.0.0",
     "karma-ng-html2js-preprocessor": "0.2.1",
     "phantomjs-prebuilt": "2.1.3",
