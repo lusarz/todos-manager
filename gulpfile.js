@@ -144,6 +144,6 @@
   gulp.task('test:e2e', ['default', 'e2eTest']);
   gulp.task('test:backend', ['mocha']);
 
-  gulp.task('test', ['test:unit', 'test:backend']);
+  gulp.task('test', ['test:unit'/*, 'test:backend'*/]);
 
 })();
