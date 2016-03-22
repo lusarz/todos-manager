@@ -116,11 +116,12 @@
     });
     return gulp.src('backend/test/**/*.spec.js')
       .pipe(mocha({
-        bail: false,
-        reporter: "nyan"
-      }).on('error', function () {
+        bail: false
+      }).on('error', function (error) {
+        process.exit(1);
+      }).on('end', function () {
+        process.exit();
       })
-      //do nothing
     );
   });
 
@@ -143,6 +144,6 @@
   gulp.task('test:e2e', ['default', 'e2eTest']);
   gulp.task('test:backend', ['mocha']);
 
-  gulp.task('test', ['test:unit', 'test:e2e', 'test:backend']);
+  gulp.task('test', ['test:unit', 'test:backend']);
 
 })();

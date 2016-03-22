@@ -86,7 +86,7 @@
 
         it('should return info that user already exists', function (done) {
           request.post('/api/user/register').send(dataProvider.validRegistrationData)
-            .expect(400)
+            .expect(409)
             .end(function (err, res) {
               if (err) {
                 done(err);
