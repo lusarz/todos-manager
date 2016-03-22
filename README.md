@@ -9,7 +9,6 @@ This project is showing MEAN stack
 
 ```
 npm install
-npm postinstall
 bower install
 ```
 
