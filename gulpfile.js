@@ -110,13 +110,7 @@
 
   gulp.task('usemin', ['sass'], function () {
       return gulp.src('frontend/app/*.html')
-        .pipe(usemin({
-          css: [rev()],
-          html: [minifyHtml({empty: true})],
-          js: [uglify(), rev()],
-          inlinejs: [uglify()],
-          inlinecss: [minifyCss(), 'concat']
-        }))
+        .pipe(usemin({}))
         .pipe(gulp.dest('frontend/app/dist'));
     }
   );
@@ -127,11 +121,30 @@
       .pipe(gulp.dest('frontend/app/dist'));
   });
 
+  gulp.task('copyAll:dist', function () {
+
+    gulp.src('frontend/app/dist/**/*')
+      .pipe(gulp.dest('dist/frontend'));
+
+    gulp.src('backend/app/**/*', {base: 'backend'})
+      .pipe(gulp.dest('dist/backend'));
+
+    gulp.src('config/**/*')
+      .pipe(gulp.dest('dist/config'));
+
+    gulp.src('server.js')
+      .pipe(gulp.dest('dist'));
+
+    gulp.src('package.json')
+      .pipe(gulp.dest('dist'));
+
+  });
+
   gulp.task('deploy:prepare', function () {
-    return gulp.src('frontend/app/dist')
+    return gulp.src('dist/**/*')
       .pipe(tar('dist.tar'))
       .pipe(gzip())
-      .pipe(gulp.dest('frontend/app'));
+      .pipe(gulp.dest('.'));
   });
 
 
