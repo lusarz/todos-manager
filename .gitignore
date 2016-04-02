@@ -27,7 +27,8 @@ build/Release
 node_modules
 frontend/app/bower_components
 frontend/app/dist
-frontend/app/dist.tar.gz
+dist.tar.gz
+dist
 
 
 .idea

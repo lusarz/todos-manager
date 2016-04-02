@@ -17,6 +17,7 @@
   var nodemon = require('gulp-nodemon');
   var wiredep = require('wiredep').stream;
   var clean = require('gulp-clean');
+  var del = require('del');
   var KarmaServer = require('karma').Server;
   var protractor = require("gulp-protractor").protractor;
   var webdriver_standalone = require("gulp-protractor").webdriver_standalone;
@@ -29,7 +30,9 @@
 
   var tar = require('gulp-tar');
   var gzip = require('gulp-gzip');
-  var GulpSSH = require('gulp-ssh')
+  var GulpSSH = require('gulp-ssh');
+
+  var runSequence = require('run-sequence');
 
 
   var plugins = gulpLoadPlugins({
@@ -43,6 +46,12 @@
   gulp.task('clean', function () {
     return gulp.src('frontend/app/.tmp/**/*', {read: false, force: true})
       .pipe(clean());
+  });
+
+  gulp.task('clean:dist', function (done) {
+    return del.sync([
+      'dist'
+    ], done);
   });
 
 
@@ -110,7 +119,7 @@
 
   gulp.task('webdriver_standalone', webdriver_standalone);
 
-  gulp.task('usemin', ['sass'], function () {
+  gulp.task('usemin', function () {
       return gulp.src('frontend/app/*.html')
         .pipe(usemin({}))
         .pipe(gulp.dest('frontend/app/dist'));
@@ -147,6 +156,18 @@
       .pipe(tar('dist.tar'))
       .pipe(gzip())
       .pipe(gulp.dest('.'));
+  });
+
+  gulp.task('buildApp:dist', function (done) {
+    runSequence(
+      'clean',
+      'sass',
+      'bower:index',
+      ['usemin', 'copy:dist'],
+      'copyAll:dist',
+      done
+    )
+    ;
   });
 
 
