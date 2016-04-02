@@ -40,7 +40,7 @@
   });
 
   TodoSchema.set('toJSON', {
-    transform: function (doc, ret, options) {
+    transform: function (doc, ret) {
       var retJson = {
         _id: ret._id,
         name: ret.name,

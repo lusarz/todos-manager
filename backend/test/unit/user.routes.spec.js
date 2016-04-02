@@ -20,11 +20,12 @@
     it('should return 401 when user is not authenticated', function (done) {
       request.get('/api/user/me')
         .expect(401)
-        .end(function (err, res) {
-          if (err)
+        .end(function (err) {
+          if (err) {
             done(err);
-          else
+          } else {
             done();
+          }
         });
     });
 
@@ -33,11 +34,12 @@
         var credentials = {email: 'test@onet.pl', password: 'abcdef'};
         request.post('/api/user/login').send(credentials)
           .expect(400)
-          .end(function (err, res) {
-            if (err)
+          .end(function (err) {
+            if (err) {
               done(err);
-            else
+            } else {
               done();
+            }
           });
       });
     });
@@ -62,7 +64,7 @@
           User.collection.drop();
           request.post('/api/user/register').send(dataProvider.validRegistrationData)
             .expect(200)
-            .end(function (err, res) {
+            .end(function (err) {
               if (err) {
                 done(err);
               } else {
@@ -87,7 +89,7 @@
         it('should return info that user already exists', function (done) {
           request.post('/api/user/register').send(dataProvider.validRegistrationData)
             .expect(409)
-            .end(function (err, res) {
+            .end(function (err) {
               if (err) {
                 done(err);
               } else {
@@ -104,11 +106,12 @@
 
         request.post('/api/user/register').send(dataProvider.validRegistrationData)
           .expect(200)
-          .end(function (err, res) {
-            if (err)
+          .end(function (err) {
+            if (err) {
               done(err);
-            else
+            } else {
               done();
+            }
           });
       });
 
@@ -119,10 +122,11 @@
           .end(function (err, res) {
             expect(res.body).to.have.property('available');
             expect(res.body.available).to.equal(false);
-            if (err)
+            if (err) {
               done(err);
-            else
+            } else {
               done();
+            }
           });
       });
 
@@ -133,10 +137,11 @@
           .end(function (err, res) {
             expect(res.body).to.have.property('available');
             expect(res.body.available).to.equal(true);
-            if (err)
+            if (err) {
               done(err);
-            else
+            } else {
               done();
+            }
           });
       });
     });

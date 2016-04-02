@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  function registerAndGetToken() {
+  /*function registerAndGetToken() {
 
-  }
+   }*/
 })();

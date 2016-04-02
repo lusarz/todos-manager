@@ -17,6 +17,7 @@
 
     function login() {
       SecurityFactory.login(vm.credentials).then(function () {
+        Notification.success('Successfully logged in');
         $state.go('app.todos');
       }, function (error) {
         displayError(error);

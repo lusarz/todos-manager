@@ -18,7 +18,7 @@
       TodosDAO.getList().then(function (response) {
         vm.todos = response;
       }, function (error) {
-
+        console.log(error);
       });
     }
   }

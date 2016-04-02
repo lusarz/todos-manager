@@ -40,11 +40,12 @@
       it('should return 401', function (done) {
         request.get('/api/todos')
           .expect(401)
-          .end(function (err, res) {
-            if (err)
+          .end(function (err) {
+            if (err) {
               done(err);
-            else
+            } else {
               done();
+            }
           });
       });
 
@@ -52,11 +53,12 @@
         var todo = dataProvider.validTodos[0];
         request.post('/api/todos').send(todo)
           .expect(401)
-          .end(function (err, res) {
-            if (err)
+          .end(function (err) {
+            if (err) {
               done(err);
-            else
+            } else {
               done();
+            }
           });
       });
     });
@@ -73,11 +75,12 @@
           .set('Authorization', 'Bearer ' + token)
           .send(todo)
           .expect(200)
-          .end(function (err, res) {
-            if (err)
+          .end(function (err) {
+            if (err) {
               done(err);
-            else
+            } else {
               done();
+            }
           });
       });
     });
@@ -97,12 +100,14 @@
             .set('Authorization', 'Bearer ' + userToken)
             .send(todo)
             .expect(200)
-            .end(function (err, res) {
-              count--;
-              if (!count) {
-                done();
-              }
-            });
+            .end(end);
+        }
+
+        function end() {
+          count--;
+          if (!count) {
+            done();
+          }
         }
       });
 
@@ -112,10 +117,11 @@
           .expect(200)
           .end(function (err, res) {
             expect(res.body).to.have.length(3);
-            if (err)
+            if (err) {
               done(err);
-            else
+            } else {
               done();
+            }
           });
       });
 
@@ -125,10 +131,11 @@
           .expect(200)
           .end(function (err, res) {
             expect(res.body).to.have.length(2);
-            if (err)
+            if (err) {
               done(err);
-            else
+            } else {
               done();
+            }
           });
       });
     });

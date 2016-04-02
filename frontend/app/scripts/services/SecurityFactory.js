@@ -14,9 +14,6 @@
     var bearerToken;
     var storage;
 
-    init();
-
-
     function setupBearerHeader() {
       $http.defaults.headers.common.Authorization = 'Bearer ' + bearerToken;
     }
@@ -50,6 +47,7 @@
       }
     }
 
+    init();
 
     return {
       login: login,

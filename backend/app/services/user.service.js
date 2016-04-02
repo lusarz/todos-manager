@@ -5,17 +5,6 @@
     tokenGenerator = require('generate-password'),
     q = require('q');
 
-  module.exports = {
-    findList: userDAO.findList,
-    findById: userDAO.findById,
-    findByEmail: userDAO.findByEmail,
-    findByUserName: userDAO.findByUserName,
-    findByToken: userDAO.findByToken,
-    create: userDAO.create,
-    update: userDAO.update,
-    remove: userDAO.remove,
-    generateToken: generateToken
-  }
 
   function generateToken(userId) {
     var defer = q.defer();
@@ -33,5 +22,17 @@
 
     return defer.promise;
   }
+
+  module.exports = {
+    findList: userDAO.findList,
+    findById: userDAO.findById,
+    findByEmail: userDAO.findByEmail,
+    findByUserName: userDAO.findByUserName,
+    findByToken: userDAO.findByToken,
+    create: userDAO.create,
+    update: userDAO.update,
+    remove: userDAO.remove,
+    generateToken: generateToken
+  };
 
 })();

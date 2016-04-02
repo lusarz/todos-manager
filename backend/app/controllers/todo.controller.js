@@ -49,7 +49,7 @@
     todoService.remove(req.params.id).then(function () {
       res.send({});
     }, function (err) {
-
+      console.log(err);
     });
   }
 

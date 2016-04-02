@@ -50,9 +50,11 @@
   gulp.task('jshint', function () {
     var assets = _.union(
       defaultAssets.backend.js,
+      defaultAssets.backendTest.js,
       defaultAssets.frontend.js,
       defaultAssets.frontendTest.js,
-      defaultAssets.config.js
+      defaultAssets.config.js,
+      defaultAssets.common.js
     );
 
     return gulp.src(assets)

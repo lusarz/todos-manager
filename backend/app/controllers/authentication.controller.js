@@ -22,7 +22,7 @@
 
     userService.findByEmail(user.email).then(function (user) {
       res.status(409).send(user);
-    }, function (err) {
+    }, function () {
       userService.create(user).then(function (createdUser) {
         userService.generateToken(createdUser._id).then(function (token) {
           res.json({token: token, user: createdUser});
@@ -33,7 +33,7 @@
         res.status(400).send(err);
       });
     });
-  };
+  }
 
   /**
    * Login
@@ -56,6 +56,6 @@
     }, function (err) {
       res.status(400).send(err);
     });
-  };
+  }
 
 })();

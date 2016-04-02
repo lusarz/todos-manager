@@ -27,17 +27,17 @@
 
 
   var VALID_TODOS = [{
-    "name": "Task number 0"
+    name: 'Task number 0'
   }, {
-    "name": "Task number 1"
+    name: 'Task number 1'
   }, {
-    "name": "Task number 2"
+    name: 'Task number 2'
   }, {
-    "name": "Task number 3"
+    name: 'Task number 3'
   }, {
-    "name": "Task number 4"
+    name: 'Task number 4'
   }, {
-    "name": "Task number 5"
+    name: 'Task number 5'
   }];
 
   module.exports = {
@@ -46,7 +46,7 @@
     validCredentials: VALID_CREDENTIALS,
     invalidCredentials: INVALID_CREDENTIALS,
     validTodos: VALID_TODOS
-  }
+  };
 
 
 })();

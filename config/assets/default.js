@@ -4,14 +4,17 @@
   module.exports = {
     frontend: {
       js: [
-        'frontend/scripts/**/*.js'
+        'frontend/app/scripts/**/*.js'
       ]
     },
     backend: {
       js: [
-        'backend/server.js',
-        'backend/dao/*.js',
-        'backend/models/*.js'
+        'backend/app/**/*.js'
+      ]
+    },
+    common: {
+      js: [
+        'server.js'
       ]
     },
     config: {
@@ -22,6 +25,11 @@
     frontendTest: {
       js: [
         'frontend/test/**/*.js'
+      ]
+    },
+    backendTest: {
+      js: [
+        'backend/test/**/*.js'
       ]
     }
   };

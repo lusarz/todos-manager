@@ -11,8 +11,8 @@
   function TodosEditCtrl($state, $stateParams, TodosDAO) {
     var vm = this;
     var todoId = $stateParams.id;
-    vm.save = save;
 
+    vm.save = save;
     init();
 
     function init() {

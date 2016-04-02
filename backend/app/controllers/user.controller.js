@@ -11,9 +11,9 @@
   function available(req, res) {
     var email = req.body.email;
 
-    userService.findByEmail(email).then(function (email) {
+    userService.findByEmail(email).then(function () {
       res.send({available: false});
-    }, function (err) {
+    }, function () {
       res.send({available: true});
       //res.status(400).send(err);
     });

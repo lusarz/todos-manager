@@ -7,7 +7,7 @@
     console.log('CONFIG');
   }
 
-  function run(SecurityFactory) {
+  function run() {
     console.log('RUN');
   }
 

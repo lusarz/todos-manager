@@ -15,7 +15,7 @@
       positionX: 'right',
       positionY: 'bottom'
     });
-  };
+  }
 
   angular.module('app')
     .config(notificationsConfiguration);

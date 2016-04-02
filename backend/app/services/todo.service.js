@@ -14,6 +14,6 @@
     create: create,
     update: todoDAO.update,
     remove: todoDAO.remove
-  }
+  };
 
 })();

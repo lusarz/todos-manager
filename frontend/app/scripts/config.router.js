@@ -7,7 +7,7 @@
 
   function routingConfiguration($stateProvider, $urlRouterProvider) {
 
-    $urlRouterProvider.otherwise("/register");
+    $urlRouterProvider.otherwise('/register');
 
     $stateProvider
       .state('login', {
@@ -58,8 +58,8 @@
         templateUrl: '../views/todos/form.html',
         controller: 'TodosEditCtrl',
         controllerAs: 'vm'
-      })
-  };
+      });
+  }
 
   angular.module('app')
     .config(routingConfiguration);

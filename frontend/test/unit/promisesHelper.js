@@ -1,7 +1,7 @@
-window.promisesHelper = window.promisesHelper || {};
-
-(function (promisesHelper) {
+(function () {
   'use strict';
+
+  window.promisesHelper = window.promisesHelper || {};
 
 
   function getPromise() {
@@ -16,6 +16,6 @@ window.promisesHelper = window.promisesHelper || {};
     };
   }
 
-  promisesHelper.getPromise = getPromise;
+  window.promisesHelper.getPromise = getPromise;
 
-})(window.promisesHelper);
+})();
