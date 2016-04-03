@@ -21,9 +21,11 @@
 
   require('./backend/app/routes/routes.js')(app);
 
-  //Serve frontend
-  app.use(express.static(__dirname + '/frontend/app'));
-  app.use(express.static(__dirname + '/frontend/app/.tmp'));
+  //Serve frontend in not production environment
+  if (process.env.NODE_ENV !== 'production') {
+    app.use(express.static(__dirname + '/frontend/app'));
+    app.use(express.static(__dirname + '/frontend/app/.tmp'));
+  }
 
   app.listen(config.port, function () {
     console.log('listening for requests on localhost:%s', config.port);

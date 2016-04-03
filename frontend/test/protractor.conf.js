@@ -2,7 +2,7 @@
   'use strict';
 
   module.exports.config = {
-    //seleniumAddress: 'http://localhost:4444/wd/hub',
+    seleniumServerJar: '../../node_modules/protractor/selenium/selenium-server-standalone-2.48.2.jar',
     framework: 'jasmine',
 
     specs: [
@@ -16,6 +16,7 @@
     baseUrl: 'http://127.0.0.1:9000',
     jasmineNodeOpts: {
       defaultTimeoutInterval: 30000
-    }
+    },
+    keepAlive: false
   };
 })();

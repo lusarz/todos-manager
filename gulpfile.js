@@ -14,7 +14,7 @@
   var sourcemaps = require('gulp-sourcemaps');
   var env = require('gulp-env');
   var mocha = require('gulp-mocha');
-  var nodemon = require('gulp-nodemon');
+  var nodemon = require('nodemon');
   var wiredep = require('wiredep').stream;
   var clean = require('gulp-clean');
   var del = require('del');
@@ -166,19 +166,38 @@
       ['usemin', 'copy:dist'],
       'copyAll:dist',
       done
-    )
-    ;
+    );
   });
 
 
-  gulp.task('e2eTest', function () {
-    gulp.src(['frontend/test/e2e/**/*.js'])
+  gulp.task('e2eTest', function (done) {
+    return gulp.src(['frontend/test/e2e/**/*.js'])
       .pipe(protractor({
         configFile: 'frontend/test/protractor.conf.js'
       }))
       .on('error', function (e) {
-        throw e
+        return done();
       })
+      .on('end', function () {
+        done();
+        process.exit();
+      })
+  });
+
+  gulp.task('testxyz', ['start'], function (done) {
+    return gulp.src(['frontend/test/e2e/**/*.js'])
+      .pipe(protractor({
+        configFile: 'frontend/test/protractor.conf.js'
+      }))
+      .on('error', function (e) {
+        nodemon.emit('quit');
+        process.exit();
+      })
+      .once('end', function () {
+        nodemon.emit('quit');
+        process.exit();
+        done();
+      });
   });
 
   // Backend unit test
@@ -205,21 +224,35 @@
 
 
   gulp.task('start', function () {
-    nodemon({
+    return nodemon({
       script: 'server.js',
-      ext: 'js html scss',
-      env: {'NODE_ENV': 'development'}
-    })
+      ext: 'js html scss'
+    });
+  });
+
+  gulp.task('stop', function () {
+    process.exit();
   });
 
 
   gulp.task('default', ['clean', 'sass', 'bower:index', 'watch', 'start']);
+
   gulp.task('test:unit', ['bower:index', 'bower:karma', 'karmaTest']);
-  gulp.task('test:e2e', ['default', 'e2eTest']);
+
+  gulp.task('test:e2e', function (done) {
+    runSequence(
+      'start',
+      'e2eTest',
+      'stop',
+      done
+    )
+    ;
+  });
+
+
+  //gulp.task('test:e2e', ['start', 'e2eTest']);
   gulp.task('test:backend', ['mocha']);
-
   gulp.task('test', ['test:unit'/*, 'test:backend'*/]);
-
   gulp.task('build:dist', ['usemin', 'copy:dist'])
 
 })();
