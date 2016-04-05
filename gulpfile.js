@@ -171,33 +171,24 @@
 
 
   gulp.task('e2eTest', function (done) {
-    return gulp.src(['frontend/test/e2e/**/*.js'])
-      .pipe(protractor({
-        configFile: 'frontend/test/protractor.conf.js'
-      }))
-      .on('error', function (e) {
-        return done();
-      })
-      .on('end', function () {
-        done();
-        process.exit();
-      })
-  });
+    var nodemonProcess = nodemon({
+      script: 'server.js',
+      ext: 'js html scss'
+    });
 
-  gulp.task('testxyz', ['start'], function (done) {
-    return gulp.src(['frontend/test/e2e/**/*.js'])
-      .pipe(protractor({
-        configFile: 'frontend/test/protractor.conf.js'
-      }))
-      .on('error', function (e) {
-        nodemon.emit('quit');
-        process.exit();
-      })
-      .once('end', function () {
-        nodemon.emit('quit');
-        process.exit();
-        done();
-      });
+
+    nodemonProcess.on('start', function () {
+      gulp.src(['frontend/test/e2e/**/*.js'])
+        .pipe(protractor({
+          configFile: 'frontend/test/protractor.conf.js'
+        }))
+        .once('end', function () {
+          nodemonProcess.emit('quit');
+          setTimeout(function () {
+            process.exit();
+          }, 1500);
+        });
+    });
   });
 
   // Backend unit test
@@ -236,21 +227,10 @@
 
 
   gulp.task('default', ['clean', 'sass', 'bower:index', 'watch', 'start']);
-
   gulp.task('test:unit', ['bower:index', 'bower:karma', 'karmaTest']);
 
-  gulp.task('test:e2e', function (done) {
-    runSequence(
-      'start',
-      'e2eTest',
-      'stop',
-      done
-    )
-    ;
-  });
 
-
-  //gulp.task('test:e2e', ['start', 'e2eTest']);
+  gulp.task('test:e2e', ['e2eTest']);
   gulp.task('test:backend', ['mocha']);
   gulp.task('test', ['test:unit'/*, 'test:backend'*/]);
   gulp.task('build:dist', ['usemin', 'copy:dist'])
