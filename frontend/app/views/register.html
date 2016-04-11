@@ -71,12 +71,13 @@
 
                         <div class="col-md-9">
                             <input type="password" class="form-control" required ng-model="vm.registrationData.password"
-                                   name="password" placeholder="Password">
+                                   name="password" minlength="6" placeholder="Password">
 
                             <div class="help-block"
                                  ng-messages="registerForm.password.$error"
                                  ng-show="registerForm.password.$invalid && !registerForm.password.$pristine">
                                 <div ng-message="required">Password is required</div>
+                                <div ng-message="minlength">Password is too short</div>
                             </div>
                         </div>
                     </div>
