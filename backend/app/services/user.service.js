@@ -2,12 +2,10 @@
   'use strict';
 
   var userDAO = require('../dao/userDAO'),
-    tokenGenerator = require('generate-password'),
-    q = require('q');
+    tokenGenerator = require('generate-password');
 
 
   function generateToken(userId) {
-    var defer = q.defer();
     var token = tokenGenerator.generate({
       length: 40,
       numbers: true,
@@ -16,11 +14,9 @@
       excludeSimilarCharacters: true
     });
 
-    userDAO.update({token: token}, userId).then(function () {
-      defer.resolve(token);
+    return userDAO.update({token: token}, userId).then(function () {
+      return token;
     });
-
-    return defer.promise;
   }
 
   module.exports = {

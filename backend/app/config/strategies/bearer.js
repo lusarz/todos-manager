@@ -13,6 +13,9 @@ module.exports = function () {
   passport.use(new BearerStrategy(
     function (token, done) {
       userService.findByToken(token).then(function (user) {
+        console.log('Bearer user');
+        console.log(user);
+
         if (!user) {
           return done(null, false, {
             message: 'Invalid username or password'

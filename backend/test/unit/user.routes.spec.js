@@ -4,6 +4,7 @@
   var server = require('../../../server.js');
   var request = require('supertest').agent(server.app.listen());
   var expect = require('chai').expect;
+  var _ = require('lodash');
 
   var dataProvider = require('../credentialsHelper');
 
@@ -30,7 +31,7 @@
     });
 
     describe('Login method', function () {
-      it(' should return 400 when bad credentials sended', function (done) {
+      it('should return 400 when bad credentials sended', function (done) {
         var credentials = {email: 'test@onet.pl', password: 'abcdef'};
         request.post('/api/user/login').send(credentials)
           .expect(400)
@@ -45,6 +46,20 @@
     });
 
     describe('Register method', function () {
+
+      it('should return error when password is too short', function (done) {
+        var dataWithShortPassword = _.extend({}, dataProvider.validRegistrationData, {password: 'xyz12'});
+        request.post('/api/user/register').send(dataWithShortPassword)
+          .expect(400)
+          .end(function (err, res) {
+            expect(res.body).to.have.deep.property('errors.password');
+            if (err) {
+              done(err);
+            } else {
+              done();
+            }
+          });
+      });
 
       it('should return token', function (done) {
         request.post('/api/user/register').send(dataProvider.validRegistrationData)

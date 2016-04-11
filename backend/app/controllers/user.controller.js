@@ -11,11 +11,12 @@
   function available(req, res) {
     var email = req.body.email;
 
-    userService.findByEmail(email).then(function () {
-      res.send({available: false});
-    }, function () {
-      res.send({available: true});
-      //res.status(400).send(err);
+    userService.findByEmail(email).then(function (user) {
+      if(user){
+        res.send({available: false});
+      }else{
+        res.send({available: true});
+      }
     });
   }
 

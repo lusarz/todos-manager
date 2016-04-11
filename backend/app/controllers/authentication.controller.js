@@ -20,18 +20,20 @@
     // Add missing user fields
     user.displayName = user.firstName + ' ' + user.lastName;
 
-    userService.findByEmail(user.email).then(function (user) {
-      res.status(409).send(user);
-    }, function () {
-      userService.create(user).then(function (createdUser) {
-        userService.generateToken(createdUser._id).then(function (token) {
-          res.json({token: token, user: createdUser});
+    userService.findByEmail(user.email).then(function (existedUser) {
+      if (existedUser) {
+        res.status(409).send({});
+      } else {
+        userService.create(user).then(function (createdUser) {
+          userService.generateToken(createdUser._id).then(function (token) {
+            res.json({token: token, user: createdUser});
+          }, function (err) {
+            res.status(500).send(err);
+          });
         }, function (err) {
-          res.status(500).send(err);
+          res.status(400).send(err);
         });
-      }, function (err) {
-        res.status(400).send(err);
-      });
+      }
     });
   }
 
@@ -44,7 +46,9 @@
 
 
     userService.findByEmail(email).then(function (user) {
-      if (user.authenticate(password)) {
+      if (!user) {
+        res.status(400).send({err: 'cannot authenticate'});
+      } else if (user.authenticate(password)) {
         userService.generateToken(user._id).then(function (token) {
           res.json({token: token});
         }, function (err) {
@@ -53,8 +57,6 @@
       } else {
         res.status(401).send({err: 'cannot authenticate'});
       }
-    }, function (err) {
-      res.status(400).send(err);
     });
   }
 

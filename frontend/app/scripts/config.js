@@ -4,11 +4,9 @@
 
 
   function config() {
-    console.log('CONFIG');
   }
 
-  function run() {
-    console.log('RUN');
+  function run(SecurityFactory) {
   }
 
   angular.module('app')
