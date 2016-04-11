@@ -1,31 +1,26 @@
 (function () {
   'use strict';
 
+  var registrationForm = require('./fragments/registrationForm.fragment.js');
+
   describe('Registration form', function () {
     beforeAll(function () {
       browser.get('/#/register');
     });
 
-    describe('On startup', function () {
-      var header = element(by.css('.panel-title'));
-
-      it('first name should be empty', function () {
-        expect(header.getText()).toEqual('Register');
-      });
-    });
-
     describe('Validation', function () {
       it('too short password message should be present', function () {
-        element(by.model('vm.registrationData.password')).sendKeys('qwert');
+        registrationForm.setTooShortPassword();
         expect(element(by.css('[name="password"]+.help-block [ng-message="minlength"]')).isPresent()).toBeTruthy();
       });
 
       it('Email is required message should be present', function () {
-        var emailElement = element(by.model('vm.registrationData.email'));
-        emailElement.sendKeys('costam');
-        emailElement.clear();
+        var emailElement = registrationForm.email;
+        emailElement.setValue('costam');
+        emailElement.clearValue();
 
-        expect(element(by.css('[name="email"]+.help-block [ng-message="required"]')).isPresent()).toBeTruthy();
+
+        expect(registrationForm.getValidationElement('email', 'required').isPresent()).toBeTruthy();
       });
     });
   });
