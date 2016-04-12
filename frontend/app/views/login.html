@@ -36,15 +36,17 @@
                     <div style="margin-bottom: 25px"
                          ng-class="{ 'has-error' : loginForm.password.$invalid && !loginForm.password.$pristine }">
                         <div class="input-group">
-                            <input id="login-password" type="password" class="form-control" required name="password"
+                            <input id="login-password" type="password" class="form-control" name="password"
                                    ng-model="vm.credentials.password"
-                                   placeholder="Password">
+                                   placeholder="Password"
+                                   required minlength="6">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
                         </div>
                         <div class="help-block"
                              ng-messages="loginForm.password.$error"
                              ng-show="loginForm.password.$invalid && !loginForm.password.$pristine">
                             <div ng-message="required">Password is required</div>
+                            <div ng-message="minlength">Password is too short</div>
                         </div>
                     </div>
 
