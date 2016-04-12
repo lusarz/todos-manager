@@ -2,6 +2,7 @@
   'use strict';
 
   module.exports = function (config) {
+    process.env.PHANTOMJS_BIN = 'node_modules/.bin/phantomjs';
 
     config.set({
       // enable / disable watching file and executing tests whenever any file changes
