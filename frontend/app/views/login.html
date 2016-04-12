@@ -30,6 +30,7 @@
                              ng-show="loginForm.email.$invalid && !loginForm.email.$pristine">
                             <div ng-message="required">Email is required</div>
                             <div ng-message="email">Please provide valid email address</div>
+                            <div ng-message="notExist">User with this email doesn't exist</div>
                         </div>
                     </div>
 
@@ -47,6 +48,7 @@
                              ng-show="loginForm.password.$invalid && !loginForm.password.$pristine">
                             <div ng-message="required">Password is required</div>
                             <div ng-message="minlength">Password is too short</div>
+                            <div ng-message="invalid">Password is invalid</div>
                         </div>
                     </div>
 

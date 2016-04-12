@@ -8,7 +8,7 @@
    * # RegistrationCtrl
    * Controller of the app
    */
-  function LoginCtrl($state, SecurityFactory, Notification) {
+  function LoginCtrl($scope, $state, SecurityFactory, Notification, ValidationHelper) {
     var vm = this;
     vm.credentials = {};
     vm.rememberMe = false;
@@ -25,10 +25,9 @@
     }
 
     function displayError(error) {
-      if (error.status === 400) {
-        vm.globalError = 'User doesn\'t exists';
-      } else if (error.status === 401) {
-        vm.globalError = 'Invalid password';
+      if (error.status > 399 && error.status < 500) {
+        ValidationHelper.bindBackendErrors($scope.loginForm, error.data.errors);
+        vm.globalError = 'Some fields have not been completed correctly';
       } else {
         vm.globalError = 'Internal server error';
       }
@@ -38,6 +37,6 @@
   angular.module('app')
     .controller('LoginCtrl', LoginCtrl);
 
-  LoginCtrl.$inject = ['$state', 'SecurityFactory', 'Notification'];
+  LoginCtrl.$inject = ['$scope', '$state', 'SecurityFactory', 'Notification', 'ValidationHelper'];
 
 })();

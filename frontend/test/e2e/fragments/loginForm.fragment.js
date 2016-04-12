@@ -2,6 +2,7 @@
   'use strict';
 
   var controls = require('../helpers/controls.js');
+  var users = require('../fixtures/users').users;
 
   var modelPrefix = 'vm.credentials.';
   var formName = 'loginForm';
@@ -22,25 +23,31 @@
     this.password.setValue('bcdef');
   };
 
-  LoginForm.prototype.fillWithValidValues = function () {
-    this.email.setValue('john.kowalski@wp.pl');
-    this.password.setValue('cat123987');
-    this.passwordRepeat.setValue('cat123987');
+  LoginForm.prototype.fillWithExistingUserValues = function () {
+    var user = users[0];
+    this.email.setValue(user.email);
+    this.password.setValue(user.password);
   };
 
-  LoginForm.prototype.fillWithExistingUserValues = function () {
-    this.email.setValue('lukas-u1@o2.pl');
-    this.password.setValue('cat123987');
+  LoginForm.prototype.fillWithNotExistingEmail = function () {
+    this.email.setValue('ktosnieznany@wp.pl');
+    this.password.setValue('ThisIsSomePassword');
+  };
+
+  LoginForm.prototype.fillWithExistingEmailButInvalidPassword = function () {
+    var user = users[0];
+    this.email.setValue(user.email);
+    this.password.setValue('ThisIsInvalidPassword');
   };
 
   LoginForm.prototype.getValidationElement = function (fieldName, validationType) {
-    var css = '[ng-messages="loginForm.' + fieldName + '.$error"] [ng-message="' + validationType + '"]';
+    var css = '[ng-messages="' + formName + '.' + fieldName + '.$error"] [ng-message="' + validationType + '"]';
     return element(by.css(css));
   };
 
 
   LoginForm.prototype.submitForm = function () {
-    this.submitButton.click();
+    return this.submitButton.click();
   };
 
   module.exports = new LoginForm();

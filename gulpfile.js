@@ -213,7 +213,7 @@
           nodemonProcess.emit('quit');
           setTimeout(function () {
             process.exit();
-          }, 3000);
+          }, 1500);
         });
     });
   });
@@ -248,10 +248,6 @@
       script: 'server.js',
       ext: 'js html scss'
     });
-  });
-
-  gulp.task('stop', function () {
-    process.exit();
   });
 
 

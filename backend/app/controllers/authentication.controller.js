@@ -48,7 +48,7 @@
 
     userService.findByEmail(email).then(function (user) {
       if (!user) {
-        res.status(400).send({err: 'cannot authenticate'});
+        res.status(400).send({errors: {email: {code: 'notExist'}}});
       } else if (user.authenticate(password)) {
         userService.generateToken(user._id).then(function (token) {
           res.json({token: token});
@@ -56,7 +56,7 @@
           res.status(500).send(err);
         });
       } else {
-        res.status(401).send({err: 'cannot authenticate'});
+        res.status(401).send({errors: {password: {code: 'invalid'}}});
       }
     });
   }
