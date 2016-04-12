@@ -108,7 +108,7 @@
   UserSchema.pre('validate', function (next) {
     if (this.password && this.isModified('password')) {
       if (this.password.length < 6) {
-        this.invalidate('password', 'Password is too short');
+        this.invalidate('password', 'minlength');
       }
     }
 

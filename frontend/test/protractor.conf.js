@@ -13,7 +13,7 @@
       'browserName': 'chrome'
     },
 
-    baseUrl: 'http://127.0.0.1:9000',
+    baseUrl: 'http://127.0.0.1:3001',
     jasmineNodeOpts: {
       defaultTimeoutInterval: 30000
     },

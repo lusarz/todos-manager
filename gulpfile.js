@@ -170,12 +170,30 @@
   });
 
 
-  gulp.task('e2eTest', function (done) {
+  gulp.task('e2eFixtures', function (done) {
+    var fixtures = require('pow-mongodb-fixtures').connect('todosManager-test', {
+      host: 'localhost',
+      port: 27017
+    });
+
+    fixtures.clearAllAndLoad(__dirname + '/frontend/test/e2e/fixtures', function (err) {
+      console.log(err);
+      done();
+      process.exit();
+    });
+  });
+
+  gulp.task('e2eTest', function () {
+    env({
+      vars: {
+        NODE_ENV: 'test'
+      }
+    });
+
     var nodemonProcess = nodemon({
       script: 'server.js',
       ext: 'js html scss'
     });
-
 
     nodemonProcess.on('start', function () {
       gulp.src(['frontend/test/e2e/**/*.js'])
@@ -186,13 +204,13 @@
           nodemonProcess.emit('quit');
           setTimeout(function () {
             process.exit();
-          }, 1500);
+          }, 3000);
         });
     });
   });
 
   // Backend unit test
-  gulp.task('mocha', function () {
+  gulp.task('mocha', function (done) {
     env({
       vars: {
         NODE_ENV: 'test'
@@ -202,8 +220,10 @@
       .pipe(mocha({
         bail: false
       }).on('error', function (error) {
+        done(error);
         process.exit(1);
       }).on('end', function () {
+        done();
         process.exit();
       })
     );

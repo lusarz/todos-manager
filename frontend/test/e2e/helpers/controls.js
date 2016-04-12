@@ -22,36 +22,6 @@
   };
 
 
-  function FieldContainer(e) {
-    if (null == e) {
-      throw new Error('element must not be null');
-    }
-    this.element = e;
-  }
-
-  FieldContainer.prototype.getClasses = function () {
-    return this.element.getAttribute('class');
-  };
-
-  FieldContainer.prototype.getErrorMessageElement = function () {
-    var controlsElement = this.element.element(by.css('.controls'));
-    var errorElement = controlsElement.element(by.css('.error-message'));
-    return errorElement;
-  };
-
-
-  FieldContainer.prototype.getErrorMessage = function () {
-    var controlsElement = this.element.element(by.css('.controls'));
-    var errorElement = controlsElement.element(by.css('.error-message'));
-
-    if (errorElement) {
-      return errorElement.getText();
-    } else {
-      return null;
-    }
-  };
-
-
   function Button(e) {
     if (null == e) {
       throw new Error('element must not be null');

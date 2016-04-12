@@ -29,8 +29,8 @@
                                  ng-messages="registerForm.email.$error"
                                  ng-show="registerForm.email.$invalid && !registerForm.email.$pristine">
                                 <div ng-message="required">Email is required</div>
-
                                 <div ng-message="email">Please provide valid email address</div>
+                                <div ng-message="duplicate">User with this email already exists</div>
                             </div>
                         </div>
                     </div>
@@ -70,8 +70,8 @@
                         <label class="col-md-3 control-label">Password</label>
 
                         <div class="col-md-9">
-                            <input type="password" class="form-control" required ng-model="vm.registrationData.password"
-                                   name="password" minlength="6" placeholder="Password">
+                            <input type="password" class="form-control" ng-model="vm.registrationData.password"
+                                   name="password" required minlength="6" placeholder="Password">
 
                             <div class="help-block"
                                  ng-messages="registerForm.password.$error"
@@ -87,14 +87,17 @@
                         <label class="col-md-3 control-label">Repeat password</label>
 
                         <div class="col-md-9">
-                            <input type="password" class="form-control" required name="passwordRepeat"
+                            <input type="password" class="form-control" name="passwordRepeat"
                                    ng-model="vm.registrationData.passwordRepeat"
-                                   placeholder="Repeat password">
+                                   placeholder="Repeat password" required minlength="6"
+                                   match="vm.registrationData.password">
 
                             <div class="help-block"
                                  ng-messages="registerForm.passwordRepeat.$error"
                                  ng-show="registerForm.passwordRepeat.$invalid && !registerForm.passwordRepeat.$pristine">
                                 <div ng-message="required">Password repeat is required</div>
+                                <div ng-message="minlength">Password is too short</div>
+                                <div ng-message="match">Password should match</div>
                             </div>
                         </div>
                     </div>
@@ -102,8 +105,8 @@
                     <div class="form-group">
                         <!-- Button -->
                         <div class="col-md-offset-3 col-md-9">
-                            <button id="btn-signup" type="button" class="btn btn-success"
-                                    ng-disabled="registerForm.$invalid" ng-click="vm.register();">
+                            <button id="btn-register" type="submit" class="btn btn-success"
+                                    ng-disabled="registerForm.$invalid">
                                 <i class="icon-hand-right"></i>Register
                             </button>
                         </div>

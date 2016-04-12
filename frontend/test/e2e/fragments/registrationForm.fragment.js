@@ -13,7 +13,7 @@
     this.passwordRepeat = controls.getFieldByModel(dataObjectPrefix + 'passwordRepeat');
 
 
-    this.submitButton = controls.getButtonById('submit');
+    this.submitButton = controls.getButtonById('btn-register');
     this.resetButton = controls.getButtonById('reset');
   }
 
@@ -35,6 +35,14 @@
     this.firstName.setValue('John');
     this.lastName.setValue('Kowalski');
     this.email.setValue('john.kowalski@wp.pl');
+    this.password.setValue('cat123987');
+    this.passwordRepeat.setValue('cat123987');
+  };
+
+  RegistrationForm.prototype.fillWithExistingUserValues = function () {
+    this.firstName.setValue('John');
+    this.lastName.setValue('Kowalski');
+    this.email.setValue('lukas-u1@o2.pl');
     this.password.setValue('cat123987');
     this.passwordRepeat.setValue('cat123987');
   };

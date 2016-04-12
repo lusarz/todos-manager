@@ -52,7 +52,8 @@
         request.post('/api/user/register').send(dataWithShortPassword)
           .expect(400)
           .end(function (err, res) {
-            expect(res.body).to.have.deep.property('errors.password');
+            console.log(res.body);
+            expect(res.body).to.have.deep.property('errors.password.code');
             if (err) {
               done(err);
             } else {

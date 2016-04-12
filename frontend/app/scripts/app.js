@@ -13,5 +13,6 @@ angular.module('app', [
   'ngResource',
   'ngMessages',
   'ui-notification',
-  'ui.bootstrap'
+  'ui.bootstrap',
+  'validation.match'
 ]);

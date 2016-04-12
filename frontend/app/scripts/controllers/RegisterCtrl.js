@@ -8,7 +8,7 @@
    * # RegisterCtrl
    * Controller of the app
    */
-  function RegisterCtrl(UserDAO, Notification) {
+  function RegisterCtrl($scope, UserDAO, Notification) {
     var vm = this;
     vm.registrationData = {};
     vm.register = register;
@@ -24,10 +24,22 @@
     }
 
     function displayError(error) {
-      if (error.status === 400) {
-        vm.globalError = 'Invalid data';
-      } else if (error.status === 409) {
-        vm.globalError = 'User with this email already exists';
+      if (error.status === 400 || error.status === 409) {
+        _.each(error.data.errors, function (value, key) {
+          var field = $scope.registerForm[key];
+          field.$setValidity(value.code, false);
+
+          field.$parsers.unshift(function (fieldValue) {
+            if (fieldValue) {
+              vm.globalError = undefined;
+              field.$setValidity(value.code, true);
+              field.$parsers.shift();
+            }
+            return fieldValue;
+          });
+
+        });
+        vm.globalError = 'Some fields have not been completed correctly';
       } else {
         vm.globalError = 'Internal server error';
       }
@@ -37,5 +49,5 @@
   angular.module('app')
     .controller('RegisterCtrl', RegisterCtrl);
 
-  RegisterCtrl.$inject = ['UserDAO', 'Notification'];
+  RegisterCtrl.$inject = ['$scope', 'UserDAO', 'Notification'];
 })();

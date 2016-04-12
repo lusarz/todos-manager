@@ -2,6 +2,7 @@
   'use strict';
 
   var userService = require('../services/user.service');
+  var validation = require('./helpers/validation');
 
   module.exports = {
     register: register,
@@ -22,7 +23,7 @@
 
     userService.findByEmail(user.email).then(function (existedUser) {
       if (existedUser) {
-        res.status(409).send({});
+        res.status(409).send(validation.prepareDuplicateErrorResponse('email'));
       } else {
         userService.create(user).then(function (createdUser) {
           userService.generateToken(createdUser._id).then(function (token) {
@@ -31,7 +32,7 @@
             res.status(500).send(err);
           });
         }, function (err) {
-          res.status(400).send(err);
+          res.status(400).send(validation.prepareErrorResponse(err));
         });
       }
     });
