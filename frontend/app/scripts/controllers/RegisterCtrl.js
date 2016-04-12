@@ -8,7 +8,7 @@
    * # RegisterCtrl
    * Controller of the app
    */
-  function RegisterCtrl($scope, UserDAO, Notification) {
+  function RegisterCtrl($scope, UserDAO, Notification, ValidationHelper) {
     var vm = this;
     vm.registrationData = {};
     vm.register = register;
@@ -25,20 +25,7 @@
 
     function displayError(error) {
       if (error.status === 400 || error.status === 409) {
-        _.each(error.data.errors, function (value, key) {
-          var field = $scope.registerForm[key];
-          field.$setValidity(value.code, false);
-
-          field.$parsers.unshift(function (fieldValue) {
-            if (fieldValue) {
-              vm.globalError = undefined;
-              field.$setValidity(value.code, true);
-              field.$parsers.shift();
-            }
-            return fieldValue;
-          });
-
-        });
+        ValidationHelper.bindBackendErrors($scope.registerForm, error.data.errors);
         vm.globalError = 'Some fields have not been completed correctly';
       } else {
         vm.globalError = 'Internal server error';
@@ -49,5 +36,5 @@
   angular.module('app')
     .controller('RegisterCtrl', RegisterCtrl);
 
-  RegisterCtrl.$inject = ['$scope', 'UserDAO', 'Notification'];
+  RegisterCtrl.$inject = ['$scope', 'UserDAO', 'Notification', 'ValidationHelper'];
 })();

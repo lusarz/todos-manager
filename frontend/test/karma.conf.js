@@ -28,6 +28,8 @@
         '../app/bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js',
         '../app/bower_components/angular-ui-notification/dist/angular-ui-notification.js',
         '../app/bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
+        '../app/bower_components/angular-validation-match/dist/angular-validation-match.min.js',
+        '../app/bower_components/lodash/lodash.js',
         '../app/bower_components/angular-mocks/angular-mocks.js',
         '../app/bower_components/bootstrap/dist/js/bootstrap.js',
         // endbower

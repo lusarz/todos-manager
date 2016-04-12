@@ -57,9 +57,5 @@
     this.submitButton.click();
   };
 
-  RegistrationForm.prototype.resetForm = function () {
-    this.resetButton.click();
-  };
-
   module.exports = new RegistrationForm();
 })();
