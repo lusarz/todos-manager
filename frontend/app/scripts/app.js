@@ -12,6 +12,7 @@ angular.module('app', [
   'ui.router',
   'ngResource',
   'ngMessages',
+  'ngAnimate',
   'ui-notification',
   'ui.bootstrap',
   'validation.match'

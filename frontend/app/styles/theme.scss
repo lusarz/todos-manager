@@ -6,11 +6,15 @@ $fa-font-path: "/fonts/font-awesome/";
 @import "../bower_components/bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
 @import "../bower_components/components-font-awesome/scss/font-awesome.scss";
 // endbower
+
+/* Commons */
+@import "commons/mixins";
 /* Page partials */
 @import "bootstrap/bootstrap-overrides";
 @import "partials/variables";
 @import "partials/common";
-/*Blocks*/
+
+/* Blocks */
 @import "partials/blocks/aside";
 @import "partials/blocks/navigation";
 @import "partials/blocks/header";
@@ -23,3 +27,6 @@ $fa-font-path: "/fonts/font-awesome/";
 /*Elements*/
 @import "partials/elements/forms";
 @import "partials/elements/panels";
+
+/*Effects*/
+@import "partials/effects/effects";
