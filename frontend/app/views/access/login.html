@@ -1,0 +1,85 @@
+<div class="panel-heading">
+    <div class="panel-title">Log In</div>
+    <!--<div style="float:right;">
+        <a href="#">Forgot password?</a>
+    </div>-->
+</div>
+
+<div style="padding-top:30px" class="panel-body">
+
+    <div class="alert alert-danger" ng-show="vm.globalError">
+        {{vm.globalError}}
+    </div>
+
+    <form class="form-horizontal" role="form" name="loginForm" ng-submit="vm.login();" novalidate>
+
+        <div style="margin-bottom: 20px;"
+             ng-class="{ 'has-error' : loginForm.email.$invalid && !loginForm.email.$pristine }">
+            <div class="input-group">
+                <input type="email" class="form-control" required name="email"
+                       ng-model="vm.credentials.email"
+                       placeholder="Email"/>
+                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+            </div>
+            <div class="help-block"
+                 ng-messages="loginForm.email.$error"
+                 ng-show="loginForm.email.$invalid && !loginForm.email.$pristine">
+                <div ng-message="required">Email is required</div>
+                <div ng-message="email">Please provide valid email address</div>
+                <div ng-message="notExist">User with this email doesn't exist</div>
+            </div>
+        </div>
+
+        <div style="margin-bottom: 25px"
+             ng-class="{ 'has-error' : loginForm.password.$invalid && !loginForm.password.$pristine }">
+            <div class="input-group">
+                <input id="login-password" type="password" class="form-control" name="password"
+                       ng-model="vm.credentials.password"
+                       placeholder="Password"
+                       required minlength="6">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+            </div>
+            <div class="help-block"
+                 ng-messages="loginForm.password.$error"
+                 ng-show="loginForm.password.$invalid && !loginForm.password.$pristine">
+                <div ng-message="required">Password is required</div>
+                <div ng-message="minlength">Password is too short</div>
+                <div ng-message="invalid">Password is invalid</div>
+            </div>
+        </div>
+
+
+        <div class="input-group">
+            <div class="checkbox">
+                <label>
+                    <input id="login-remember" type="checkbox" name="remember" ng-model="vm.rememberMe"/>
+                    Remember me
+                </label>
+            </div>
+        </div>
+
+
+        <div style="margin-top:10px" class="form-group">
+            <!-- Button -->
+
+            <div class="col-sm-12 controls">
+                <input type="submit" id="btn-login" ng-disabled="loginForm.$invalid"
+                       class="btn btn-success" value="Login"/>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-md-12 control">
+                <div style="border-top: 1px solid#888; padding-top:15px; font-size:85%">
+                    Don't have an account!
+                    <a ui-sref="access.register">
+                        Register here
+                    </a>
+                </div>
+            </div>
+        </div>
+    </form>
+
+
+</div>

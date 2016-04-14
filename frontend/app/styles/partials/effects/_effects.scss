@@ -18,76 +18,34 @@
   opacity: 1;
 }
 
-/* Page animation */
-@keyframes rotateFall {
-  0% {
-    transform: rotateZ(0deg);
+@media(min-width: $screen-md) {
+  .flipContent {
+    transition: transform 1s;
+    perspective: 600px;
+    height: 700px;
   }
-  20% {
-    transform: rotateZ(10deg);
-    animation-timing-function: ease-out;
-  }
-  40% {
-    transform: rotateZ(17deg);
-  }
-  60% {
-    transform: rotateZ(16deg);
-  }
-  100% {
-    transform: translateY(100%) rotateZ(17deg);
-  }
-}
 
-/* slide in from the bottom */
-@keyframes slideOutLeft {
-  to {
-    transform: translateX(-100%);
+  .flipContent .flip {
+    position: absolute;
+    width: 540px;
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    transition: all 1s ease-in-out;
   }
-}
 
-/* rotate out newspaper */
-@keyframes rotateOutNewspaper {
-  to {
-    transform: translateZ(-3000px) rotateZ(360deg);
-    opacity: 0;
+  .flipContent .flip.ng-enter {
+    transform: rotateY(-180deg);
   }
-}
 
-/* entering animations --------------------------------------- */
-/* scale up */
-@keyframes scaleUp {
-  from {
-    opacity: 0.3;
-    -webkit-transform: scale(0.8);
+  .flipContent .flip.ng-enter-active {
+    transform: rotateY(0deg);
   }
-}
 
-/* slide in from the right */
-@keyframes slideInRight {
-  from {
-    transform: translateX(100%);
+  .flipContent .flip.ng-leave {
+    transform: rotateY(0deg);
   }
-  to {
-    transform: translateX(0);
-  }
-}
 
-/* slide in from the bottom */
-@keyframes slideInUp {
-  from {
-    transform: translateY(100%);
+  .flipContent .flip.ng-leave-active {
+    transform: rotateY(180deg);
   }
-  to {
-    transform: translateY(0);
-  }
-}
-
-.pageContainer.ng-enter {
-  animation: slideInUp 3s both ease-in;
-  z-index: 8888;
-}
-
-.pageContainer.ng-leave {
-  animation: rotateOutNewspaper 5s both ease-in;
-  z-index: 9999;
 }

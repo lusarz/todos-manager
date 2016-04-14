@@ -8,17 +8,26 @@
       link: function (scope, elem) {
 
         $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState) {
-          var fromClassnames = angular.isDefined(fromState.data) && angular.isDefined(fromState.data.cssClassnames) ? fromState.data.cssClassnames : null;
-          var toClassnames = angular.isDefined(toState.data) && angular.isDefined(toState.data.cssClassnames) ? toState.data.cssClassnames : null;
+
+          var fromStateType = fromState.name.split('.')[0];
+          var toStateType = toState.name.split('.')[0];
 
           // don't do anything if they are the same
-          if (fromClassnames !== toClassnames) {
-            if (fromClassnames) {
-              elem.removeClass(fromClassnames);
+
+          if (fromStateType === 'app' && toStateType === 'access') {
+            elem.addClass('transit');
+          }
+
+          if (fromStateType !== toStateType) {
+            if (fromStateType) {
+              elem.removeClass(fromStateType);
             }
 
-            if (toClassnames) {
-              elem.addClass(toClassnames);
+            if (toStateType) {
+              elem.addClass(toStateType);
+              if (toStateType === 'app') {
+                elem.removeClass('transit');
+              }
             }
           }
         });

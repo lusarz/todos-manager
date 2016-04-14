@@ -10,25 +10,24 @@
     $urlRouterProvider.otherwise('/register');
 
     $stateProvider
-      .state('login', {
+      .state('access', {
+        abstract: true,
+        url: '',
+        templateUrl: 'views/access/access.html'
+      })
+      .state('access.login', {
         url: '/login',
-        templateUrl: 'views/login.html',
+        templateUrl: 'views/access/login.html',
         controller: 'LoginCtrl',
-        controllerAs: 'vm',
-        data: {
-          cssClassnames: 'access'
-        }
+        controllerAs: 'vm'
       })
-      .state('register', {
+      .state('access.register', {
         url: '/register',
-        templateUrl: 'views/register.html',
+        templateUrl: 'views/access/register.html',
         controller: 'RegisterCtrl',
-        controllerAs: 'vm',
-        data: {
-          cssClassnames: 'access'
-        }
+        controllerAs: 'vm'
       })
-      .state('logout', {
+      .state('access.logout', {
         url: '/logout',
         controller: 'LogoutCtrl'
       })
