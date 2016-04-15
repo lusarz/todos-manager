@@ -58,5 +58,5 @@
     getExistingUserRegistrationData: getExistingUserRegistrationData,
     getNotExistingUserRegistrationData: getNotExistingUserRegistrationData,
     getTooShortPasswordRegistrationData: getTooShortPasswordRegistrationData
-  }
+  };
 })();

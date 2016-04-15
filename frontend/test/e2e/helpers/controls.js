@@ -2,7 +2,7 @@
   'use strict';
 
   function Field(e) {
-    if (null == e) {
+    if (!e) {
       throw new Error('element must not be null');
     }
     this.element = e;
@@ -23,7 +23,7 @@
 
 
   function Button(e) {
-    if (null == e) {
+    if (!e) {
       throw new Error('element must not be null');
     }
     this.element = e;
@@ -41,10 +41,6 @@
     return new Field(element(by.model(model)));
   }
 
-  function getFieldContainerByInputId(inputId) {
-    return new FieldContainer(element(by.id(inputId + 'Container')));
-  }
-
   function getButtonById(buttonId) {
     return new Button(element(by.id(buttonId)));
   }
@@ -52,7 +48,6 @@
   module.exports = {
     getFieldById: getFieldById,
     getFieldByModel: getFieldByModel,
-    getFieldContainerByInputId: getFieldContainerByInputId,
     getButtonById: getButtonById
   };
 })();

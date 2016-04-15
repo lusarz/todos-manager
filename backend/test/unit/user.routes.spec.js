@@ -16,7 +16,7 @@
 
     it('should return 401 when user is not authenticated', function (done) {
       request.get('/api/user/me')
-        .expect(401, done)
+        .expect(401, done);
     });
 
     describe('Login method', function () {
@@ -72,7 +72,7 @@
 
         it('should return info that user already exists', function (done) {
           request.post('/api/user/register').send(userHelper.getExistingUserRegistrationData())
-            .expect(409, done)
+            .expect(409, done);
         });
       });
     });

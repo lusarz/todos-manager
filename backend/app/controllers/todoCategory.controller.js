@@ -33,7 +33,7 @@
   }
 
   function create(req, res) {
-    var todo = req.body;
+    var todoCategory = req.body;
     todoCategoryService.create(todoCategory, req.user).then(function (todoCategory) {
       res.send(todoCategory);
     }, function (err) {

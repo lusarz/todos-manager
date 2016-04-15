@@ -19,12 +19,12 @@
     describe('When user is not authenticated', function () {
       it('should return 401', function (done) {
         request.get('/api/todoCategories')
-          .expect(401, done)
+          .expect(401, done);
       });
 
       it('should return 401', function (done) {
         request.post('/api/todoCategories').send({})
-          .expect(401, done)
+          .expect(401, done);
       });
     });
 

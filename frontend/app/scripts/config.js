@@ -6,7 +6,7 @@
   function config() {
   }
 
-  function run(SecurityFactory) {
+  function run() {
   }
 
   angular.module('app')

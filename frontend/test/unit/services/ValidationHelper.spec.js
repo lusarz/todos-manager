@@ -15,7 +15,7 @@ describe('Factory: ValidationHelper', function () {
         var formElem = angular.element('<form name="exampleForm"><input type="text" name="field1" ng-model="field1" /><input type="text" name="field2" ng-model="field2" /></form>');
         $compile(formElem)(scope);
         form = scope.exampleForm;
-        scope.$apply()
+        scope.$apply();
       });
     }
   );
