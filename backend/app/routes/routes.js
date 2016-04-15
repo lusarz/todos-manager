@@ -10,5 +10,6 @@
     //router.use(authenticate);
     require('./user/routes')(router);
     require('./todo/routes')(router);
+    require('./todoCategory/routes')(router);
   };
 })();

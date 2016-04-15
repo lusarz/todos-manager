@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  var todoService = require('../services/todo.service');
+  var todoCategoryService = require('../services/todoCategory.service');
 
   module.exports = {
     findList: findList,
@@ -13,17 +13,17 @@
 
 
   function findList(req, res) {
-    todoService.findList(null, req.user).then(function (todos) {
-      res.send(todos);
+    todoCategoryService.findList(null, req.user).then(function (todoCategories) {
+      res.send(todoCategories);
     }, function (err) {
       res.status(400).send(err);
     });
   }
 
   function findById(req, res) {
-    todoService.findById(req.params.id).then(function (todo) {
-      if (todo) {
-        res.send(todo);
+    todoCategoryService.findById(req.params.id).then(function (todoCategory) {
+      if (todoCategory) {
+        res.send(todoCategory);
       } else {
         res.status(404).send({});
       }
@@ -34,26 +34,25 @@
 
   function create(req, res) {
     var todo = req.body;
-    todoService.create(todo, req.user).then(function (todo) {
-      res.send(todo);
+    todoCategoryService.create(todoCategory, req.user).then(function (todoCategory) {
+      res.send(todoCategory);
     }, function (err) {
       res.status(400).send(err);
     });
   }
 
   function update(req, res) {
-    todoService.update(req.body, req.params.id).then(function (todo) {
-      res.send(todo);
+    todoCategoryService.update(req.body, req.params.id).then(function (todoCategory) {
+      res.send(todoCategory);
     }, function (err) {
       res.status(400).send(err);
     });
   }
 
   function remove(req, res) {
-    todoService.remove(req.params.id).then(function () {
+    todoCategoryService.remove(req.params.id).then(function () {
       res.send({});
     }, function (err) {
-      console.log('remove err');
       console.log(err);
     });
   }

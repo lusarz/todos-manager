@@ -185,7 +185,7 @@
       cb(null, item);
     });
 
-    fixtures.clearAllAndLoad(__dirname + '/frontend/test/e2e/fixtures', function (err) {
+    fixtures.clearAllAndLoad(__dirname + '/backend/test/fixtures', function (err) {
       console.log(err);
       done();
       process.exit();

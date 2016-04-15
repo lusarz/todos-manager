@@ -8,14 +8,13 @@
     Schema = mongoose.Schema;
 
   /**
-   * Todo Schema
+   * TodoCategory Schema
    */
-  var TodoSchema = new Schema({
+  var TodoCategorySchema = new Schema({
     name: {
       type: String,
-      default: '',
       trim: true,
-      required: 'Name cannot be blank'
+      required: 'required'
     },
     description: {
       type: String,
@@ -25,15 +24,10 @@
     dueDate: {
       type: Date
     },
-    category: {
-      type: Schema.ObjectId,
-      ref: 'TodoCategory',
-      required: 'required'
-    },
     user: {
       type: Schema.ObjectId,
       ref: 'User',
-      required: 'User is required'
+      required: 'required'
     },
     updated: {
       type: Date
@@ -42,9 +36,9 @@
       type: Date,
       default: Date.now
     }
-  });
+  }, {collection: 'todoCategories'});
 
-  TodoSchema.set('toJSON', {
+  TodoCategorySchema.set('toJSON', {
     transform: function (doc, ret) {
       var retJson = {
         _id: ret._id,
@@ -56,5 +50,5 @@
     }
   });
 
-  module.exports = mongoose.model('Todo', TodoSchema);
+  module.exports = mongoose.model('TodoCategory', TodoCategorySchema);
 })();

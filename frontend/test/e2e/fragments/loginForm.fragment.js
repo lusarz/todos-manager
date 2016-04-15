@@ -2,7 +2,7 @@
   'use strict';
 
   var controls = require('../helpers/controls.js');
-  var users = require('../fixtures/users').users;
+  var users = require('../../../../backend/test/fixtures/users').users;
 
   var modelPrefix = 'vm.credentials.';
   var formName = 'loginForm';
