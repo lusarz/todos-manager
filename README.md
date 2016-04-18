@@ -1,7 +1,8 @@
 # Todos manager
 
 ## About
-This project is showing MEAN stack
+Current version of application is available on:
+http://tasksmanager.pl
 
 
 
