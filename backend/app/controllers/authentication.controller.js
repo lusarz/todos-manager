@@ -18,9 +18,6 @@
 
     var user = req.body;
 
-    // Add missing user fields
-    user.displayName = user.firstName + ' ' + user.lastName;
-
     userService.findByEmail(user.email).then(function (existedUser) {
       if (existedUser) {
         res.status(409).send(validation.prepareDuplicateErrorResponse('email'));

@@ -6,8 +6,6 @@
 
   function RegistrationForm() {
     var dataObjectPrefix = 'vm.registrationData.';
-    this.firstName = controls.getFieldByModel(dataObjectPrefix + 'firstName');
-    this.lastName = controls.getFieldByModel(dataObjectPrefix + 'lastName');
     this.email = controls.getFieldByModel(dataObjectPrefix + 'email');
     this.password = controls.getFieldByModel(dataObjectPrefix + 'password');
     this.passwordRepeat = controls.getFieldByModel(dataObjectPrefix + 'passwordRepeat');
@@ -32,16 +30,12 @@
   };
 
   RegistrationForm.prototype.fillWithValidValues = function () {
-    this.firstName.setValue('John');
-    this.lastName.setValue('Kowalski');
     this.email.setValue('john.kowalski@wp.pl');
     this.password.setValue('cat123987');
     this.passwordRepeat.setValue('cat123987');
   };
 
   RegistrationForm.prototype.fillWithExistingUserValues = function () {
-    this.firstName.setValue('John');
-    this.lastName.setValue('Kowalski');
     this.email.setValue('lukas-u1@o2.pl');
     this.password.setValue('cat123987');
     this.passwordRepeat.setValue('cat123987');
