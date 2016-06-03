@@ -13,12 +13,27 @@
 
 
   function findList(req, res) {
-    todoService.findList(null, req.user).then(function (todos) {
+    var filters = {};
+    if (req.param('category')) {
+      var category = req.param('category');
+      if (category === 'general') {
+        filters['category'] = null;
+      } else {
+        filters['category'] = req.param('category');
+      }
+    }
+
+    if (req.param('favourite')) {
+      filters['favourite'] = true;
+    }
+
+    todoService.findList(filters, req.user).then(function (todos) {
       res.send(todos);
     }, function (err) {
       res.status(400).send(err);
     });
   }
+
 
   function findById(req, res) {
     todoService.findById(req.params.id).then(function (todo) {

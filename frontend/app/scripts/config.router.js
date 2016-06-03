@@ -43,34 +43,19 @@
         templateUrl: 'views/dashboard.html'
       })
       .state('app.todos', {
-        url: '/todos/general',
-        templateUrl: 'views/todos/list.html',
-        controller: 'TodosCtrl',
-        controllerAs: 'vm'
-      })
-      .state('app.todosFavourite', {
-        url: '/todos/favourite',
-        templateUrl: 'views/todos/list.html',
-        params: {
-          favourite: true,
-        },
-        controller: 'TodosCtrl',
-        controllerAs: 'vm'
-      })
-      .state('app.todosByCategory', {
-        url: '/todos/category/:categoryId',
+        url: '/todos/:category',
         templateUrl: 'views/todos/list.html',
         controller: 'TodosCtrl',
         controllerAs: 'vm'
       })
       .state('app.todosCreate', {
-        url: '/todos/create',
+        url: '/todos/:category/create',
         templateUrl: '../views/todos/form.html',
         controller: 'TodosCreateCtrl',
         controllerAs: 'vm'
       })
       .state('app.todosEdit', {
-        url: '/todos/:id',
+        url: '/todos/:categoryId/edit:id',
         templateUrl: '../views/todos/form.html',
         controller: 'TodosEditCtrl',
         controllerAs: 'vm'

@@ -10,8 +10,8 @@
     });
 
     return {
-      getList: function () {
-        return api.getList().$promise;
+      getList: function (filters) {
+        return api.getList(filters).$promise;
       },
       create: function (todo) {
         return api.create(todo).$promise;

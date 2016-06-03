@@ -4,21 +4,21 @@
 <nav class="navigation">
     <ul class="list-unstyled">
         <li ui-sref-active="active">
-            <a ui-sref="app.todos" title="General">
+            <a ui-sref="app.todos({category: 'general'})" title="General">
                 <i class="fa fa-hashtag"></i>
                 <span class="nav-label">General</span>
             </a>
         </li>
 
         <li ui-sref-active="active">
-            <a ui-sref="app.todosFavourite" title="Favourite">
+            <a ui-sref="app.todos({category: 'favourite'})" title="Favourite">
                 <i class="fa fa-star"></i>
                 <span class="nav-label">Favourite</span>
             </a>
         </li>
 
         <li ng-repeat="category in vm.todosCategories" ui-sref-active="active">
-            <a ui-sref="app.todosByCategory({categoryId: category._id})" title="{{::category.name}}">
+            <a ui-sref="app.todos({category: category._id})" title="{{::category.name}}">
                 <i class="fa fa-list-alt"></i>
                 <span class="nav-label">{{::category.name}}</span>
             </a>

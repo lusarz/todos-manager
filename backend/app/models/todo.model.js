@@ -30,6 +30,10 @@
       ref: 'TodoCategory',
       required: 'required'
     },
+    favourite: {
+      type: Boolean,
+      default: false
+    },
     user: {
       type: Schema.ObjectId,
       ref: 'User',
