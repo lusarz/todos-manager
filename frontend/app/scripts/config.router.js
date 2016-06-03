@@ -34,7 +34,9 @@
       .state('app', {
         abstract: true,
         url: '',
-        templateUrl: 'views/app/app.html'
+        controller: 'AppCtrl',
+        templateUrl: 'views/app/app.html',
+        controllerAs: 'vm'
       })
       .state('app.dashboard', {
         url: '/dashboard',
@@ -57,7 +59,13 @@
         templateUrl: '../views/todos/form.html',
         controller: 'TodosEditCtrl',
         controllerAs: 'vm'
-      });
+      })
+      .state('app.todosCategoriesCreate', {
+        url: '/todosCategories/create',
+        templateUrl: '../views/categories/form.html',
+        controller: 'TodosCategoryCreateCtrl',
+        controllerAs: 'vm'
+      })
   }
 
   angular.module('app')

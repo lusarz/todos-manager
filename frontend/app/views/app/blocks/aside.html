@@ -4,25 +4,43 @@
 <nav class="navigation">
     <ul class="list-unstyled">
         <li ui-sref-active="active">
-            <a ui-sref="app.dashboard" title="Dashboard">
+            <a ui-sref="app.todos" title="General">
                 <i class="fa fa-hashtag"></i>
-                <span class="nav-label">Dashboard</span>
+                <span class="nav-label">General</span>
             </a>
         </li>
 
         <li ui-sref-active="active">
-            <a ui-sref="app.todos" title="Todos list">
+            <a ui-sref="app.todosx" title="Favourite">
+                <i class="fa fa-star"></i>
+                <span class="nav-label">Favourite</span>
+            </a>
+        </li>
+
+        <li ng-repeat="category in vm.todosCategories" ui-sref-active="active">
+            <a ui-sref="app.todosx" title="{{::category.name}}">
                 <i class="fa fa-list-alt"></i>
-                <span class="nav-label">Todos list</span>
+                <span class="nav-label">{{::category.name}}</span>
             </a>
         </li>
 
-        <li ui-sref-active="active">
+        <!--<li ui-sref-active="active">
             <a ui-sref="access.logout" title="Logout">
                 <i class="fa fa-sign-out"></i>
                 <span class="nav-label">Logout</span>
             </a>
-        </li>
+        </li>-->
 
+    </ul>
+</nav>
+
+<nav class="navigation navigation-bottom">
+    <ul class="list-unstyled">
+        <li ui-sref-active="active">
+            <a ui-sref="app.todosCategoriesCreate" title="Create new category">
+                <i class="fa fa-plus"></i>
+                <span class="nav-label">Create new category</span>
+            </a>
+        </li>
     </ul>
 </nav>
