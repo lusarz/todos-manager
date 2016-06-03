@@ -43,7 +43,22 @@
         templateUrl: 'views/dashboard.html'
       })
       .state('app.todos', {
-        url: '/todos',
+        url: '/todos/general',
+        templateUrl: 'views/todos/list.html',
+        controller: 'TodosCtrl',
+        controllerAs: 'vm'
+      })
+      .state('app.todosFavourite', {
+        url: '/todos/favourite',
+        templateUrl: 'views/todos/list.html',
+        params: {
+          favourite: true,
+        },
+        controller: 'TodosCtrl',
+        controllerAs: 'vm'
+      })
+      .state('app.todosByCategory', {
+        url: '/todos/category/:categoryId',
         templateUrl: 'views/todos/list.html',
         controller: 'TodosCtrl',
         controllerAs: 'vm'

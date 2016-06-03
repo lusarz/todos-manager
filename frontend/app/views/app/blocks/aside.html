@@ -11,14 +11,14 @@
         </li>
 
         <li ui-sref-active="active">
-            <a ui-sref="app.todosx" title="Favourite">
+            <a ui-sref="app.todosFavourite" title="Favourite">
                 <i class="fa fa-star"></i>
                 <span class="nav-label">Favourite</span>
             </a>
         </li>
 
         <li ng-repeat="category in vm.todosCategories" ui-sref-active="active">
-            <a ui-sref="app.todosx" title="{{::category.name}}">
+            <a ui-sref="app.todosByCategory({categoryId: category._id})" title="{{::category.name}}">
                 <i class="fa fa-list-alt"></i>
                 <span class="nav-label">{{::category.name}}</span>
             </a>

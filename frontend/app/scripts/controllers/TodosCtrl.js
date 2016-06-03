@@ -8,7 +8,7 @@
    * # TodosCtrl
    * Controller of the app
    */
-  function TodosCtrl(TodosDAO) {
+  function TodosCtrl($state, TodosDAO) {
     var vm = this;
     vm.todos = [];
     vm.loading = true;
@@ -30,6 +30,6 @@
   angular.module('app')
     .controller('TodosCtrl', TodosCtrl);
 
-  TodosCtrl.$inject = ['TodosDAO'];
+  TodosCtrl.$inject = ['$state', 'TodosDAO'];
 
 })();
