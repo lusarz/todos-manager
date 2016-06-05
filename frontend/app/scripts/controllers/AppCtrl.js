@@ -13,6 +13,8 @@
     vm.init = init;
 
 
+    $scope.$on('CategoriesUpdated', init);
+
     function init() {
 
       TodosCategoriesDAO.getList().then(function (categories) {

@@ -21,6 +21,11 @@
       default: '',
       trim: true
     },
+    icon: {
+      type: String,
+      trim: true,
+      required: 'required'
+    },
     dueDate: {
       type: Date
     },

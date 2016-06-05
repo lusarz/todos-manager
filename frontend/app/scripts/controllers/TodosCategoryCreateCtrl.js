@@ -8,10 +8,21 @@
    * # TodosCategoryCreateCtrl
    * Controller of the app
    */
-  function TodosCategoryCreateCtrl($state, TodosCategoriesDAO) {
+  function TodosCategoryCreateCtrl($scope, $state, TodosCategoriesDAO) {
     var vm = this;
     vm.category = {};
     vm.save = save;
+
+    vm.icons = [{
+      icon: 'fa-university'
+    }, {
+      icon: 'fa-bell'
+    }, {
+      icon: 'fa-book'
+    }, {
+      icon: 'fa-camera'
+    }];
+    
 
     init();
 
@@ -22,6 +33,7 @@
     function save() {
       TodosCategoriesDAO.create(vm.category).then(function () {
         $state.go('app.todos');
+        $scope.$emit('CategoriesUpdated');
       }, function (error) {
         displayError(error);
       });
@@ -35,6 +47,6 @@
   angular.module('app')
     .controller('TodosCategoryCreateCtrl', TodosCategoryCreateCtrl);
 
-  TodosCategoryCreateCtrl.$inject = ['$state', 'TodosCategoriesDAO'];
+  TodosCategoryCreateCtrl.$inject = ['$scope', '$state', 'TodosCategoriesDAO'];
 
 })();

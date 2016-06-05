@@ -15,5 +15,6 @@ angular.module('app', [
   'ngAnimate',
   'ui-notification',
   'ui.bootstrap',
-  'validation.match'
+  'validation.match',
+  'ui.select'
 ]);
