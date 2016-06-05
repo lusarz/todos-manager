@@ -8,9 +8,10 @@
    * # AppCtrl
    * Controller of the app
    */
-  function AppCtrl($scope, $state, TodosCategoriesDAO) {
+  function AppCtrl($scope, $state, TodosCategoriesDAO, UserDAO) {
     var vm = this;
     vm.init = init;
+    vm.getUserProfile = getUserProfile;
 
 
     $scope.$on('CategoriesUpdated', init);
@@ -24,12 +25,21 @@
       });
     }
 
+    function getUserProfile() {
+      UserDAO.getMe().then(function (response) {
+        vm.user = response;
+      }, function (error) {
+        //displayError(error);
+      });
+    }
+
     vm.init();
+    vm.getUserProfile();
   }
 
   angular.module('app')
     .controller('AppCtrl', AppCtrl);
 
-  AppCtrl.$inject = ['$scope', '$state', 'TodosCategoriesDAO'];
+  AppCtrl.$inject = ['$scope', '$state', 'TodosCategoriesDAO', 'UserDAO'];
 
 })();

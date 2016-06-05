@@ -42,6 +42,14 @@
         url: '/dashboard',
         templateUrl: 'views/dashboard.html'
       })
+      .state('app.profile', {
+        url: '/profile',
+        templateUrl: 'views/profile.html'
+      })
+      .state('app.settings', {
+        url: '/settings',
+        templateUrl: 'views/settings.html'
+      })
       .state('app.todos', {
         url: '/todos/:category',
         templateUrl: 'views/todos/list.html',
