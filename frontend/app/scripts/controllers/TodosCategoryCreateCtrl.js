@@ -14,15 +14,22 @@
     vm.save = save;
 
     vm.icons = [{
-      icon: 'fa-university'
+      name: 'fa-university',
+      code: '\uf19c'
     }, {
-      icon: 'fa-bell'
+      name: 'fa-bell',
+      code: '\uf0f3'
     }, {
-      icon: 'fa-book'
+      name: 'fa-book',
+      code: '\uf02d'
     }, {
-      icon: 'fa-camera'
+      name: 'fa-camera',
+      code: '\uf030'
+    }, {
+      name: 'fa-heart',
+      code: '\uf004'
     }];
-    
+
 
     init();
 

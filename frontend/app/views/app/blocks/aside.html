@@ -19,7 +19,7 @@
 
         <li ng-repeat="category in vm.todosCategories" ui-sref-active="active">
             <a ui-sref="app.todos({category: category._id})" title="{{::category.name}}">
-                <i class="fa fa-list-alt"></i>
+                <i class="fa {{category.icon}}"></i>
                 <span class="nav-label">{{::category.name}}</span>
             </a>
         </li>

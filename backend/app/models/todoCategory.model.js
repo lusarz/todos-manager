@@ -49,6 +49,7 @@
         _id: ret._id,
         name: ret.name,
         description: ret.description,
+        icon: ret.icon,
         dueDate: ret.dueDate
       };
       return retJson;

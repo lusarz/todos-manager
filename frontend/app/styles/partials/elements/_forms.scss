@@ -1,3 +1,12 @@
 .form-container {
   padding-top: 50px;
 }
+
+.fa-select {
+  font-family: "FontAwesome";
+  option {
+    display: block;
+    font-size: 24px;
+    text-align: center;
+  }
+}

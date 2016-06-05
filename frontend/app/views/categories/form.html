@@ -37,15 +37,11 @@
                     <label class="col-xs-12 col-sm-2 control-label">Icon</label>
 
                     <div class="col-xs-12 col-sm-8">
-                        <ui-select ng-model="vm.category.icon" theme="select2" style="width: 300px;"
-                                   title="Choose a icon">
-                            <ui-select-match>
-                                <span ng-bind="$select.selected.icon"></span>
-                            </ui-select-match>
-                            <ui-select-choices repeat="icon in vm.icons track by icon.icon">
-                                <span class="fa {{icon.icon}}"></span>
-                            </ui-select-choices>
-                        </ui-select>
+
+                        <select ng-model="vm.category.icon" class="fa-select">
+                            <option ng-repeat="icon in vm.icons" value="{{icon.name}}" class="fa">{{::icon.code}}
+                            </option>
+                        </select>
 
                         <div class="help-block"
                              ng-messages="categoryForm.icon.$error"
