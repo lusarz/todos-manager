@@ -33,6 +33,17 @@
     }
 
     function getCategoryById(categoryId) {
+      if (categoryId === 'general') {
+        return $q.when({
+          name: 'General',
+          icon: 'fa-hashtag'
+        });
+      } else if (categoryId === 'favourite') {
+        return $q.when({
+          name: 'Favourite',
+          icon: 'fa-star'
+        });
+      }
       return getList().then(function () {
         return _.find(categories, {'_id': categoryId});
       });

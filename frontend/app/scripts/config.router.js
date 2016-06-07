@@ -56,6 +56,12 @@
         controller: 'TodosCtrl',
         controllerAs: 'vm'
       })
+      .state('app.todosCategoriesEdit', {
+        url: '/todos/:category/edit',
+        templateUrl: '../views/categories/form.html',
+        controller: 'TodosCategoryEditCtrl',
+        controllerAs: 'vm'
+      })
       .state('app.todosCreate', {
         url: '/todos/:category/create',
         templateUrl: '../views/todos/form.html',

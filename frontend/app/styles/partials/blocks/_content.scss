@@ -4,8 +4,8 @@
   }
 
   & > .container-fluid {
-    padding-left: 25px;
-    padding-right: 25px;
+    padding-left: 0px;
+    padding-right: 0px;
   }
 }
 
@@ -13,7 +13,11 @@
 
 .page-header {
   border-bottom: none;
-  margin: 20px 0px 0px 0px;
+  margin: 0px 0px 10px 0px;
+  background: white;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-bottom: solid grey 1px;
 
   h1 {
     font-weight: 300;
@@ -28,5 +32,18 @@
   small {
     font-size: 14px;
     color: #9D9EA5;
+  }
+
+  .edit-icon {
+    display: none;
+    cursor: pointer;
+    font-size: 0.75em;
+    margin-left: 25px;
+  }
+
+  &:HOVER {
+    .edit-icon {
+      display: inline;
+    }
   }
 }

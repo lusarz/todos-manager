@@ -20,21 +20,19 @@
 
     getTodos();
 
-    if ($stateParams.category) {
+    function initFilters() {
+      var filters = {};
+      vm.categoryId = $stateParams.category;
+
+      if (vm.categoryId === 'favourite') {
+        filters['favourite'] = true;
+      } else {
+        filters['category'] = vm.categoryId;
+      }
+
       TodoCategoriesFactory.getCategoryById($stateParams.category).then(function (category) {
         vm.category = category;
       });
-    }
-
-    function initFilters() {
-      var filters = {};
-      vm.category = $stateParams.category;
-
-      if (vm.category === 'favourite') {
-        filters['favourite'] = true;
-      } else {
-        filters['category'] = vm.category;
-      }
 
       return filters;
     }
@@ -54,4 +52,5 @@
 
   TodosCtrl.$inject = ['$stateParams', 'TodosDAO', 'TodoCategoriesFactory'];
 
-})();
+})
+();
