@@ -8,17 +8,17 @@
    * # AppCtrl
    * Controller of the app
    */
-  function AppCtrl($scope, $state, TodosCategoriesDAO, UserDAO) {
+  function AppCtrl($scope, TodoCategoriesFactory, UserDAO) {
     var vm = this;
-    vm.init = init;
+    vm.init = getCategories;
     vm.getUserProfile = getUserProfile;
 
 
-    $scope.$on('CategoriesUpdated', init);
+    $scope.$on('CategoriesUpdated', getCategories);
 
-    function init() {
+    function getCategories() {
 
-      TodosCategoriesDAO.getList().then(function (categories) {
+      TodoCategoriesFactory.getList(true).then(function (categories) {
         vm.todosCategories = categories;
       }, function (error) {
         //displayError(error);
@@ -40,6 +40,6 @@
   angular.module('app')
     .controller('AppCtrl', AppCtrl);
 
-  AppCtrl.$inject = ['$scope', '$state', 'TodosCategoriesDAO', 'UserDAO'];
+  AppCtrl.$inject = ['$scope', 'TodoCategoriesFactory', 'UserDAO'];
 
 })();

@@ -8,7 +8,7 @@
    * # TodosCtrl
    * Controller of the app
    */
-  function TodosCtrl($stateParams, TodosDAO) {
+  function TodosCtrl($stateParams, TodosDAO, TodoCategoriesFactory) {
     var vm = this;
 
     var filters = initFilters();
@@ -19,6 +19,12 @@
     vm.getTodos = getTodos;
 
     getTodos();
+
+    if ($stateParams.category) {
+      TodoCategoriesFactory.getCategoryById($stateParams.category).then(function (category) {
+        vm.category = category;
+      });
+    }
 
     function initFilters() {
       var filters = {};
@@ -46,6 +52,6 @@
   angular.module('app')
     .controller('TodosCtrl', TodosCtrl);
 
-  TodosCtrl.$inject = ['$stateParams', 'TodosDAO'];
+  TodosCtrl.$inject = ['$stateParams', 'TodosDAO', 'TodoCategoriesFactory'];
 
 })();
