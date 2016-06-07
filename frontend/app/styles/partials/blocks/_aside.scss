@@ -7,6 +7,7 @@ aside {
   height: 100%;
   top: 0px;
   left: 0px;
+  z-index: 90;
 
   &.collapsed {
     overflow: visible !important;
@@ -23,7 +24,12 @@ aside {
     & + .content {
 
       @media (max-width: 768px) {
-        margin-left: 250px;
+        //margin-left: 250px;
+
+        .navbar-toggle {
+          z-index: 91;
+          left: 175px;
+        }
       }
 
       @media (min-width: 768px) {
