@@ -123,6 +123,7 @@
   gulp.task('usemin', function () {
       return gulp.src('frontend/app/*.html')
         .pipe(usemin({}))
+        .pipe(rev())
         .pipe(gulp.dest('frontend/app/dist'));
     }
   );

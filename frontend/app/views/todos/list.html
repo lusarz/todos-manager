@@ -19,6 +19,7 @@
                 <table class="table table-hover">
                     <thead>
                     <tr>
+                        <th>Done?</th>
                         <th>Name</th>
                         <th>Description</th>
                         <th>Due date</th>
@@ -28,6 +29,7 @@
 
                     <tbody>
                     <tr ng-repeat="todo in vm.todos">
+                        <td><input type="checkbox"/></td>
                         <td><a ui-sref="app.todosEdit({id: todo._id})">{{todo.name}}</a></td>
                         <td>{{todo.description}}</td>
                         <td>{{todo.dueDate | date}}</td>
