@@ -16,7 +16,6 @@
   var mocha = require('gulp-mocha');
   var nodemon = require('nodemon');
   var wiredep = require('wiredep').stream;
-  var clean = require('gulp-clean');
   var del = require('del');
   var KarmaServer = require('karma').Server;
   var protractor = require("gulp-protractor").protractor;
@@ -35,6 +34,8 @@
 
   var runSequence = require('run-sequence');
 
+  var templateCache = require('gulp-angular-templatecache');
+
 
   var plugins = gulpLoadPlugins({
     rename: {
@@ -45,14 +46,23 @@
 
   // Clean
   gulp.task('clean', function () {
-    return gulp.src('frontend/app/.tmp/**/*', {read: false, force: true})
-      .pipe(clean());
+    return del.sync([
+      'frontend/app/.tmp'
+    ]);
   });
 
   gulp.task('clean:dist', function (done) {
     return del.sync([
       'dist'
     ], done);
+  });
+
+
+  // Template cache
+  gulp.task('templateCache', function () {
+    return gulp.src('frontend/app/views/**/*.html')
+      .pipe(templateCache('templates.js', {module: 'templatescache', standalone: true}))
+      .pipe(gulp.dest('frontend/app/.tmp/scripts'));
   });
 
 
@@ -122,14 +132,18 @@
 
   gulp.task('usemin', function () {
       return gulp.src('frontend/app/*.html')
-        .pipe(usemin({}))
-        .pipe(rev())
+        .pipe(usemin({
+          cssMain: [rev()],
+          cssVendor: [rev()],
+          jsVendor: [rev()],
+          jsMain: [rev()]
+        }))
         .pipe(gulp.dest('frontend/app/dist'));
     }
   );
 
   gulp.task('copy:dist', function () {
-    var assets = ['frontend/app/fonts/**/*', 'frontend/app/images/**/*', 'frontend/app/views/**/*'];
+    var assets = ['frontend/app/fonts/**/*', 'frontend/app/images/**/*'];
     return gulp.src(assets, {"base": "frontend/app"})
       .pipe(gulp.dest('frontend/app/dist'));
   });
@@ -165,6 +179,7 @@
       'clean',
       'sass',
       'bower:index',
+      'templateCache',
       ['usemin', 'copy:dist'],
       'copyAll:dist',
       done

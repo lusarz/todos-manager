@@ -31,7 +31,6 @@
     "del": "^2.2.0",
     "gulp": "^3.9.1",
     "gulp-angular-templatecache": "^1.8.0",
-    "gulp-clean": "0.3.2",
     "gulp-env": "0.4.0",
     "gulp-gzip": "1.2.0",
     "gulp-jshint": "2.0.0",

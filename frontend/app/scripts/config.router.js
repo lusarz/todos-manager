@@ -13,17 +13,17 @@
       .state('access', {
         abstract: true,
         url: '',
-        templateUrl: 'views/access/access.html'
+        templateUrl: 'access/access.html'
       })
       .state('access.login', {
         url: '/login',
-        templateUrl: 'views/access/login.html',
+        templateUrl: 'access/login.html',
         controller: 'LoginCtrl',
         controllerAs: 'vm'
       })
       .state('access.register', {
         url: '/register',
-        templateUrl: 'views/access/register.html',
+        templateUrl: 'access/register.html',
         controller: 'RegisterCtrl',
         controllerAs: 'vm'
       })
@@ -35,48 +35,48 @@
         abstract: true,
         url: '',
         controller: 'AppCtrl',
-        templateUrl: 'views/app/app.html',
+        templateUrl: 'app/app.html',
         controllerAs: 'vm'
       })
       .state('app.dashboard', {
         url: '/dashboard',
-        templateUrl: 'views/dashboard.html'
+        templateUrl: 'dashboard.html'
       })
       .state('app.profile', {
         url: '/profile',
-        templateUrl: 'views/profile.html'
+        templateUrl: 'profile.html'
       })
       .state('app.settings', {
         url: '/settings',
-        templateUrl: 'views/settings.html'
+        templateUrl: 'settings.html'
       })
       .state('app.todos', {
         url: '/todos/:category',
-        templateUrl: 'views/todos/list.html',
+        templateUrl: 'todos/list.html',
         controller: 'TodosCtrl',
         controllerAs: 'vm'
       })
       .state('app.todosCategoriesEdit', {
         url: '/todos/:category/edit',
-        templateUrl: '../views/categories/form.html',
+        templateUrl: 'categories/form.html',
         controller: 'TodosCategoryEditCtrl',
         controllerAs: 'vm'
       })
       .state('app.todosCreate', {
         url: '/todos/:category/create',
-        templateUrl: '../views/todos/form.html',
+        templateUrl: 'todos/form.html',
         controller: 'TodosCreateCtrl',
         controllerAs: 'vm'
       })
       .state('app.todosEdit', {
         url: '/todos/:categoryId/edit:id',
-        templateUrl: '../views/todos/form.html',
+        templateUrl: 'todos/form.html',
         controller: 'TodosEditCtrl',
         controllerAs: 'vm'
       })
       .state('app.todosCategoriesCreate', {
         url: '/todosCategories/create',
-        templateUrl: '../views/categories/form.html',
+        templateUrl: 'categories/form.html',
         controller: 'TodosCategoryCreateCtrl',
         controllerAs: 'vm'
       })

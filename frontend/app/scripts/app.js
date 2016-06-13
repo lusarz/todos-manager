@@ -16,5 +16,6 @@ angular.module('app', [
   'ui-notification',
   'ui.bootstrap',
   'validation.match',
-  'ui.select'
+  'ui.select',
+  'templatescache'
 ]);

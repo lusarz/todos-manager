@@ -31,6 +31,7 @@
         '../app/bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
         '../app/bower_components/angular-validation-match/dist/angular-validation-match.min.js',
         '../app/bower_components/lodash/lodash.js',
+        '../app/bower_components/angular-ui-select/dist/select.js',
         '../app/bower_components/angular-mocks/angular-mocks.js',
         '../app/bower_components/bootstrap/dist/js/bootstrap.js',
         // endbower

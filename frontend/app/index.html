@@ -8,22 +8,26 @@
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=latin,latin-ext'
           rel='stylesheet' type='text/css'>
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-    <!-- build:css(frontend/app) styles/vendor.css -->
+    <!-- build:cssVendor(frontend/app) styles/vendor.css -->
     <!-- bower:css -->
     <link rel="stylesheet" href="bower_components/components-font-awesome/css/font-awesome.css" />
     <link rel="stylesheet" href="bower_components/angular-ui-notification/dist/angular-ui-notification.css" />
     <link rel="stylesheet" href="bower_components/angular-ui-select/dist/select.css" />
     <!-- endbower -->
     <!-- endbuild -->
-    <!-- build:css(frontend/app/.tmp) styles/main.css -->
+
+    <!-- build:cssMain(frontend/app/.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css"/>
     <link rel="stylesheet" href="styles/theme.css"/>
     <!-- endbuild -->
+    <base href="/">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="-1">
 </head>
 <body ng-app="app" body-class>
 <div class="pageContainer" ui-view></div>
 
-<!-- build:js(frontend/app) scripts/vendor.js -->
+<!-- build:jsVendor(frontend/app) scripts/vendor.js -->
 <!-- bower:js -->
 <script src="bower_components/angular/angular.js"></script>
 <script src="bower_components/angular-animate/angular-animate.js"></script>
@@ -44,7 +48,8 @@
 <!-- endbuild -->
 
 
-<!-- build:js(frontend/app) scripts/scripts.js -->
+<!-- build:jsMain(frontend/app) scripts/scripts.js -->
+<script src=".tmp/scripts/templates.js"></script>
 <script src="scripts/app.js"></script>
 <script src="scripts/config.js"></script>
 <script src="scripts/config.router.js"></script>
