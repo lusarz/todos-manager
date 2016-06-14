@@ -256,6 +256,7 @@
 
   gulp.task('watch', function () {
     gulp.watch('frontend/app/styles/**/*.scss', ['sass']);
+    gulp.watch('frontend/app/views/**/*.html', ['templateCache']);
   });
 
 
@@ -267,7 +268,7 @@
   });
 
 
-  gulp.task('default', ['clean', 'sass', 'bower:index', 'watch', 'start']);
+  gulp.task('default', ['clean', 'sass', 'bower:index', 'templateCache', 'watch', 'start']);
   gulp.task('test:unit', ['bower:index', 'bower:karma', 'karmaTest']);
 
 
