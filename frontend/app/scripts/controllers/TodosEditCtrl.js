@@ -32,7 +32,7 @@
 
     function save() {
       return TodosDAO.update(vm.todo).then(function () {
-        $state.go('app.todos');
+        $state.go('app.todos', {category:'general'});
       }, function (error) {
         displayError(error);
       });

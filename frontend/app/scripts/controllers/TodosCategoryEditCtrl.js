@@ -45,7 +45,7 @@
 
     function save() {
       TodosCategoriesDAO.update(vm.category).then(function () {
-        $state.go('app.todos');
+        $state.go('app.todos', {category:'general'});
         $scope.$emit('CategoriesUpdated');
       }, function (error) {
         displayError(error);

@@ -18,10 +18,12 @@
 
     vm.getTodos = getTodos;
 
+    getCategory();
     getTodos();
 
     function initFilters() {
       var filters = {};
+      vm.onlyUncompleted = true;
       vm.categoryId = $stateParams.category;
 
       if (vm.categoryId === 'favourite') {
@@ -30,11 +32,13 @@
         filters['category'] = vm.categoryId;
       }
 
+      return filters;
+    }
+
+    function getCategory() {
       TodoCategoriesFactory.getCategoryById($stateParams.category).then(function (category) {
         vm.category = category;
       });
-
-      return filters;
     }
 
     function getTodos() {

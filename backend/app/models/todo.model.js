@@ -27,8 +27,7 @@
     },
     category: {
       type: Schema.ObjectId,
-      ref: 'TodoCategory',
-      required: 'required'
+      ref: 'TodoCategory'
     },
     favourite: {
       type: Boolean,
