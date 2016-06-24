@@ -17,13 +17,14 @@
     vm.loading = true;
 
     vm.getTodos = getTodos;
+    vm.markAsCompleted = markAsCompleted;
 
     getCategory();
     getTodos();
 
     function initFilters() {
       var filters = {};
-      vm.onlyUncompleted = true;
+      filters.onlyUncompleted = true;
       vm.categoryId = $stateParams.category;
 
       if (vm.categoryId === 'favourite') {
@@ -47,6 +48,12 @@
         vm.loading = false;
       }, function (error) {
         console.log(error);
+      });
+    }
+
+    function markAsCompleted(todoId) {
+      TodosDAO.markAsCompleted(todoId).then(function (response) {
+        getTodos();
       });
     }
   }

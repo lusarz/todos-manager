@@ -4,15 +4,22 @@
   var passport = require('passport');
   var todosController = require('../../controllers/todo.controller.js');
 
+  var authenticate = function () {
+    return passport.authenticate('bearer', {session: false})
+  };
+
   module.exports = function (router) {
     router.route('/api/todos')
-      .get(passport.authenticate('bearer', {session: false}), todosController.findList)
-      .post(passport.authenticate('bearer', {session: false}), todosController.create);
+      .get(authenticate(), todosController.findList)
+      .post(authenticate(), todosController.create);
 
     // Single article routes
     router.route('/api/todos/:id')
-      .get(passport.authenticate('bearer', {session: false}), todosController.findById)
-      .put(passport.authenticate('bearer', {session: false}), todosController.update)
-      .delete(passport.authenticate('bearer', {session: false}), todosController.remove);
+      .get(authenticate(), todosController.findById)
+      .put(authenticate(), todosController.update)
+      .delete(authenticate(), todosController.remove);
+
+    router.route('/api/todos/:id/mark_as_completed')
+      .post(authenticate(), todosController.markAsCompleted);
   };
 })();

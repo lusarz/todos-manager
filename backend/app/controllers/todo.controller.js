@@ -8,7 +8,8 @@
     findById: findById,
     create: create,
     update: update,
-    remove: remove
+    remove: remove,
+    markAsCompleted: markAsCompleted
   };
 
 
@@ -48,6 +49,14 @@
     });
   }
 
+
+  function markAsCompleted(req, res) {
+    todoService.markAsCompleted(req.params.id).then(function () {
+      res.send({success: true});
+    }, function (err) {
+      res.status(400).send(err);
+    });
+  }
 
   function findById(req, res) {
     todoService.findById(req.params.id).then(function (todo) {

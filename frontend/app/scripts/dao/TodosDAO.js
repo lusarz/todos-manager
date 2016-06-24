@@ -21,6 +21,9 @@
       },
       findById: function (todoId) {
         return api.getById({a: todoId}).$promise;
+      },
+      markAsCompleted: function (todoId) {
+        return api.create({a: todoId, b: 'mark_as_completed'}, {}).$promise;
       }
     };
   }
