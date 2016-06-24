@@ -39,6 +39,9 @@
       ref: 'User',
       required: 'User is required'
     },
+    doneAt: {
+      type: Date
+    },
     updated: {
       type: Date
     },
@@ -54,7 +57,8 @@
         _id: ret._id,
         name: ret.name,
         description: ret.description,
-        dueDate: ret.dueDate
+        dueDate: ret.dueDate,
+        doneAt: ret.doneAt
       };
       return retJson;
     }
