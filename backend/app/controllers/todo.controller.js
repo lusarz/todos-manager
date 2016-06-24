@@ -12,8 +12,16 @@
   };
 
 
+  /*
+   * Returns list of todos, req params:
+   * - category
+   * - favourite
+   * - onlyCompleted
+   * - onlyUncompleted
+   * */
   function findList(req, res) {
     var filters = {};
+
     if (req.param('category')) {
       var category = req.param('category');
       if (category === 'general') {
@@ -25,6 +33,12 @@
 
     if (req.param('favourite')) {
       filters['favourite'] = true;
+    }
+
+    if (req.param('onlyCompleted')) {
+      filters['doneAt'] = {$ne: null};
+    } else if (req.param('onlyUncompleted')) {
+      filters['doneAt'] = null;
     }
 
     todoService.findList(filters, req.user).then(function (todos) {
