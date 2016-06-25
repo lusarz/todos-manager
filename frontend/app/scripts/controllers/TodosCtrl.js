@@ -61,6 +61,7 @@
         TodosDAO.getList(filters)
       ]).then(function (responses) {
         vm.categories = angular.copy(responses[0]);
+        vm.categories.unshift({_id: null, name: 'General', icon: 'fa-hashtag'});
 
         var categoriesMap = {};
         _.each(vm.categories, function (category) {
@@ -70,7 +71,7 @@
         _.each(function (todos) {
 
         });
-
+        vm.loading = false;
 
       });
     }
