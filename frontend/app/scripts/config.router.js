@@ -50,6 +50,15 @@
         url: '/settings',
         templateUrl: 'settings.html'
       })
+      .state('app.todos_favourite', {
+        url: '/todos/favourite',
+        templateUrl: 'todos/list-favourite.html',
+        params: {
+          category: 'favourite'
+        },
+        controller: 'TodosCtrl',
+        controllerAs: 'vm'
+      })
       .state('app.todos', {
         url: '/todos/:category',
         templateUrl: 'todos/list.html',

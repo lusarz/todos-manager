@@ -8,9 +8,10 @@
    * # TodosCtrl
    * Controller of the app
    */
-  function TodosCtrl($stateParams, TodosDAO, TodoCategoriesFactory) {
+  function TodosCtrl($q, $stateParams, TodosDAO, TodoCategoriesFactory) {
     var vm = this;
 
+    vm.categoryId = $stateParams.category;
     var filters = initFilters();
 
     vm.todos = [];
@@ -19,13 +20,16 @@
     vm.getTodos = getTodos;
     vm.markAsCompleted = markAsCompleted;
 
-    getCategory();
-    getTodos();
+    if (vm.categoryId === 'favourite') {
+      getTodosAndCategories();
+    } else {
+      getCategory();
+      getTodos();
+    }
 
     function initFilters() {
       var filters = {};
       filters.onlyUncompleted = true;
-      vm.categoryId = $stateParams.category;
 
       if (vm.categoryId === 'favourite') {
         filters['favourite'] = true;
@@ -51,6 +55,26 @@
       });
     }
 
+    function getTodosAndCategories() {
+      $q.all([
+        TodoCategoriesFactory.getList(),
+        TodosDAO.getList(filters)
+      ]).then(function (responses) {
+        vm.categories = angular.copy(responses[0]);
+
+        var categoriesMap = {};
+        _.each(vm.categories, function (category) {
+          categoriesMap[category._id] = category;
+        });
+        var todos = responses[1];
+        _.each(function (todos) {
+
+        });
+
+
+      });
+    }
+
     function markAsCompleted(todoId) {
       TodosDAO.markAsCompleted(todoId).then(function (response) {
         getTodos();
@@ -61,7 +85,7 @@
   angular.module('app')
     .controller('TodosCtrl', TodosCtrl);
 
-  TodosCtrl.$inject = ['$stateParams', 'TodosDAO', 'TodoCategoriesFactory'];
+  TodosCtrl.$inject = ['$q', '$stateParams', 'TodosDAO', 'TodoCategoriesFactory'];
 
 })
 ();
