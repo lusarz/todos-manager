@@ -17,13 +17,10 @@
 
     function getList(force) {
 
-      if (categories && !force) {
-        return $q.when(categories);
-      }
-
-      if (!categoriesPromise) {
+      if (force || !categoriesPromise) {
         categoriesPromise = TodosCategoriesDAO.getList();
       }
+
       return categoriesPromise.then(function (response) {
         categories = response;
         return categories;
