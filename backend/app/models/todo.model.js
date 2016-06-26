@@ -57,7 +57,9 @@
         name: ret.name,
         description: ret.description,
         dueDate: ret.dueDate,
-        doneAt: ret.doneAt
+        doneAt: ret.doneAt,
+        favourite: ret.favourite,
+        category: ret.category
       };
       return retJson;
     }

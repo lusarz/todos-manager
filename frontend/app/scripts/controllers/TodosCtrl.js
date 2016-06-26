@@ -12,6 +12,7 @@
     var vm = this;
 
     vm.categoryId = $stateParams.category;
+    vm.showCompleted = false;
     var filters = initFilters();
 
     vm.todos = [];
@@ -19,6 +20,8 @@
 
     vm.getTodos = getTodos;
     vm.markAsCompleted = markAsCompleted;
+    vm.toggleFavourite = toggleFavourite;
+    vm.toggleShowCompleted = toggleShowCompleted;
 
     if (vm.categoryId === 'favourite') {
       getTodosAndCategories();
@@ -47,6 +50,7 @@
     }
 
     function getTodos() {
+      vm.loading = true;
       TodosDAO.getList(filters).then(function (response) {
         vm.todos = response;
         vm.loading = false;
@@ -65,11 +69,13 @@
 
         var categoriesMap = {};
         _.each(vm.categories, function (category) {
-          categoriesMap[category._id] = category;
+          categoriesMap[category._id || 'general'] = category;
+          category.todos = [];
         });
         var todos = responses[1];
-        _.each(function (todos) {
 
+        _.each(todos, function (todo) {
+          categoriesMap[todo.category || 'general'].todos.push(todo);
         });
         vm.loading = false;
 
@@ -80,6 +86,23 @@
       TodosDAO.markAsCompleted(todoId).then(function (response) {
         getTodos();
       });
+    }
+
+    function toggleFavourite(todo) {
+      todo.favourite = !todo.favourite;
+      TodosDAO.update(_.pick(todo, ['_id', 'favourite'])).then(function (response) {
+
+      });
+    }
+
+    function toggleShowCompleted() {
+      if (!vm.showCompleted) {
+        filters.onlyUncompleted = true;
+      } else {
+        delete filters.onlyUncompleted;
+      }
+      getTodos();
+
     }
   }
 

@@ -13,7 +13,7 @@
         </div>
     </div>
 
-    <div class="row" ng-repeat="category in vm.categories">
+    <div class="row" ng-repeat="category in vm.categories" ng-if="category.todos.length">
         <div class="col-xs-12 content-item">
             <h2><i class="fa {{category.icon}}" ng-if="!!category.icon"></i> {{category.name}}</h2>
 
@@ -30,7 +30,7 @@
 
 
                     <tbody>
-                    <tr ng-repeat="todo in vm.todos">
+                    <tr ng-repeat="todo in category.todos">
                         <td><input type="checkbox" ng-click="vm.markAsCompleted(todo._id)"/></td>
                         <td><a ui-sref="app.todosEdit({id: todo._id})">{{todo.name}}</a></td>
                         <td>{{todo.description}}</td>

@@ -7,6 +7,10 @@
             </h1>
         </div>
         <div class="col-md-6 text-right">
+            <button type="button" class="btn btn-primary" ng-model="vm.showCompleted"
+                    ng-change="vm.toggleShowCompleted()" uib-btn-checkbox>
+                Show completed
+            </button>
             <a ui-sref="app.todosCreate({category: vm.categoryId})" class="btn btn-primary">
                 <i class="glyphicon glyphicon-plus"></i> <span>New todo</span>
             </a>
@@ -23,16 +27,20 @@
                         <th>Name</th>
                         <th>Description</th>
                         <th>Due date</th>
+                        <th>Favourite</th>
                     </tr>
                     </thead>
 
 
                     <tbody>
                     <tr ng-repeat="todo in vm.todos">
-                        <td><input type="checkbox" ng-click="vm.markAsCompleted(todo._id)"/></td>
+                        <td><input type="checkbox" ng-checked="!!todo.doneAt" ng-click="vm.markAsCompleted(todo._id)"/>
+                        </td>
                         <td><a ui-sref="app.todosEdit({id: todo._id})">{{todo.name}}</a></td>
                         <td>{{todo.description}}</td>
                         <td>{{todo.dueDate | date}}</td>
+                        <td><input type="checkbox" ng-checked="todo.favourite" ng-click="vm.toggleFavourite(todo)"/>
+                        </td>
                     </tr>
                     </tbody>
                 </table>
