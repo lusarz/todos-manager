@@ -7,7 +7,6 @@
 
     beforeEach(function () {
       module('app');
-      angular.mock.module('views');
 
       inject(function ($controller, $rootScope) {
         scope = $rootScope.$new();

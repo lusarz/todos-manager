@@ -35,8 +35,8 @@
         '../app/bower_components/angular-mocks/angular-mocks.js',
         '../app/bower_components/bootstrap/dist/js/bootstrap.js',
         // endbower
-        '../app/scripts/**/*.js',
         '../app/.tmp/**/*.js',
+        '../app/scripts/**/*.js',
         '../app/views/**/*.html',
         //'test/mock/**/*.js',
         './unit/**/*.js'
@@ -55,34 +55,12 @@
       // Which plugins to enable
       plugins: [
         'karma-phantomjs-launcher',
-        'karma-jasmine',
-        'karma-ng-html2js-preprocessor'
+        'karma-jasmine'
       ],
-
-      preprocessors: {
-        '../app/views/**/*.html': 'ng-html2js'
-      },
-
-      ngHtml2JsPreprocessor: {
-        cacheIdFromPath: function (filepath) {
-          var pathElement = 'todos-manager/frontend/app/';
-          var cacheId = filepath.substr(filepath.indexOf(pathElement) + pathElement.length);
-          return cacheId;
-        },
-        moduleName: 'views'
-      },
-      /*ngHtml2JsPreprocessor: {
-       cacheIdFromPath: function (filepath) {
-       return filepath.substr(filepath.indexOf("todos-manager") + 8);
-       },
-       // strip this from the file path
-       stripPrefix: 'app/',
-       moduleName: 'views'
-       },*/
 
       // Continuous Integration mode
       // if true, it capture browsers, run tests and exit
-      singleRun: false,
+      singleRun: true,
 
       colors: true,
 

@@ -5,14 +5,16 @@
 
     var ctrl, scope;
 
-    beforeEach(module('app'));
 
-    beforeEach(inject(function ($controller, $rootScope) {
-      scope = $rootScope.$new();
-      ctrl = $controller('RegisterCtrl', {
-        $scope: scope
-      });
-    }));
+    beforeEach(function () {
+      module('app');
+      inject(function ($controller, $rootScope) {
+        scope = $rootScope.$new();
+        ctrl = $controller('RegisterCtrl', {
+          $scope: scope
+        });
+      })
+    });
 
 
     describe('On initialization', function () {

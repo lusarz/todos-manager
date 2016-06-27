@@ -22,7 +22,6 @@
 
     beforeEach(function () {
       module('app');
-      //angular.mock.module('views');
 
 
       inject(function ($controller, $rootScope) {
@@ -40,6 +39,9 @@
 
 
     describe('On initialization', function () {
+      it('Controller', function () {
+        expect(!!ctrl).toBeTruthy();
+      });
     });
 
   });

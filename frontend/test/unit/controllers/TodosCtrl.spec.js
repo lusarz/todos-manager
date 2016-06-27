@@ -22,8 +22,6 @@
 
     beforeEach(function () {
       module('app');
-      //angular.mock.module('views');
-
 
       inject(function ($controller) {
         TodosDAOMock = jasmine.createSpyObj('TodosDAO', ['getList']);
