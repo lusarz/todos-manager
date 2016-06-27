@@ -269,7 +269,16 @@
 
 
   gulp.task('default', ['clean', 'sass', 'bower:index', 'templateCache', 'watch', 'start']);
-  gulp.task('test:unit', ['bower:index', 'bower:karma', 'karmaTest']);
+  
+  gulp.task('test:unit', function (done) {
+    runSequence(
+      'templateCache',
+      'bower:index',
+      'bower:karma',
+      'karmaTest',
+      done
+    );
+  });
 
 
   gulp.task('test:e2e', ['e2eTest']);
