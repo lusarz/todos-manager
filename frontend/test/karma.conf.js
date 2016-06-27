@@ -36,6 +36,7 @@
         '../app/bower_components/bootstrap/dist/js/bootstrap.js',
         // endbower
         '../app/scripts/**/*.js',
+        '../app/.tmp/**/*.js',
         '../app/views/**/*.html',
         //'test/mock/**/*.js',
         './unit/**/*.js'
@@ -87,7 +88,7 @@
 
       // level of logging
       // possible values: LOG_DISABLE || LOG_ERROR || LOG_WARN || LOG_INFO || LOG_DEBUG
-      logLevel: config.LOG_INFO,
+      logLevel: config.LOG_INFO
 
     });
   };

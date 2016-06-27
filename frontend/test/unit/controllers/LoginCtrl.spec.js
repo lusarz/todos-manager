@@ -3,22 +3,18 @@
 
   describe('LoginCtrl', function () {
 
-    var ctrl, scope, SecurityFactory;
+    var ctrl, scope;
 
     beforeEach(function () {
       module('app');
       angular.mock.module('views');
 
-      inject(function ($controller, $rootScope, _SecurityFactory_) {
+      inject(function ($controller, $rootScope) {
         scope = $rootScope.$new();
         ctrl = $controller('LoginCtrl', {
           $scope: scope
         });
-        SecurityFactory = _SecurityFactory_;
       });
-    });
-
-    afterEach(function () {
     });
 
     describe('On initialization', function () {
@@ -33,6 +29,7 @@
 
 
     it('After download data', function () {
+      expect(!!ctrl).toBeTruthy();
     });
 
   });

@@ -4,7 +4,7 @@
 
   describe('TodosCategoryCreateCtrl', function () {
 
-    var ctrl, TodosCategoriesDAOMock;
+    var ctrl, scope, TodosCategoriesDAOMock;
 
 
     var categories = [
@@ -25,31 +25,21 @@
       //angular.mock.module('views');
 
 
-      inject(function ($controller) {
+      inject(function ($controller, $rootScope) {
+        scope = $rootScope.$new();
         TodosCategoriesDAOMock = jasmine.createSpyObj('TodosCategoriesDAO', ['getList']);
         TodosCategoriesDAOMock.getList.and.returnValue(promisesHelper.getPromise(categories));
 
 
         ctrl = $controller('TodosCategoryCreateCtrl', {
+          $scope: scope,
           TodosCategoriesDAO: TodosCategoriesDAOMock
         });
       });
     });
 
 
-    afterEach(function () {
-      //httpBackend.verifyNoOutstandingExpectation();
-      //httpBackend.verifyNoOutstandingRequest();
-    });
-
     describe('On initialization', function () {
-      it('Todos should be called', function () {
-        expect(TodosCategoriesDAOMock.getList).toHaveBeenCalled();
-      });
-
-      it('Todos should equals', function () {
-        expect(ctrl.todos).toEqual(categories);
-      });
     });
 
   });
