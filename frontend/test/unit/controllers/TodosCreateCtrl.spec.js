@@ -3,25 +3,22 @@
 
   describe('TodosCreateCtrl', function () {
 
-    var ctrl, scope, httpBackend, SecurityFactory;
+    var ctrl, scope, SecurityFactory;
 
     beforeEach(function () {
       module('app');
       angular.mock.module('views');
 
-      inject(function ($controller, $rootScope, _$httpBackend_, _SecurityFactory_) {
+      inject(function ($controller, $rootScope, _SecurityFactory_) {
         scope = $rootScope.$new();
         ctrl = $controller('TodosCreateCtrl', {
           $scope: scope
         });
-        httpBackend = _$httpBackend_;
         SecurityFactory = _SecurityFactory_;
       });
     });
 
     afterEach(function () {
-      httpBackend.verifyNoOutstandingExpectation();
-      httpBackend.verifyNoOutstandingRequest();
     });
 
     describe('On initialization', function () {
@@ -36,9 +33,6 @@
 
 
     it('After download data', function () {
-      httpBackend.whenPOST('/api/user/login').respond({
-        token: '1234'
-      });
     });
 
   });

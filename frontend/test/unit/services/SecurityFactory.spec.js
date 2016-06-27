@@ -2,15 +2,14 @@
 
 describe('Factory: SecurityFactory', function () {
 
-  var SecurityFactory, httpBackend, http;
+  var SecurityFactory, http;
 
 
   beforeEach(function () {
       module('app');
 
-      inject(function (_SecurityFactory_, _$httpBackend_, _$http_) {
+      inject(function (_SecurityFactory_, _$http_) {
         SecurityFactory = _SecurityFactory_;
-        httpBackend = _$httpBackend_;
         http = _$http_;
       });
 
@@ -28,12 +27,7 @@ describe('Factory: SecurityFactory', function () {
   describe('After login', function () {
 
     beforeEach(function () {
-      httpBackend.whenPOST('/api/user/login').respond({
-        token: '12345'
-      });
-
       SecurityFactory.login({});
-      httpBackend.flush();
     });
 
     it('Http should have authorization header', function () {
@@ -43,7 +37,7 @@ describe('Factory: SecurityFactory', function () {
     it('User should be logged in', function () {
       expect(SecurityFactory.isLogged()).toBeTruthy();
     });
-    
+
   });
 
 
