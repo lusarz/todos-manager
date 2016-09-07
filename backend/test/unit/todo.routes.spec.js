@@ -34,7 +34,9 @@ describe('Todo endpoint', function() {
     beforeEach(function(done) {
       request.post('/api/user/login').send(userHelper.getExistingUserLoginData())
         .end(function(err, res) {
+          console.log(res);
           token = res.body.token;
+          console.log('Bearer ' + token);
           done();
         });
     });

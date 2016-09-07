@@ -25,7 +25,7 @@ const validateLocalStrategyEmail = email => {
 /**
  * User Schema
  */
-const UserSchema = new Schema({
+var UserSchema = new Schema({
   email: {
     type: String,
     unique: true,
@@ -74,7 +74,7 @@ const UserSchema = new Schema({
 /**
  * Hook a pre save method to hash the password
  */
-UserSchema.pre('save', next => {
+UserSchema.pre('save', function(next) {
   var user = this;
 
   if (user.password && user.isModified('password')) {
@@ -88,7 +88,7 @@ UserSchema.pre('save', next => {
 /**
  * Hook a pre validate method to test the local password
  */
-UserSchema.pre('validate', next => {
+UserSchema.pre('validate', function(next) {
   if (this.password && this.isModified('password')) {
     if (this.password.length < 6) {
       this.invalidate('password', 'minlength');
@@ -101,7 +101,7 @@ UserSchema.pre('validate', next => {
 /**
  * Create instance method for hashing a password
  */
-UserSchema.methods.hashPassword = password => {
+UserSchema.methods.hashPassword = function(password) {
   if (this.salt && password) {
     return crypto.pbkdf2Sync(password, new Buffer(this.salt, 'base64'), 10000, 64).toString('base64');
   } else {
@@ -112,7 +112,7 @@ UserSchema.methods.hashPassword = password => {
 /**
  * Create instance method for authenticating user
  */
-UserSchema.methods.authenticate = password => {
+UserSchema.methods.authenticate = function(password) {
   return this.password === this.hashPassword(password);
 };
 

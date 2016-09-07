@@ -1,7 +1,7 @@
 'use strict';
 
 const _ = require('lodash');
-const todoCategories = require('../fixtures/todoCategories');
+const todoCategories = require('../fixtures/todoCategories').todoCategories;
 
 
 class TodoCategoryDataProvider {

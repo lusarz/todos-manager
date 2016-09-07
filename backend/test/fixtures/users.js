@@ -1,6 +1,7 @@
 'use strict';
 
-module.exports = [
+
+module.exports.users = [
   {
     '__v': 0,
     '_id': '56eabfbac6edac8121534001',

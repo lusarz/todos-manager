@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = [
+module.exports.todoCategories = [
   {
     '_id': '56eabfbac5dacbf458930001',
     'user': '56eabfbac6edac8121534001',

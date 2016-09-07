@@ -1,6 +1,6 @@
 'use strict';
 
-const userService = require('../services/user.service');
+const UserService = require('../services/user.service');
 const validation = require('./helpers/validation');
 
 class AuthenticationController {
@@ -13,12 +13,12 @@ class AuthenticationController {
 
     let user = req.body;
 
-    userService.findByEmail(user.email).then(existedUser => {
+    UserService.findByEmail(user.email).then(existedUser => {
       if (existedUser) {
         res.status(409).send(validation.prepareDuplicateErrorResponse('email'));
       } else {
-        userService.create(user).then(createdUser => {
-          userService.generateToken(createdUser._id).then(token => {
+        UserService.create(user).then(createdUser => {
+          UserService.generateToken(createdUser._id).then(token => {
             res.json({token: token, user: createdUser});
           }, err => {
             res.status(500).send(err);
@@ -34,15 +34,16 @@ class AuthenticationController {
    * Login
    */
   static login(req, res) {
-    let email = req.body.email;
-    let password = req.body.password;
+    const email = req.body.email;
+    const password = req.body.password;
 
+    UserService.findByEmail(email).then(user => {
 
-    userService.findByEmail(email).then(user => {
       if (!user) {
         res.status(400).send({errors: {email: {code: 'notExist'}}});
       } else if (user.authenticate(password)) {
-        userService.generateToken(user._id).then(token => {
+        UserService.generateToken(user._id).then(token => {
+          console.log(token);
           res.json({token: token});
         }, err => {
           res.status(500).send(err);

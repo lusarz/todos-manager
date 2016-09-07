@@ -1,7 +1,7 @@
 'use strict';
 
 const _ = require('lodash');
-const users = require('../fixtures/users');
+const users = require('../fixtures/users').users;
 const existingUser = users[0];
 
 const notExistingUser = {

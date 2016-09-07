@@ -1,7 +1,7 @@
 'use strict';
 
 const _ = require('lodash');
-const existingTodos = require('../fixtures/todos');
+const existingTodos = require('../fixtures/todos').todos;
 
 class TodoDataProvider {
   static getExistingTodosByUserId(userId) {

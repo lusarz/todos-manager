@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = [
+module.exports.todos = [
   {
     '_id': '82abcdef1863982121534001',
     'user': '56eabfbac6edac8121534001',
