@@ -1,60 +1,53 @@
-(function () {
-  'use strict';
+'use strict';
 
-  var todoCategoryService = require('../services/todoCategory.service');
+const todoCategoryService = require('../services/todoCategory.service');
 
-  module.exports = {
-    findList: findList,
-    findById: findById,
-    create: create,
-    update: update,
-    remove: remove
-  };
+class TodoCategoryController {
 
-
-  function findList(req, res) {
-    todoCategoryService.findList(null, req.user).then(function (todoCategories) {
+  static findList(req, res) {
+    todoCategoryService.findList(null, req.user).then(todoCategories => {
       res.send(todoCategories);
-    }, function (err) {
+    }, err => {
       res.status(400).send(err);
     });
   }
 
-  function findById(req, res) {
-    todoCategoryService.findById(req.params.id).then(function (todoCategory) {
+  static findById(req, res) {
+    todoCategoryService.findById(req.params.id).then(todoCategory => {
       if (todoCategory) {
         res.send(todoCategory);
       } else {
         res.status(404).send({});
       }
-    }, function (err) {
+    }, err => {
       res.status(400).send(err);
     });
   }
 
-  function create(req, res) {
+  static create(req, res) {
     var todoCategory = req.body;
-    todoCategoryService.create(todoCategory, req.user).then(function (todoCategory) {
+    todoCategoryService.create(todoCategory, req.user).then(todoCategory => {
       res.send(todoCategory);
-    }, function (err) {
+    }, err => {
       res.status(400).send(err);
     });
   }
 
-  function update(req, res) {
-    todoCategoryService.update(req.body, req.params.id).then(function (todoCategory) {
+  static update(req, res) {
+    todoCategoryService.update(req.body, req.params.id).then(todoCategory => {
       res.send(todoCategory);
-    }, function (err) {
+    }, err => {
       res.status(400).send(err);
     });
   }
 
-  function remove(req, res) {
-    todoCategoryService.remove(req.params.id).then(function () {
+  static remove(req, res) {
+    todoCategoryService.remove(req.params.id).then(() => {
       res.send({});
-    }, function (err) {
+    }, err => {
       console.log(err);
     });
   }
+}
 
-})();
+module.exports = TodoCategoryController;

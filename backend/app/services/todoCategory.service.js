@@ -1,19 +1,16 @@
-(function () {
-  'use strict';
+'use strict';
 
-  var todoCategoryDAO = require('../dao/todoCategoryDAO');
+const TodoCategoryDAO = require('../dao/TodoCategoryDAO');
 
-  function create(todoCategory, user) {
+class TodoCategoryService {
+  static create(todoCategory, user) {
     todoCategory.user = user;
-    return todoCategoryDAO.create(todoCategory);
+    return TodoCategoryDAO.create(todoCategory);
   }
+}
+TodoCategoryService.findList = TodoCategoryDAO.findList;
+TodoCategoryService.findById = TodoCategoryDAO.findById;
+TodoCategoryService.update = TodoCategoryDAO.update;
+TodoCategoryService.remove = TodoCategoryDAO.remove;
 
-  module.exports = {
-    findList: todoCategoryDAO.findList,
-    findById: todoCategoryDAO.findById,
-    create: create,
-    update: todoCategoryDAO.update,
-    remove: todoCategoryDAO.remove
-  };
-
-})();
+module.exports = TodoCategoryService;

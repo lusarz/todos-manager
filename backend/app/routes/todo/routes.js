@@ -1,25 +1,23 @@
-(function () {
-  'use strict';
+'use strict';
 
-  var passport = require('passport');
-  var todosController = require('../../controllers/todo.controller.js');
+const passport = require('passport');
+const TodoController = require('../../controllers/todo.controller.js');
 
-  var authenticate = function () {
-    return passport.authenticate('bearer', {session: false})
-  };
+let authenticate = () => {
+  return passport.authenticate('bearer', {session: false})
+};
 
-  module.exports = function (router) {
-    router.route('/api/todos')
-      .get(authenticate(), todosController.findList)
-      .post(authenticate(), todosController.create);
+module.exports = function(router) {
+  router.route('/api/todos')
+    .get(authenticate(), TodoController.findList)
+    .post(authenticate(), TodoController.create);
 
-    // Single article routes
-    router.route('/api/todos/:id')
-      .get(authenticate(), todosController.findById)
-      .put(authenticate(), todosController.update)
-      .delete(authenticate(), todosController.remove);
+  // Single article routes
+  router.route('/api/todos/:id')
+    .get(authenticate(), TodoController.findById)
+    .put(authenticate(), TodoController.update)
+    .delete(authenticate(), TodoController.remove);
 
-    router.route('/api/todos/:id/mark_as_completed')
-      .post(authenticate(), todosController.markAsCompleted);
-  };
-})();
+  router.route('/api/todos/:id/mark_as_completed')
+    .post(authenticate(), TodoController.markAsCompleted);
+};

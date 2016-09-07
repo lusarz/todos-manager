@@ -1,23 +1,19 @@
-(function () {
-  'use strict';
+'use strict';
 
-  var userService = require('../services/user.service');
+const userService = require('../services/user.service');
 
-  module.exports = {
-    available: available
-  };
-
-
-  function available(req, res) {
+class UserController {
+  static available(req, res) {
     var email = req.body.email;
 
-    userService.findByEmail(email).then(function (user) {
-      if(user){
+    userService.findByEmail(email).then(user => {
+      if (user) {
         res.send({available: false});
-      }else{
+      } else {
         res.send({available: true});
       }
     });
   }
+}
 
-})();
+module.exports = UserController;

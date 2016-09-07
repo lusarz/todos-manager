@@ -3,16 +3,15 @@
 /**
  * Module dependencies.
  */
-var passport = require('passport'),
-//LocalStrategy = require('passport-local').Strategy,
-  BearerStrategy = require('passport-http-bearer').Strategy,
-  userService = require('../../services/user.service');
+const passport = require('passport');
+const BearerStrategy = require('passport-http-bearer').Strategy;
+const userService = require('../../services/user.service');
 
-module.exports = function () {
+module.exports = function() {
 
   passport.use(new BearerStrategy(
-    function (token, done) {
-      userService.findByToken(token).then(function (user) {
+    function(token, done) {
+      userService.findByToken(token).then(user => {
         if (!user) {
           return done(null, false, {
             message: 'Invalid username or password'
@@ -20,18 +19,9 @@ module.exports = function () {
         }
 
         return done(null, user);
-      }, function (err) {
+      }, function(err) {
         done(err);
       });
     }
   ));
-
-  /*passport.serializeUser(function () {
-
-   });
-
-   passport.deserializeUser(function () {
-
-   });*/
-
 };

@@ -1,4 +1,4 @@
-# Todos manager [Abandoned]
+# Todos manager
 
 ## About
 Current version of application is available on:

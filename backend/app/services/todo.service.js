@@ -1,24 +1,22 @@
-(function () {
-  'use strict';
+'use strict';
 
-  var todoDAO = require('../dao/todoDAO');
+const TodoDAO = require('../dao/TodoDAO');
 
-  function create(todo, user) {
+class TodoService {
+  static create(todo, user) {
     todo.user = user;
-    return todoDAO.create(todo);
+    return TodoDAO.create(todo);
   }
 
-  function markAsCompleted(id) {
-    return todoDAO.update({doneAt: new Date()}, id);
+  static markAsCompleted(id) {
+    return TodoDAO.update({doneAt: new Date()}, id);
   }
+}
 
-  module.exports = {
-    findList: todoDAO.findList,
-    findById: todoDAO.findById,
-    create: create,
-    update: todoDAO.update,
-    remove: todoDAO.remove,
-    markAsCompleted: markAsCompleted
-  };
+TodoService.findList = TodoDAO.findList;
+TodoService.findById = TodoDAO.findById;
+TodoService.update = TodoDAO.update;
+TodoService.remove = TodoDAO.remove;
 
-})();
+
+module.exports = TodoService;

@@ -1,18 +1,8 @@
-(function () {
-  'use strict';
+'use strict';
 
-  var todoService = require('../services/todo.service');
+const todoService = require('../services/todo.service');
 
-  module.exports = {
-    findList: findList,
-    findById: findById,
-    create: create,
-    update: update,
-    remove: remove,
-    markAsCompleted: markAsCompleted
-  };
-
-
+class TodoController {
   /*
    * Returns list of todos, req params:
    * - category
@@ -20,11 +10,11 @@
    * - onlyCompleted
    * - onlyUncompleted
    * */
-  function findList(req, res) {
-    var filters = {};
+  static findList(req, res) {
+    const filters = {};
 
     if (req.param('category')) {
-      var category = req.param('category');
+      const category = req.param('category');
       if (category === 'general') {
         filters['category'] = null;
       } else {
@@ -42,58 +32,60 @@
       filters['doneAt'] = null;
     }
 
-    todoService.findList(filters, req.user).then(function (todos) {
+    todoService.findList(filters, req.user).then(todos => {
       res.send(todos);
-    }, function (err) {
+    }, err => {
       res.status(400).send(err);
     });
   }
 
 
-  function markAsCompleted(req, res) {
-    todoService.markAsCompleted(req.params.id).then(function () {
+  static markAsCompleted(req, res) {
+    todoService.markAsCompleted(req.params.id).then(() => {
       res.send({success: true});
-    }, function (err) {
+    }, err => {
       res.status(400).send(err);
     });
   }
 
-  function findById(req, res) {
-    todoService.findById(req.params.id).then(function (todo) {
+  static findById(req, res) {
+    todoService.findById(req.params.id).then(todo => {
       if (todo) {
         res.send(todo);
       } else {
         res.status(404).send({});
       }
-    }, function (err) {
+    }, err => {
       res.status(400).send(err);
     });
   }
 
-  function create(req, res) {
+  static create(req, res) {
     var todo = req.body;
-    todoService.create(todo, req.user).then(function (todo) {
+    todoService.create(todo, req.user).then(todo => {
       res.send(todo);
-    }, function (err) {
+    }, err => {
       res.status(400).send(err);
     });
   }
 
-  function update(req, res) {
-    todoService.update(req.body, req.params.id).then(function (todo) {
+  static update(req, res) {
+    todoService.update(req.body, req.params.id).then(todo => {
       res.send(todo);
-    }, function (err) {
+    }, err => {
       res.status(400).send(err);
     });
   }
 
-  function remove(req, res) {
-    todoService.remove(req.params.id).then(function () {
+  static remove(req, res) {
+    todoService.remove(req.params.id).then(() => {
       res.send({});
-    }, function (err) {
+    }, err => {
       console.log('remove err');
       console.log(err);
     });
   }
+}
 
-})();
+
+module.exports = TodoController;

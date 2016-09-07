@@ -1,41 +1,31 @@
-(function () {
-  'use strict';
+'use strict';
 
+const TodoCategory = require('../models/todoCategory.model');
 
-  var TodoCategory = require('../models/todoCategory.model');
-
-
-  function findList(filters, user) {
+class TodoCategoryDAO {
+  static findList(filters, user) {
     filters = filters || {};
     filters.user = user;
     return TodoCategory.find(filters);
   }
 
-  function findById(todoCategoryId) {
+  static findById(todoCategoryId) {
     return TodoCategory.findById(todoCategoryId);
   }
 
-  function create(todoCategory) {
+  static create(todoCategory) {
     var newTodo = new TodoCategory(todoCategory);
     return newTodo.save();
   }
 
-  function update(todoCategory, id) {
+  static update(todoCategory, id) {
     delete todoCategory._id;
     return TodoCategory.findOneAndUpdate({_id: id}, todoCategory, {upsert: true});
   }
 
-  function remove(id) {
+  static remove(id) {
     return TodoCategory.findByIdAndRemove(id, {});
   }
+}
 
-  module.exports = {
-    findList: findList,
-    findById: findById,
-    create: create,
-    update: update,
-    remove: remove
-  };
-
-})
-();
+module.exports = TodoCategoryDAO;

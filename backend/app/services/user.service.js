@@ -1,11 +1,10 @@
-(function () {
-  'use strict';
+'use strict';
 
-  var userDAO = require('../dao/userDAO'),
-    tokenGenerator = require('generate-password');
+const UserDAO = require('../dao/UserDAO');
+const tokenGenerator = require('generate-password');
 
-
-  function generateToken(userId) {
+class UserService {
+  static generateToken(userId) {
     var token = tokenGenerator.generate({
       length: 40,
       numbers: true,
@@ -14,21 +13,19 @@
       excludeSimilarCharacters: true
     });
 
-    return userDAO.update({token: token}, userId).then(function () {
+    return UserDAO.update({token: token}, userId).then(function() {
       return token;
     });
   }
+}
 
-  module.exports = {
-    findList: userDAO.findList,
-    findById: userDAO.findById,
-    findByEmail: userDAO.findByEmail,
-    findByUserName: userDAO.findByUserName,
-    findByToken: userDAO.findByToken,
-    create: userDAO.create,
-    update: userDAO.update,
-    remove: userDAO.remove,
-    generateToken: generateToken
-  };
+UserService.findList = UserDAO.findList;
+UserService.findById = UserDAO.findById;
+UserService.findByEmail = UserDAO.findByEmail;
+UserService.findByUserName = UserDAO.findByUserName;
+UserService.findByToken = UserDAO.findByToken;
+UserService.create = UserDAO.create;
+UserService.update = UserDAO.update;
+UserService.remove = UserDAO.remove;
 
-})();
+module.exports = UserService;
