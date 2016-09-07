@@ -1,15 +1,13 @@
-(function () {
-  'use strict';
+'use strict';
 
-  var _ = require('lodash');
-  var todoCategories = require('../fixtures/todoCategories').todoCategories;
+const _ = require('lodash');
+const todoCategories = require('../fixtures/todoCategories');
 
 
-  function getExistingTodoCategoriesByUserId(userId) {
+class TodoCategoryDataProvider {
+  static getExistingTodoCategoriesByUserId(userId) {
     return _.filter(todoCategories, {user: userId});
   }
+}
 
-  module.exports = {
-    getExistingTodoCategoriesByUserId: getExistingTodoCategoriesByUserId
-  };
-})();
+module.exports = TodoCategoryDataProvider;

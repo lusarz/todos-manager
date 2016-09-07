@@ -1,62 +1,54 @@
-(function () {
-  'use strict';
+'use strict';
 
-  var _ = require('lodash');
-  var users = require('../fixtures/users').users;
-  var existingUser = users[0];
+const _ = require('lodash');
+const users = require('../fixtures/users');
+const existingUser = users[0];
 
-  var notExistingUser = {
-    firstName: 'Jan',
-    lastName: 'Nowak',
-    email: 'jan.nowak@gmail.com',
-    password: 'thisIsPassword123!'
-  };
+const notExistingUser = {
+  firstName: 'Jan',
+  lastName: 'Nowak',
+  email: 'jan.nowak@gmail.com',
+  password: 'thisIsPassword123!'
+};
 
-  function getLoginData(user) {
+class UserDataProvider {
+  static _getLoginData(user) {
     return _.pick(user, 'email', 'password');
   }
 
-  function getRegistrationData(user) {
+  static _getRegistrationData(user) {
     return _.pick(user, 'firstName', 'lastName', 'email', 'password');
   }
 
-  function getExistingUser() {
+  static getExistingUser() {
     return existingUser;
   }
 
-  function getExistingUser2() {
+  static getExistingUser2() {
     return users[1];
   }
 
-  function getNotExistingUserLoginData() {
-    return getLoginData(notExistingUser);
+  static getNotExistingUserLoginData() {
+    return UserDataProvider._getLoginData(notExistingUser);
   }
 
-  function getExistingUserLoginData() {
-    return getLoginData(existingUser);
+  static getExistingUserLoginData() {
+    return UserDataProvider._getLoginData(existingUser);
   }
 
-  function getExistingUserRegistrationData() {
-    return getRegistrationData(existingUser);
+  static getExistingUserRegistrationData() {
+    return UserDataProvider._getRegistrationData(existingUser);
   }
 
-  function getNotExistingUserRegistrationData() {
-    return getRegistrationData(notExistingUser);
+  static getNotExistingUserRegistrationData() {
+    return UserDataProvider._getRegistrationData(notExistingUser);
   }
 
-  function getTooShortPasswordRegistrationData() {
-    var data = getRegistrationData(notExistingUser);
+  static getTooShortPasswordRegistrationData() {
+    let data = UserDataProvider._getRegistrationData(notExistingUser);
     data.password = 'apapa';
     return data;
   }
+}
 
-  module.exports = {
-    getExistingUser: getExistingUser,
-    getExistingUser2: getExistingUser2,
-    getNotExistingUserLoginData: getNotExistingUserLoginData,
-    getExistingUserLoginData: getExistingUserLoginData,
-    getExistingUserRegistrationData: getExistingUserRegistrationData,
-    getNotExistingUserRegistrationData: getNotExistingUserRegistrationData,
-    getTooShortPasswordRegistrationData: getTooShortPasswordRegistrationData
-  };
-})();
+module.exports = UserDataProvider;

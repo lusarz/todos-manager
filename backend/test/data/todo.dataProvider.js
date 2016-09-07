@@ -1,15 +1,12 @@
-(function () {
-  'use strict';
+'use strict';
 
-  var _ = require('lodash');
-  var existingTodos = require('../fixtures/todos').todos;
+const _ = require('lodash');
+const existingTodos = require('../fixtures/todos');
 
-
-  function getExistingTodosByUserId(userId) {
+class TodoDataProvider {
+  static getExistingTodosByUserId(userId) {
     return _.filter(existingTodos, {user: userId});
   }
+}
 
-  module.exports = {
-    getExistingTodosByUserId: getExistingTodosByUserId
-  };
-})();
+module.exports = TodoDataProvider;
