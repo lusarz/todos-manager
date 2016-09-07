@@ -1,6 +1,5 @@
 'use strict';
 
-const _ = require('lodash');
 const users = require('../fixtures/users').users;
 const existingUser = users[0];
 
@@ -13,11 +12,19 @@ const notExistingUser = {
 
 class UserDataProvider {
   static _getLoginData(user) {
-    return _.pick(user, 'email', 'password');
+    return {
+      email: user.email,
+      password: user.password
+    }
   }
 
   static _getRegistrationData(user) {
-    return _.pick(user, 'firstName', 'lastName', 'email', 'password');
+    return {
+      firstName: user.firstName,
+      lastName: user.lastName,
+      email: user.email,
+      password: user.password
+    };
   }
 
   static getExistingUser() {

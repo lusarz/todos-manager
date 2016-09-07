@@ -14,13 +14,11 @@
     "crypto": "0.0.3",
     "express": "4.13.4",
     "generate-password": "^1.1.1",
-    "lodash": "^3.10.1",
     "mongodb": "~2.1.2",
-    "mongoose": "^4.3.4",
+    "mongoose": "4.6.0",
     "morgan": "~1.6.1",
     "passport": "^0.3.2",
     "passport-http-bearer": "^1.0.1",
-    "q": "^1.4.1",
     "validator": "^4.5.0"
   },
   "engines": {

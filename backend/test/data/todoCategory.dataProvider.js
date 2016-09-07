@@ -1,12 +1,13 @@
 'use strict';
 
-const _ = require('lodash');
 const todoCategories = require('../fixtures/todoCategories').todoCategories;
 
 
 class TodoCategoryDataProvider {
   static getExistingTodoCategoriesByUserId(userId) {
-    return _.filter(todoCategories, {user: userId});
+    return todoCategories.filter(category => {
+      return category.user === userId;
+    });
   }
 }
 

@@ -2,14 +2,13 @@
 
 const config = require('../../config/config');
 const crypto = require('crypto');
-const _ = require('lodash');
 
 const id = require('pow-mongodb-fixtures').createObjectId;
 const fixtures = require('pow-mongodb-fixtures').connect(config.dbName);
 
 
 fixtures.addModifier(function(collectionName, item, cb) {
-  var preparedItem = _.extend({}, item);
+  let preparedItem = Object.assign({}, item);
   preparedItem._id = id(item._id);
 
   if (collectionName === 'users') {

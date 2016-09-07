@@ -1,13 +1,12 @@
 'use strict';
 
-const _ = require('lodash');
-
 class ValidationHelper {
   static prepareErrorResponse(err) {
     var response = {};
     response.errors = {};
 
-    _.each(err.errors, function(value, key) {
+    Object.keys(err.errors).forEach(key => {
+      const value = err.errors[key];
       response.errors[key] = {code: value.message};
     });
     return response;
