@@ -10,11 +10,9 @@
     "test": "gulp test"
   },
   "dependencies": {
-    "body-parser": "~1.14.2",
     "crypto": "0.0.3",
-    "express": "4.13.4",
+    "express": "4.14.0",
     "generate-password": "^1.1.1",
-    "mongodb": "~2.1.2",
     "mongoose": "4.6.0",
     "morgan": "~1.6.1",
     "passport": "^0.3.2",
