@@ -13,22 +13,22 @@ class TodoController {
   static findList(req, res) {
     const filters = {};
 
-    if (req.param('category')) {
-      const category = req.param('category');
+    if (req.params.category) {
+      const category = req.params.category;
       if (category === 'general') {
         filters['category'] = null;
       } else {
-        filters['category'] = req.param('category');
+        filters['category'] = category;
       }
     }
 
-    if (req.param('favourite')) {
+    if (req.params.favourite) {
       filters['favourite'] = true;
     }
 
-    if (req.param('onlyCompleted')) {
+    if (req.params.onlyCompleted) {
       filters['doneAt'] = {$ne: null};
-    } else if (req.param('onlyUncompleted')) {
+    } else if (req.params.onlyUncompleted) {
       filters['doneAt'] = null;
     }
 
