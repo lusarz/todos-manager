@@ -43,7 +43,6 @@ class AuthenticationController {
         res.status(400).send({errors: {email: {code: 'notExist'}}});
       } else if (user.authenticate(password)) {
         UserService.generateToken(user._id).then(token => {
-          console.log(token);
           res.json({token: token});
         }, err => {
           res.status(500).send(err);

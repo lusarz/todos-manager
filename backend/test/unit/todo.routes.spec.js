@@ -34,9 +34,7 @@ describe('Todo endpoint', function() {
     beforeEach(function(done) {
       request.post('/api/user/login').send(userHelper.getExistingUserLoginData())
         .end(function(err, res) {
-          console.log(res);
           token = res.body.token;
-          console.log('Bearer ' + token);
           done();
         });
     });
@@ -79,7 +77,6 @@ describe('Todo endpoint', function() {
           .set('Authorization', 'Bearer ' + token)
           .expect(200)
           .end(function(err, res) {
-            console.log(res.body);
             if (err) {
               return done(err);
             }
@@ -92,7 +89,6 @@ describe('Todo endpoint', function() {
           .set('Authorization', 'Bearer ' + token)
           .expect(404)
           .end(function(err, res) {
-            console.log(res.body);
             if (err) {
               return done(err);
             }

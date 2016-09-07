@@ -81,8 +81,7 @@ class TodoController {
     todoService.remove(req.params.id).then(() => {
       res.send({});
     }, err => {
-      console.log('remove err');
-      console.log(err);
+      //TODO: catch error
     });
   }
 }

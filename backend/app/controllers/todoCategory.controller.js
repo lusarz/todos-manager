@@ -45,7 +45,7 @@ class TodoCategoryController {
     todoCategoryService.remove(req.params.id).then(() => {
       res.send({});
     }, err => {
-      console.log(err);
+      //TODO catch error
     });
   }
 }
