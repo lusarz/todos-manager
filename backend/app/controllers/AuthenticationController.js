@@ -1,7 +1,7 @@
 'use strict';
 
 const UserService = require('../services/UserService');
-const validation = require('./helpers/ValidationHelper');
+const validation = require('../helpers/ValidationHelper');
 
 class AuthenticationController {
   /**
