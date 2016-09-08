@@ -7,6 +7,8 @@ const morgan = require('morgan');
 const passport = require('passport');
 const config = require('./config/config');
 const mongoose = require('mongoose');
+const path = require("path");
+const fs = require("fs");
 
 mongoose.Promise = global.Promise;
 
@@ -19,7 +21,12 @@ app.use(bodyParser.json());
 require('./backend/app/config/strategies/BearerStrategy')(app);
 app.use(passport.initialize());
 
-require('./backend/app/routes/routes.js')(app);
+
+//Read all routes
+var routesPath = path.join(__dirname, "backend/app/routes");
+fs.readdirSync(routesPath).forEach(function(file) {
+  require("./backend/app/routes/" + file)(app);
+});
 
 //Serve frontend in not production environment
 if (process.env.NODE_ENV !== 'production') {
