@@ -16,7 +16,7 @@ app.disable('etag');
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 
-require('./backend/app/config/strategies/bearer')(app);
+require('./backend/app/config/strategies/BearerStrategy')(app);
 app.use(passport.initialize());
 
 require('./backend/app/routes/routes.js')(app);

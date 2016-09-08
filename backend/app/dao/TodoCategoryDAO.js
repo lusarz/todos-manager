@@ -1,6 +1,6 @@
 'use strict';
 
-const TodoCategory = require('../models/todoCategory.model');
+const TodoCategory = require('../models/TodoCategory');
 
 class TodoCategoryDAO {
   static findList(filters, user) {

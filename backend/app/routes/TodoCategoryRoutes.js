@@ -1,7 +1,7 @@
 'use strict';
 
 const passport = require('passport');
-const todoCategoriesController = require('../../controllers/todoCategory.controller.js');
+const todoCategoriesController = require('../controllers/TodoCategoryController');
 
 module.exports = function(router) {
   router.route('/api/todoCategories')

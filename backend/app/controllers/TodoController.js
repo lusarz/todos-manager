@@ -1,6 +1,6 @@
 'use strict';
 
-const todoService = require('../services/todo.service');
+const todoService = require('../services/TodoService');
 
 class TodoController {
   /*

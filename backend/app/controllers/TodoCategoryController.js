@@ -1,6 +1,6 @@
 'use strict';
 
-const todoCategoryService = require('../services/todoCategory.service');
+const todoCategoryService = require('../services/TodoCategoryService');
 
 class TodoCategoryController {
 

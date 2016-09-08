@@ -1,6 +1,6 @@
 'use strict';
 
-const Todo = require('../models/todo.model');
+const Todo = require('../models/Todo');
 
 class TodoDAO {
   static findList(filters, user) {

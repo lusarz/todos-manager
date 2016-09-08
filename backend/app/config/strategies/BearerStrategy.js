@@ -5,7 +5,7 @@
  */
 const passport = require('passport');
 const BearerStrategy = require('passport-http-bearer').Strategy;
-const userService = require('../../services/user.service');
+const userService = require('../../services/UserService');
 
 module.exports = function() {
 

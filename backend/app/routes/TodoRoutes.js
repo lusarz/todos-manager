@@ -1,7 +1,7 @@
 'use strict';
 
 const passport = require('passport');
-const TodoController = require('../../controllers/todo.controller.js');
+const TodoController = require('../controllers/TodoController');
 
 let authenticate = () => {
   return passport.authenticate('bearer', {session: false})

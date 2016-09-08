@@ -1,6 +1,6 @@
 'use strict';
 
-const User = require('../models/user.model');
+const User = require('../models/User');
 
 
 class UserDAO {

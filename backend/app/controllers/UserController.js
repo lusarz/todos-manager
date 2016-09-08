@@ -1,6 +1,6 @@
 'use strict';
 
-const userService = require('../services/user.service');
+const userService = require('../services/UserService');
 
 class UserController {
   static available(req, res) {

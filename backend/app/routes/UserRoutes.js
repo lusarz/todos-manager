@@ -1,9 +1,9 @@
 'use strict';
 
 const passport = require('passport');
-const authenticationController = require('../../controllers/authentication.controller.js');
-const profileController = require('../../controllers/profile.controller.js');
-const userController = require('../../controllers/user.controller.js');
+const authenticationController = require('../controllers/AuthenticationController');
+const profileController = require('../controllers/ProfileController');
+const userController = require('../controllers/UserController');
 
 module.exports = function(router) {
   router.route('/api/user/register')
