@@ -13,8 +13,11 @@ class TodoController {
   static findList(req, res) {
     const filters = {};
 
-    if (req.params.category) {
-      const category = req.params.category;
+    console.log(req.query);
+    console.log(req.param('category'));
+
+    if (req.param('category')) {
+      const category = req.param('category');
       if (category === 'general') {
         filters['category'] = null;
       } else {
@@ -22,16 +25,17 @@ class TodoController {
       }
     }
 
-    if (req.params.favourite) {
+    if (req.param('favourite')) {
       filters['favourite'] = true;
     }
 
-    if (req.params.onlyCompleted) {
+    if (req.param('onlyCompleted')) {
       filters['doneAt'] = {$ne: null};
-    } else if (req.params.onlyUncompleted) {
+    } else if (req.param('onlyUncompleted')) {
       filters['doneAt'] = null;
     }
 
+    console.log(filters);
     todoService.findList(filters, req.user).then(todos => {
       res.send(todos);
     }, err => {
@@ -41,7 +45,7 @@ class TodoController {
 
 
   static markAsCompleted(req, res) {
-    todoService.markAsCompleted(req.params.id).then(() => {
+    todoService.markAsCompleted(req.param('id')).then(() => {
       res.send({success: true});
     }, err => {
       res.status(400).send(err);
@@ -49,7 +53,7 @@ class TodoController {
   }
 
   static findById(req, res) {
-    todoService.findById(req.params.id).then(todo => {
+    todoService.findById(req.param('id')).then(todo => {
       if (todo) {
         res.send(todo);
       } else {
@@ -70,7 +74,7 @@ class TodoController {
   }
 
   static update(req, res) {
-    todoService.update(req.body, req.params.id).then(todo => {
+    todoService.update(req.body, req.param('id')).then(todo => {
       res.send(todo);
     }, err => {
       res.status(400).send(err);
@@ -78,7 +82,7 @@ class TodoController {
   }
 
   static remove(req, res) {
-    todoService.remove(req.params.id).then(() => {
+    todoService.remove(req.param('id')).then(() => {
       res.send({});
     }, err => {
       //TODO: catch error
