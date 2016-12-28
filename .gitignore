@@ -27,9 +27,10 @@ build/Release
 node_modules
 frontend/app/bower_components
 frontend/app/dist
+frontend/app/scripts/templates.js
+frontend/app/styles/*.css
 dist.tar.gz
 dist
 
 
 .idea
-frontend/app/.tmp
