@@ -26,7 +26,7 @@ fixtures.addModifier(function(collectionName, item, cb) {
 });
 
 function clearAllAndLoad(cb) {
-  fixtures.clearAllAndLoad('./fixtures', function(err) {
+  fixtures.clearAllAndLoad(`${__dirname}/fixtures`, function(err) {
     if (err) {
       cb(err);
     } else {
@@ -35,6 +35,6 @@ function clearAllAndLoad(cb) {
   });
 }
 
-module.exports = {
+export default {
   clearAllAndLoad: clearAllAndLoad
 };

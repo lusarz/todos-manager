@@ -40,7 +40,7 @@ var TodoCategorySchema = new Schema({
     type: Date,
     default: Date.now
   }
-}, {collection: 'todoCategories'});
+}, { collection: 'todoCategories' });
 
 TodoCategorySchema.set('toJSON', {
   transform: function(doc, ret) {

@@ -4,7 +4,7 @@ const server = require('../../../server.js');
 const request = require('supertest').agent(server.app.listen());
 const expect = require('chai').expect;
 
-const fixturesLoader = require('../fixturesLoader');
+import fixturesLoader from '../fixturesLoader';
 const userHelper = require('../data/user.dataProvider');
 
 

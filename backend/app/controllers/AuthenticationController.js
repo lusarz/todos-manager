@@ -19,7 +19,7 @@ class AuthenticationController {
       } else {
         UserService.create(user).then(createdUser => {
           UserService.generateToken(createdUser._id).then(token => {
-            res.json({token: token, user: createdUser});
+            res.json({ token: token, user: createdUser });
           }, err => {
             res.status(500).send(err);
           });
@@ -40,15 +40,15 @@ class AuthenticationController {
     UserService.findByEmail(email).then(user => {
 
       if (!user) {
-        res.status(400).send({errors: {email: {code: 'notExist'}}});
+        res.status(400).send({ errors: { email: { code: 'notExist' } } });
       } else if (user.authenticate(password)) {
         UserService.generateToken(user._id).then(token => {
-          res.json({token: token});
+          res.json({ token: token });
         }, err => {
           res.status(500).send(err);
         });
       } else {
-        res.status(401).send({errors: {password: {code: 'invalid'}}});
+        res.status(401).send({ errors: { password: { code: 'invalid' } } });
       }
     });
   }
