@@ -1,6 +1,6 @@
 import gulp from 'gulp';
 
-export default () => {
+export default module.exports = () => {
   gulp.src('frontend/app/dist/**/*')
     .pipe(gulp.dest('dist/frontend'));
 

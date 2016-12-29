@@ -1,91 +1,53 @@
 'use strict';
 
 import gulp from 'gulp';
-
-import env from 'gulp-env';
-import nodemon from 'nodemon';
 import { webdriver_standalone } from 'gulp-protractor';
 
+let getTask = taskName => {
+  const url = `./gulp-tasks/${taskName}`;
+  return require(url);
+};
 
-import runSequence from 'run-sequence';
-
-import taskClean from './gulp-tasks/clean';
-import taskCleanDist from './gulp-tasks/clean-dist';
-import taskTemplateCache from './gulp-tasks/templateCache';
-import taskLint from './gulp-tasks/lint';
-import taskSass from './gulp-tasks/sass';
-
-import taskBowerIndex from './gulp-tasks/bower-index';
-import taskBowerKarma from './gulp-tasks/bower-karma';
-import taskBowerSass from './gulp-tasks/bower-sass';
-
-import taskUsemin from './gulp-tasks/usemin';
-
-//Test tasks
-import taskTestKarma from './gulp-tasks/test-karma';
-import taskTestE2E from './gulp-tasks/test-e2e';
-import taskTestMocha from './gulp-tasks/test-mocha';
-
-import taskCopyDist from './gulp-tasks/copy-dist';
-import taskCopyAllDist from './gulp-tasks/copyAll-dist';
-import taskDeployPrepare from './gulp-tasks/deploy-prepare';
-import taskBuildAppDist from './gulp-tasks/buildApp-dist';
-import taskE2EFixtures from './gulp-tasks/e2eFixtures';
-
-import taskWatch from './gulp-tasks/watch';
-import taskStart from './gulp-tasks/start';
-
-
-gulp.task('clean', taskClean);
-gulp.task('clean:dist', taskCleanDist);
-gulp.task('templateCache', taskTemplateCache);
-gulp.task('lint', taskLint);
-gulp.task('sass', taskSass);
-gulp.task('bower:index', taskBowerIndex);
-gulp.task('bower:karma', taskBowerKarma);
-gulp.task('bower:sass', taskBowerSass);
+gulp.task('clean', getTask(('clean')));
+gulp.task('clean:dist', getTask('clean-dist'));
+gulp.task('templateCache', getTask('templateCache'));
+gulp.task('lint', getTask('lint'));
+gulp.task('sass', getTask('sass'));
+gulp.task('bower:index', getTask('bower-index'));
+gulp.task('bower:karma', getTask('bower-karma'));
+gulp.task('bower:sass', getTask('bower-sass'));
 gulp.task('webdriver_standalone', webdriver_standalone);
-gulp.task('usemin', taskUsemin);
+gulp.task('usemin', getTask('usemin'));
 
 
-gulp.task('copy:dist', taskCopyDist);
+gulp.task('copy:dist', getTask('copy-dist'));
 
-gulp.task('copyAll:dist', taskCopyAllDist);
+gulp.task('copyAll:dist', getTask('copyAll-dist'));
 
-gulp.task('deploy:prepare', taskDeployPrepare);
+gulp.task('deploy:prepare', getTask('deploy-prepare'));
 
-gulp.task('buildApp:dist', taskBuildAppDist);
+gulp.task('buildApp:dist', getTask('buildApp-dist'));
 
 
-gulp.task('e2eFixtures', taskE2EFixtures);
+gulp.task('e2eFixtures', getTask('e2eFixtures'));
 
-gulp.task('test:karma', taskTestKarma);
-gulp.task('test:e2e', taskTestE2E);
+gulp.task('test:karma', getTask('test-karma'));
+gulp.task('test:e2e', getTask('test-e2e'));
 
 // Backend unit test
-gulp.task('test:mocha', taskTestMocha);
+gulp.task('test:mocha', getTask('test-mocha'));
 
-gulp.task('watch', taskWatch);
-
-
-gulp.task('start', taskStart);
+gulp.task('watch', getTask('watch'));
 
 
-gulp.task('default', ['clean', 'sass', 'bower:index', 'templateCache', 'watch', 'start']);
-
-gulp.task('test:unit', function(done) {
-  runSequence(
-    'templateCache',
-    'bower:index',
-    'bower:karma',
-    'test:karma',
-    done
-  );
-});
+gulp.task('start', getTask('start'));
 
 
-gulp.task('test:e2e', ['test:e2e']);
-gulp.task('test:backend', ['test:mocha']);
-gulp.task('test', ['test:unit'/*, 'test:backend'*/]);
-gulp.task('build:dist', ['usemin', 'copy:dist'])
+gulp.task('default', getTask('default'));
+
+gulp.task('test:unit', getTask('test-unit'));
+
+
+gulp.task('test', getTask('test-unit'));
+gulp.task('build:dist', getTask('build-dist'));
 

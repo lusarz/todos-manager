@@ -1,7 +1,7 @@
 import mongodbFixtures from 'pow-mongodb-fixtures';
 import crypto from 'crypto';
 
-export default done => {
+export default module.exports = done => {
   const fixtures = mongodbFixtures.connect('todosManager-test', {
     host: 'localhost',
     port: 27017

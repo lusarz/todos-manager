@@ -1,6 +1,6 @@
 import runSequence from 'run-sequence';
 
-export default () => {
+export default module.exports = () => {
   runSequence(
     'clean',
     'sass',

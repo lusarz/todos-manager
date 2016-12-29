@@ -2,7 +2,7 @@ import gulp from 'gulp';
 import env from 'gulp-env';
 import mocha from 'gulp-mocha';
 
-export default done => {
+export default module.exports = done => {
   env({
     vars: {
       NODE_ENV: 'test'

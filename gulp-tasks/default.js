@@ -1,8 +1,1 @@
-import nodemon from 'nodemon';
-
-export default () => {
-  return nodemon({
-    script: 'server.js',
-    ext: 'js html scss'
-  });
-};
+export default module.exports = ['clean', 'sass', 'bower:index', 'templateCache', 'watch', 'start'];

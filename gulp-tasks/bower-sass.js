@@ -1,7 +1,7 @@
 import gulp from 'gulp';
 import { stream as wiredep } from 'wiredep';
 
-export default () => {
+export default module.exports = () => {
   gulp.src('frontend/app/styles/**/*.scss')
     .pipe(wiredep({
       devDependencies: true,

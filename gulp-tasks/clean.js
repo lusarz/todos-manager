@@ -1,7 +1,10 @@
 import del from 'del';
 
-export default () => {
+let task = () => {
   return del.sync([
     'frontend/app/.tmp'
   ]);
 };
+
+module.exports = task;
+export default task;

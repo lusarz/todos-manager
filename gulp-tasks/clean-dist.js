@@ -1,6 +1,6 @@
 import del from 'del';
 
-export default done => {
+export default module.exports =  done => {
   return del.sync([
     'dist'
   ], done);

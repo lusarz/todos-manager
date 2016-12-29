@@ -2,7 +2,7 @@ import gulp from 'gulp';
 import usemin from'gulp-usemin';
 import rev from 'gulp-rev';
 
-export default () => {
+export default module.exports = () => {
   return gulp.src('frontend/app/*.html')
     .pipe(usemin({
       cssMain: [rev()],

@@ -1,7 +1,7 @@
 import gulp from 'gulp';
 import { stream as wiredep } from 'wiredep';
 
-export default () => {
+export default module.exports = () => {
   gulp.src('frontend/test/karma.conf.js')
     .pipe(wiredep({
       devDependencies: true,

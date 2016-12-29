@@ -2,7 +2,7 @@ import env from 'gulp-env';
 import nodemon from 'nodemon';
 import { protractor } from 'gulp-protractor';
 
-export default () => {
+export default module.exports = () => {
   env({
     vars: {
       NODE_ENV: 'test'
