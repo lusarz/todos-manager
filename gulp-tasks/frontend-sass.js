@@ -7,5 +7,5 @@ export default module.exports = () => {
     .pipe(sourcemaps.init())
     .pipe(sass().on('error', sass.logError))
     .pipe(sourcemaps.write())
-    .pipe(gulp.dest('frontend/app/.tmp/styles'));
+    .pipe(gulp.dest('frontend/app/styles'));
 };

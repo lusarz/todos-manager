@@ -2,7 +2,8 @@ import del from 'del';
 
 let task = () => {
   return del.sync([
-    'frontend/app/.tmp'
+    'frontend/app/scripts/templates.js',
+    'frontend/app/styles/*.css'
   ]);
 };
 

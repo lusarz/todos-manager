@@ -31,7 +31,6 @@ fs.readdirSync(routesPath).forEach(function(file) {
 //Serve frontend in not production environment
 if (process.env.NODE_ENV !== 'production') {
   app.use(express.static(__dirname + '/frontend/app'));
-  app.use(express.static(__dirname + '/frontend/app/.tmp'));
 }
 
 app.listen(config.port, function() {
