@@ -7,7 +7,7 @@
   "scripts": {
     "start": "gulp",
     "postinstall": "if [ -z \"$npm_config_production\" ]; then ./node_modules/protractor/bin/webdriver-manager update; fi",
-    "test": "gulp test"
+    "test": "gulp test:frontend"
   },
   "dependencies": {
     "body-parser": "1.15.2",
