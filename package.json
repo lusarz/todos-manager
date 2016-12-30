@@ -19,6 +19,8 @@
     "morgan": "~1.6.1",
     "passport": "^0.3.2",
     "passport-http-bearer": "^1.0.1",
+    "semantic-ui-css": "^2.2.4",
+    "semantic-ui-react": "^0.63.3",
     "validator": "^4.5.0"
   },
   "engines": {
