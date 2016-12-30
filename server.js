@@ -37,7 +37,4 @@ app.listen(config.port, function() {
   console.log('listening for requests on localhost:%s', config.port);
 });
 
-module.exports = {
-  app: app,
-  dbConnection: dbConnection
-};
+module.exports = { app, dbConnection };

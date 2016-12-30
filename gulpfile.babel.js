@@ -12,12 +12,13 @@ const registerTask = (scriptName, taskName = scriptName) => {
 };
 
 registerTask('frontend-clean');
-registerTask('frontend-clean-dist');
 registerTask('frontend-sass');
 registerTask('frontend-bower-index');
 registerTask('frontend-cache-templates');
 registerTask('frontend-prepare-dist');
 registerTask('frontend-watch');
+
+registerTask('app-clean');
 
 registerTask('app-start-development-server');
 

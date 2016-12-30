@@ -1,9 +1,6 @@
 import gulp from 'gulp';
 
 export default module.exports = () => {
-  gulp.src('frontend/dist/**/*')
-    .pipe(gulp.dest('dist/frontend'));
-
   gulp.src('backend/app/**/*', { base: 'backend' })
     .pipe(gulp.dest('dist/backend'));
 
