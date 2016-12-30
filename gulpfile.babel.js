@@ -21,13 +21,13 @@ registerTask('frontend-watch');
 registerTask('app-clean');
 
 registerTask('app-start-development-server');
-
+registerTask('app-prepare-dist');
 
 //Public tasks
-registerTask('app-prepare-dist', 'build:app');
 registerTask('frontend-build', 'build:frontend');
 registerTask('frontend-test-unit', 'test:frontend');
 registerTask('backend-test-unit', 'test:backend');
+registerTask('app-build', 'build:app');
 registerTask('app-test-e2e', 'test:e2e');
 registerTask('app-lint', 'lint');
 registerTask('app-default', 'default');
