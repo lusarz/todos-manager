@@ -1,15 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import ContainerExampleText from './components/DimmerExampleDimmer';
+import Dashboard from './components/Dashboard';
 
 
 class App extends React.Component {
 
   render() {
     return (
-      <ContainerExampleText>
-      </ContainerExampleText>
+      <Dashboard>
+      </Dashboard>
     )
   }
 }
