@@ -1,7 +1,9 @@
 import del from 'del';
 
-export default module.exports = () => {
-  return del.sync([
-    'frontend/dist'
-  ]);
+module.exports = (gulp, taskName) => {
+  gulp.task(taskName, () => {
+    return del.sync([
+      'frontend/dist'
+    ]);
+  });
 };

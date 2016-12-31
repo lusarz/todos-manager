@@ -4,11 +4,7 @@ import gulp from 'gulp';
 import { webdriver_standalone } from 'gulp-protractor';
 
 const registerTask = (scriptName, taskName = scriptName) => {
-  if (scriptName === 'frontend-test-unit') {
-    require(`./gulp-tasks/${scriptName}`)(gulp, taskName);
-    return;
-  }
-  gulp.task(taskName, require(`./gulp-tasks/${scriptName}`));
+  require(`./gulp-tasks/${scriptName}`)(gulp, taskName);
 };
 
 registerTask('frontend-clean');

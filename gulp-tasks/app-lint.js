@@ -1,21 +1,20 @@
-import jshint from 'gulp-jshint'
-import gulp from 'gulp'
+import jshint from 'gulp-jshint';
 
-export default module.exports = () => {
-
-
-  var assets = [
-    'frontend/app/scripts/**/*.js',
-    'frontend/test/**/*.js',
-    'backend/app/**/*.js',
-    'backend/test/**/*.js',
-    'server.js',
-    'config/**/*.js'
-  ];
+module.exports = (gulp, taskName) => {
+  gulp.task(taskName, () => {
+    var assets = [
+      'frontend/app/scripts/**/*.js',
+      'frontend/test/**/*.js',
+      'backend/app/**/*.js',
+      'backend/test/**/*.js',
+      'server.js',
+      'config/**/*.js'
+    ];
 
 
-  return gulp.src(assets)
-    .pipe(jshint())
-    .pipe(jshint.reporter('default'))
-    .pipe(jshint.reporter('fail'));
+    return gulp.src(assets)
+      .pipe(jshint())
+      .pipe(jshint.reporter('default'))
+      .pipe(jshint.reporter('fail'));
+  });
 };
