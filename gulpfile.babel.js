@@ -4,18 +4,36 @@ import gulp from 'gulp';
 import { webdriver_standalone } from 'gulp-protractor';
 
 const registerTask = (scriptName, taskName = scriptName) => {
+  if (scriptName === 'frontend-test-unit') {
+    require(`./gulp-tasks/${scriptName}`)(gulp, taskName);
+    return;
+  }
   gulp.task(taskName, require(`./gulp-tasks/${scriptName}`));
 };
 
 registerTask('frontend-clean');
-registerTask('frontend-clean-dist');
 registerTask('frontend-sass');
 registerTask('frontend-bower-index');
 registerTask('frontend-cache-templates');
 registerTask('frontend-prepare-dist');
+registerTask('frontend-watch');
 
+registerTask('app-clean');
+
+registerTask('app-start-development-server');
+registerTask('app-prepare-dist');
+
+//Public tasks
 registerTask('frontend-build', 'build:frontend');
+registerTask('frontend-test-unit', 'test:frontend');
+registerTask('backend-test-unit', 'test:backend');
+registerTask('app-build', 'build:app');
+registerTask('app-test-e2e', 'test:e2e');
+registerTask('app-lint', 'lint');
+registerTask('app-default', 'default');
 
+//TODO: change it
+registerTask('backend-setup-test-database');
 
 /*gulp.task('clean', getTask(('clean')));
  gulp.task('clean:dist', getTask('clean-dist'));

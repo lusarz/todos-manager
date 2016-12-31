@@ -5,7 +5,7 @@ const app = express();
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const passport = require('passport');
-const config = require('./config/config');
+const config = require('./config');
 const mongoose = require('mongoose');
 const path = require("path");
 const fs = require("fs");
@@ -37,7 +37,4 @@ app.listen(config.port, function() {
   console.log('listening for requests on localhost:%s', config.port);
 });
 
-module.exports = {
-  app: app,
-  dbConnection: dbConnection
-};
+module.exports = { app, dbConnection };

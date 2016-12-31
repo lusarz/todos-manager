@@ -13,12 +13,12 @@ export default module.exports = () => {
           jsVendor: [rev()],
           jsMain: [rev()]
         }))
-        .pipe(gulp.dest('frontend/dist'))
+        .pipe(gulp.dest('dist/frontend'))
         .on('end', resolve)
     }),
     new Promise(function(resolve, reject) {
       gulp.src(['frontend/app/fonts/**/*', 'frontend/app/images/**/*'], { "base": "frontend/app" })
-        .pipe(gulp.dest('frontend/dist'))
+        .pipe(gulp.dest('dist/frontend'))
         .on('end', resolve)
     })
   ]);

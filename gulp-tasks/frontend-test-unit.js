@@ -1,11 +1,31 @@
-import gulp from 'gulp';
-import sourcemaps from 'gulp-sourcemaps';
-import sass from 'gulp-sass';
+import { Server as KarmaServer } from 'karma';
+import runSequence from 'run-sequence';
+import { stream as wiredep } from 'wiredep';
 
-export default module.exports = () => {
-  return gulp.src('frontend/app/styles/**/*.scss')
-    .pipe(sourcemaps.init())
-    .pipe(sass().on('error', sass.logError))
-    .pipe(sourcemaps.write())
-    .pipe(gulp.dest('frontend/app/styles'));
+module.exports = (gulp, taskName) => {
+  gulp.task('frontend-bower-karma', () => {
+    gulp.src('frontend/test/karma.conf.js')
+      .pipe(wiredep({
+        devDependencies: true,
+        src: 'frontend/test/karma.conf.js'
+      }))
+      .pipe(gulp.dest('frontend/test'));
+  });
+
+  gulp.task('frontend-test-karma', done => {
+    new KarmaServer({
+      configFile: __dirname + '/../frontend/test/karma.conf.js',
+      singleRun: true
+    }, done).start();
+  });
+
+  gulp.task(taskName, done => {
+    runSequence(
+      'frontend-cache-templates',
+      'frontend-bower-index',
+      'frontend-bower-karma',
+      'frontend-test-karma',
+      done
+    );
+  })
 };
