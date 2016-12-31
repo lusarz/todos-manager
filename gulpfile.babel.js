@@ -16,7 +16,6 @@ registerTask('frontend-watch');
 
 registerTask('app-clean');
 
-registerTask('app-start-development-server');
 registerTask('app-prepare-dist');
 
 //Public tasks

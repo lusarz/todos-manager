@@ -2,10 +2,10 @@ var path = require('path');
 var webpack = require('webpack');
 
 module.exports = {
-  context: __dirname + '/app',
+  context: __dirname + '/frontend-semantic-ui-react/app',
   entry: './js/app.js',
   output: {
-    path: __dirname + '/app',
+    path: __dirname + '/frontend-semantic-ui-react/app',
     filename: 'bundle.js'
   },
   module: {
