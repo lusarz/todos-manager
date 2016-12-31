@@ -1,22 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import Jumbotron from './components/jumbotron.component.js';
-import Navigation from './components/navigation.component.js';
-import Container from './components/content.component.js';
+import ContainerExampleText from './components/DimmerExampleDimmer';
 
 
 class App extends React.Component {
 
   render() {
     return (
-      <div>
-        <Navigation/>
-        <Jumbotron/>
-        <Container/>
-      </div>
+      <ContainerExampleText>
+      </ContainerExampleText>
     )
   }
 }
 
-ReactDOM.render(<App/>, document.getElementById('wrapper'));
+ReactDOM.render(<App />, document.getElementById('wrapper'));
